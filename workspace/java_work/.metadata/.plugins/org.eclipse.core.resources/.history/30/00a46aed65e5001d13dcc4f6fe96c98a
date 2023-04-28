@@ -1,0 +1,16 @@
+package kosa.mission;
+
+public class Mission1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//이름 나이 주소를 변수에 각각 담아서 콘솔 출력
+		String name ="lkw";
+		int age = 25;
+		String address = "인천";
+		System.out.println("이름: "+name);
+		System.out.println("나이: "+age);
+		System.out.println("주소: "+address);
+	}
+
+}

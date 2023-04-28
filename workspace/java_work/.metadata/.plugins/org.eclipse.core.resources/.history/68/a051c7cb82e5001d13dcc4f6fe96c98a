@@ -1,0 +1,17 @@
+package kosa.basic;
+
+public class VariableExam02 {
+
+	public static void main(String[] args) {
+		// 캐스팅
+		// 암묵적 or 강제적 =>(데이터타입)
+		
+		//int <=> char
+		char ch ='A'; //아스키코드
+		System.out.println((int)ch);
+		int num1=67;
+		System.out.println((char)num1);
+
+	}
+
+}
