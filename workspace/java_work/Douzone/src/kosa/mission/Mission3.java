@@ -40,6 +40,12 @@ public class Mission3 {
 				odd++;
 			}
 		}
+		/*even += (d/10000%2==0)?1:0;
+		even += (d/1000%10%2==0)?1:0;
+		even += (d/100%10%2==0)?1:0;
+		even += (d/10%10%2==0)?1:0;
+		even += (d%2==0)?1:0;
+		odd=5-even;*/
 		System.out.println("홀수:"+odd);
 		System.out.println("짝수:"+even);
 		
