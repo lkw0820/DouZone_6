@@ -1,0 +1,32 @@
+package kosa.basic;
+
+public class ArrayExam01 {
+
+	public static void main(String[] args) {
+		// 1. 배열 선언, 생성 분리
+		int arr[];//배열 선언 => 배열의 주소값을 저장할 수 있는 변수가 생성
+		arr = new int[5]; //배열을 생성 => int형 변수 5개을 생성하고 그 주소를 arr에 대입
+		//2. 배열선언, 생성 한번에
+		int arr2[] = new int[5];
+		
+		arr[0]=10;//배열의 인덱스를 이용한 직접 초기화
+		arr[1]=20;
+		
+		//3. 배열 선언, 생성, 초기화 한번에
+		int arr3[] = {1,2,3,4,5};
+		
+		//배열 내용을 전체 출력 for문 이용(0~4)
+		for(int i=0;i<arr3.length;i++) {
+			System.out.println("arr["+i+"] = "+arr3[i]);
+		}
+		
+		//향상된 for문
+		for(int n: arr3) {
+			System.out.println(n);
+		}
+		
+		
+		
+	}
+
+}
