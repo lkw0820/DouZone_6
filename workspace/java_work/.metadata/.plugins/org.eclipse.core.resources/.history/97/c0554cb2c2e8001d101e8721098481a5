@@ -1,0 +1,44 @@
+package kosa.mission;
+
+public class Mission2_2 {
+
+	public static void main(String[] args) {
+		// 성적관리프로그램 여러명의 성적을 구현해보자
+		// 번호 	국어	영어	수학	총점	평균
+		//  1	90	80	70	240	80
+		//  2	50	40	60	150	50
+		//==============================
+		//		140	120	110
+		//		70	60	55
+		int[][] score= { 	//국		영
+				{90,80,70}, //0,0	0,1
+				{50,40,60}, //1,0	1,1
+				{60,70,80},
+		};
+		//0 총점 1평균
+		int[][] st=new int[3][2];
+		//0국 
+		int[][] sub=new int[3][2];
+		for(int i=0;i<score.length;i++) {
+			for(int j=0;j<score[i].length;j++) {
+				st[i][0]+=score[i][j];
+				sub[i][0]+=score[j][i];
+			}
+			st[i][1]=st[i][0]/3;
+			sub[i][1]=sub[i][0]/3;
+		}
+		
+		for(int i=0;i<score.length;i++)
+			//for(int j=0;j<score[i].length;j++) {
+				
+			System.out.println((i+1)+"\t" +score[i][0]+"\t"+score[i][1]+"\t"+score[i][2]+"\t"+st[i][0]+"\t"+st[i][1]);
+			
+			//}
+		for(int i=0;i<2;i++) {
+			System.out.println("\t"+sub[1][i]+"\t"+sub[2][i]+"\t"+sub[2][i]);
+		}
+		
+		//System.out.println("\t"+sub[1][1]+"\t"+sub[2][1]+"\t"+sub[2][1]);
+	}
+
+}
