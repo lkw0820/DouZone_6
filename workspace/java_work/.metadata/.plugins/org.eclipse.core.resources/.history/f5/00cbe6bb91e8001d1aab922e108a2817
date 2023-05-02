@@ -1,0 +1,26 @@
+package kosa.basic;
+
+public class CallByExam {
+
+	public static int change(int num) {//매개변수 = 로컬변수
+		num+=20;
+		return num;
+	}
+	public static void change2(int brr[]) {
+		brr[0]+=200;
+	}
+	public static void main(String[] args) {
+		// CallByValue vs CallByReference
+		// 값의 대한 호출 -> 값을 전달하는것 num이 넘겨지는것이 아닌 num안에 값이 넘겨진다
+		//기존값에 영향 없음
+		int num = 10;
+		num=change(num);//num의 복사된 값을 전달 -> num'가 전달된것
+		System.out.println(num);
+
+		//주소에 대한 호출
+		int arr[] = {100};
+		change2(arr);
+		System.out.println(arr[0]);
+	}
+
+}

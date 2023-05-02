@@ -3,7 +3,6 @@ package kosa.mission;
 import java.util.Scanner;
 
 public class Mission2 {
-
 	public static void main(String[] args) {
 		//성적관리 구현
 		//국 영 수 받고 총점과 평균 출력 (평균은 정수)
@@ -48,7 +47,7 @@ public class Mission2 {
 			System.out.println("학점: F");
 			break;
 		}
-
+		
 		
 	}
 
