@@ -1,0 +1,45 @@
+package kosa.mission;
+
+import java.util.Scanner;
+
+public class Mission05_03_3 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int n = sc.nextInt();
+		int[][] arr = new int[n][n];
+		int[] re = new int[n*2+2];
+		int max=0;
+		int colsum=0;//행
+		int rowsum=0;
+		int crosum=0;
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[i].length;j++) {
+				arr[i][j]=sc.nextInt();
+			}
+		}
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				colsum+=arr[i][j];
+				rowsum+=arr[j][i];
+				if(i==j) {
+					crosum+=arr[i][j];
+				}
+				
+			}
+			if(colsum>max) {
+				max=colsum;
+			}
+			if(rowsum>max) {
+				max=rowsum;
+			}
+			if(crosum>max) {
+				max=crosum;
+			}
+			colsum=0;
+			rowsum=0;
+		}
+		System.out.println(max);
+	}
+
+}
