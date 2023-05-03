@@ -1,0 +1,64 @@
+package kosa.mission;
+
+import java.util.Scanner;
+
+public class Mission05_03 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		System.out.println();
+		int[] a = new int[n];
+		int[] b = new int[n];
+		for (int i = 0; i < a.length; i++) {
+			a[i] = sc.nextInt();
+		}
+		for (int i = 0; i < b.length; i++) {
+			b[i] = sc.nextInt();
+		}
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] == b[i]) {
+				// 비김
+				System.out.println("D");
+			} else {
+				if(a[i]<b[i]) {
+					System.out.println("B");
+					if(a[i]==1&&b[i]==3) {
+						System.out.println("A");
+					}
+				}
+				if(a[i]>b[i]) {
+					System.out.println("A");
+					if(a[i]==3&&b[i]==1) {
+						System.out.println("B");
+					}
+				}
+//				if (a[i] == 3 && b[i] == 2) {
+//					// 보 바위 이ㅣ김
+//					System.out.println("A");
+//				} else if (b[i] == 1) {
+//					// 보 가위 짐
+//					System.out.println("B");
+//				}
+//				if (a[i] == 1 && b[i] == 2) {
+//					// 가위 바위 짐
+//					System.out.println("B");
+//				} else if (b[i] == 3) {
+//					// 가위 보 이김
+//					System.out.println("A");
+//				}
+//				if (a[i] == 2 && b[i] == 1) {
+//					// 바위 가위 이김
+//					System.out.println("A");
+//				} else if (b[i] == 3) {
+//					// 바위 보 짐
+//					System.out.println("B");
+//				}
+			}
+
+		}
+
+	}
+
+}
