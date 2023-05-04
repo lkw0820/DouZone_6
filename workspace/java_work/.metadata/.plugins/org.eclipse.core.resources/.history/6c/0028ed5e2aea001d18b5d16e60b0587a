@@ -1,0 +1,13 @@
+package kosa.oop;
+
+public class people {
+	String name;
+	int age;
+	int height;
+	int weight;
+	int hp;
+	
+	public int run(int d) {
+		return 0;
+	}
+}

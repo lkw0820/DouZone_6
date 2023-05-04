@@ -1,0 +1,26 @@
+package kosa.oop;
+
+public class AccountMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//객체는 주소값을 가짐 => 참조형
+		//자신의 클래스 이름이 데이터타입
+		//객체 생성 => 인스턴스화
+		//account=인스턴스 변수 or 객체
+		Account account = new Account();
+		
+		account.accountNo="1111-1111";
+		account.owenerName="이기원";
+		account.balance=10000;
+		
+		account.deposit(5000);
+		try {
+		account.withdraw(3000);
+		}catch(Exception e) {
+			e.getMessage();
+		}
+
+	}
+
+}

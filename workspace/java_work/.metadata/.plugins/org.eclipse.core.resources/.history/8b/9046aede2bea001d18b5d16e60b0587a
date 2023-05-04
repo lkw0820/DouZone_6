@@ -1,0 +1,22 @@
+package kosa.oop;
+
+public class People {
+	String name;
+	int age;
+	int height;
+	int weight;
+	int hp;
+	boolean sex;
+	
+	//생성자
+	
+	
+	public int run(int d) throws Exception{
+		if(hp<d) {
+			throw new Exception("사망");
+		}else {
+			hp-=d;
+		}
+		return hp;
+	}
+}
