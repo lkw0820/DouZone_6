@@ -1,0 +1,57 @@
+package kosa.oop;
+
+import java.util.Scanner;
+
+public class AccountMain2 {
+	public static void create(Account[] a) {
+		Scanner sc = new Scanner(System.in);
+		String num;
+		String name;
+		int balance;
+		System.out.print("계좌번호: ");
+		num=sc.nextLine();
+		System.out.print("이름: ");
+		name=sc.nextLine();
+		System.out.print("잔액: ");
+		balance=sc.nextInt();
+		for(int i=0;i<a.length;i++) {
+			if(a[i]==null) {
+				a[i]=new Account(num,name,balance);
+			}
+		}
+	};
+
+
+	public static void main(String[] args) {
+		// 1. 계좌 발급 2. 전체 계좌 출력 3. 계좌 조회 4. 계좌 입금  5. 계좌 출금
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println("1. 계좌 발급 2. 전체 계좌 출력 3. 계좌 조회 4. 계좌 입금 계좌 출금");
+			System.out.print("메뉴: ");
+			String menu = sc.nextLine();
+			Account[] a = new Account[10];
+			System.out.println();
+			switch (menu) {
+			case "1":
+				create(a);
+				break;
+			case "2":
+				
+				break;
+			case "3":
+				
+				break;
+			case "4":
+				
+				break;
+			case "5":
+				
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+
+}

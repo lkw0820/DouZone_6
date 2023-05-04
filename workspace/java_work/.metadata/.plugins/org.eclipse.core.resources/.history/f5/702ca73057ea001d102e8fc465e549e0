@@ -1,6 +1,6 @@
-package kosa.basic;
+package kosa.oop;
 
-public class Hello {
+public class Account_oop3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

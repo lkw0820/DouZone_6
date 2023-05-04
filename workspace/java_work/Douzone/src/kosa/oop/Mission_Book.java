@@ -1,0 +1,42 @@
+package kosa.oop;
+
+import java.util.Scanner;
+
+public class Mission_Book {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		Book b1 = new Book("JAVA",30000);
+		Book b2 = new Book("JSP",20000);
+		Book b3 = new Book("Oracle",15000);
+		
+//		b1.p_print(b1.name,b1.price,b1.DC());
+//		b1.p_print(b2.name,b2.price,b2.DC());
+//		b1.p_print(b3.name,b3.price,b3.DC());
+		int tot=0;
+//		tot+=b1.DC();
+//		tot+=b2.DC();
+//		tot+=b3.DC();
+		Book[] a = new Book[1];
+		
+		Book arr[] = {
+				new Book("JAVA",30000),
+				new Book("JSP",20000),
+				new Book("Oracle",15000)
+		};
+		
+
+		for(int i=0;i<a.length;i++) {
+			a[i]=new Book(sc.nextLine(),sc.nextInt());
+		}
+		for(int i=0;i<a.length;i++) {
+			a[i].p_print(a[i].name, a[i].price, a[i].DC());
+			tot+=a[i].DC();
+		}
+
+		System.out.println("총 금액: "+tot);
+		
+	}
+
+}

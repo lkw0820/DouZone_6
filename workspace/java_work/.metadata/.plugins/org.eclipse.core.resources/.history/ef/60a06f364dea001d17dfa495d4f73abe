@@ -1,0 +1,48 @@
+package kosa.oop;
+
+import java.util.Scanner;
+
+public class AccountMain2 {
+	public static void create() {
+		Scanner sc = new Scanner(System.in);
+		int num;
+		int name;
+		int balance;
+		System.out.print("계좌번호: ");
+		num=sc.
+		
+	};
+
+
+	public static void main(String[] args) {
+		// 1. 계좌 발급 2. 전체 계좌 출력 3. 계좌 조회 4. 계좌 입금  5. 계좌 출금
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println("1. 계좌 발급 2. 전체 계좌 출력 3. 계좌 조회 4. 계좌 입금 계좌 출금");
+			System.out.print("메뉴: ");
+			int menu = sc.nextInt();
+			System.out.println();
+			switch (menu) {
+			case 1:
+				create();
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+
+}

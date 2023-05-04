@@ -1,0 +1,34 @@
+package kosa.mission;
+
+public class Book {
+	//필드
+	String name;
+	int price;
+	
+	//생성자
+	public Book() {}
+	public Book(String name, int price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+	
+	//메소드
+	public int DC(int price) {
+		if(price>=30000) {
+			price-=price*(25/100);
+		}else if(price>=20000) {
+			price-=price*(2/10);
+		}else if(price>=15000) {
+			price-=price*(15/100);
+		}
+		return price;
+	}
+	
+	public void p_print(String name, int price, int disPrice) {
+		System.out.println(name+" 교재는 정가는 "+price+"원 할인된 가격은 "+disPrice+"원 입니다");
+	}
+	
+	
+
+}
