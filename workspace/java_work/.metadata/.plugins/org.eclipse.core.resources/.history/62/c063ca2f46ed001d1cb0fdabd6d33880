@@ -1,0 +1,18 @@
+package kosa.video;
+
+public class Video {
+	int no;
+	String name;
+	String actor;
+	
+	public Video() {
+		super();
+	}
+
+	public Video(int no, String name, String actor) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.actor = actor;
+	}
+}

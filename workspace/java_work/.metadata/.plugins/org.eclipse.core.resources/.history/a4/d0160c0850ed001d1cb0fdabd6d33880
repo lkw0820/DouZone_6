@@ -1,0 +1,24 @@
+package kosa.video;
+
+public class Video {
+	int no;
+	String name;
+	String actor;
+	
+	public Video() {
+		super();
+	}
+
+	public Video(int no, String name, String actor) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.actor = actor;
+	}
+	
+	public void show() {
+		System.out.println("회원이 대여한 비디오 번호: "+this.no);
+		System.out.println("회원이 대여한 비디오 이름: "+this.name);
+		System.out.println("회원이 대여한 비디오 배우: "+this.actor);
+	}
+}

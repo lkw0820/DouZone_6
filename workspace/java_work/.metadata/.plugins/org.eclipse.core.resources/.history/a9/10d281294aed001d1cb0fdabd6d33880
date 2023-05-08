@@ -1,0 +1,10 @@
+package kosa.video;
+
+public class EnrolmentMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,18 @@
+package kosa.video;
+
+public class Course {
+	String name;
+
+	
+	public Course() {
+		super();
+	}
+
+
+	public Course(String name) {
+		super();
+		this.name = name;
+	}
+	
+
+}
