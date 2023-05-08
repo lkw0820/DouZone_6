@@ -1,0 +1,31 @@
+package kosa.phone;
+
+import java.util.*;
+
+public class Manager {
+	List<PhoneInfo> phones;
+	
+	public void addPhoneInfo(PhoneInfo p){
+		phones.add(p);
+	}
+	
+	public void listPhoneInfo() {
+		for(PhoneInfo p : phones) {
+			System.out.println("이름: "+p.getName());
+			System.out.println("전화번호: "+p.getPhoneNo());
+			System.out.println("생년월일: "+p.getBirth());
+		}
+	}
+	
+	public void searchPhoneInfo(String sname) {
+		if(phones.contains(sname)) {
+			int i =phones.indexOf(sname);
+			PhoneInfo p = phones.get(i);
+			System.out.println("검색한 이름: "+p.getName());
+			System.out.println("검색한 번호: "+p.getPhoneNo());
+			System.out.println("검색한 생일: "+p.getBirth());
+		}
+		
+	}
+
+}

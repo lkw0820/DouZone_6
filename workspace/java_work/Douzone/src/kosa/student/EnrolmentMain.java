@@ -12,7 +12,7 @@ public class EnrolmentMain {
 		Course sc = new Course("과학");
 		s1.enrolment(ko);
 		s1.enrolment(sc);
-		s1.drop(ko);
+		//s1.drop(ko);
 		
 		s2.enrolment(ko);
 		s2.enrolment(en);
@@ -20,6 +20,8 @@ public class EnrolmentMain {
 		
 		s1.show();
 		s2.show();
+		
+		ko.show();
 
 	}
 
