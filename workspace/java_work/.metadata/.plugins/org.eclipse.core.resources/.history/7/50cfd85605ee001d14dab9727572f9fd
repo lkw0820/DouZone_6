@@ -1,0 +1,23 @@
+package kosa.bank;
+
+public class MyBank {
+	private Customer[] customers;
+	private static int customersNum;
+	
+	public void addCustomer(String id, String name, long balance){
+		customers[customersNum++]=new Customer(id,name,balance);
+	}
+	
+	public int getCustomersNum() {
+		int num=customersNum;
+		return num;
+	}
+	
+	public Customer getCustomer(String id) {
+		return null;
+	}
+	
+	public Customer[] getAllCustomers() {
+		return null;
+	}
+}
