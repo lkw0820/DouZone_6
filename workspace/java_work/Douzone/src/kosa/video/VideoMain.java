@@ -10,18 +10,24 @@ public class VideoMain {
 		GeneralMember p3 = new GeneralMember("ccc","이기원2","인천",v);
 		GeneralMember p4 = new GeneralMember("ddd","dllrl2", "dlscjs", 4, "ㅁㅇㄹ", "ㅁㅇㄹㅇㄻㅇㄹㅇㄹ");
 		Video v2 = new Video(5,"탑건2","톰크루즈");
+		Video v3 = new Video(6,"가오겔3","그루트");
 		GeneralMember p5 = new GeneralMember("eee","이기원5","혜화");
 		p5.rental(v2);
 		
 		GeneralMember p6 = new GeneralMember("fff","이기원6","서울",2);
 		p6.rental2(v);
 		p6.rental2(v2);
-		p6.show2();
+		//p6.show2();
 		
 		GeneralMember p7 = new GeneralMember("fff","이기원7","서울");
 		p7.rental3(v);
 		p7.rental3(v2);
-		p7.show3();
+		//p7.show3();
+		
+		SpecialMember sp = new SpecialMember("ggg","이기원8","인천",10);
+		sp.rental(v);
+		sp.rental(v3);
+		sp.show();
 		
 //		p.id="aaa";
 //		p.name="홍길동";

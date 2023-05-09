@@ -6,13 +6,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(System.in);
 		Manager m = new Manager(); //메소드 안에 있으므로 Main과 Manager는 의존관계
 		
 		while(true) {
 			System.out.println("1.추가 2.전체출력 3.검색 4.종료");
 			System.out.print("메뉴: ");
-			String num = sc.nextLine();
+			String num = DataInput.sc.nextLine();
 			//sc.nextLine();
 			switch (num) {
 			case "1":
@@ -32,7 +32,7 @@ public class Main {
 				break;
 			case "3":
 				System.out.print("검색 이름: ");
-				String sname = sc.nextLine();
+				String sname = DataInput.sc.nextLine();
 				m.searchPhoneInfo(sname);
 				break;
 			case "4":

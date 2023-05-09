@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Manager {
 	List<PhoneInfo> phones = new ArrayList<PhoneInfo>();;
-	Scanner sc = new Scanner(System.in);
+	//Scanner sc = new Scanner(System.in);
 	
 	public Manager() {
 		super();
@@ -18,11 +18,11 @@ public class Manager {
 	//교수님
 	public void addPhoneInfo(){
 		System.out.print("이름: ");
-		String name = sc.nextLine();
+		String name = DataInput.sc.nextLine();
 		System.out.print("전화번호: ");
-		String phoneNo = sc.nextLine();
+		String phoneNo = DataInput.sc.nextLine();
 		System.out.print("생년월일: ");
-		String birth = sc.nextLine();
+		String birth = DataInput.sc.nextLine();
 		phones.add(new PhoneInfo(name,phoneNo,birth));
 		System.out.println("전화번호가 등록 되었습니다.");
 	}
@@ -55,7 +55,7 @@ public class Manager {
 	//교수님
 	public void searchPhoneInfo() {
 		System.out.print("이름");
-		String name = sc.nextLine();
+		String name = DataInput.sc.nextLine();
 		int idx = -1;
 		for(PhoneInfo p :phones) {
 			if(p.getName().equals(name)) {

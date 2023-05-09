@@ -5,9 +5,9 @@ public class Account {
 	//상태(데이터) : 계좌번호, 계좌주, 잔액 => 멤버변수 ->초기화 x, 클래스범위 안에 선언, 객체의 라이프사이클과 같아
 	//행동(기능) : 입금하다, 출금하다 => 멤버메소드
 	
-	String accountNo;//계좌번호
-	String ownerName; //계좌주
-	int balance;//잔액
+	private String accountNo;//계좌번호
+	private String ownerName; //계좌주
+	private int balance;//잔액
 	
 	
 	//생성자
@@ -61,6 +61,39 @@ public class Account {
 		System.out.println("잔액: "+balance);
 		System.out.println();
 	}
+
+	//set get
+
+	public String getAccountNo() {
+		return accountNo;
+	}
+
+
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+
+
+	public int getBalance() {
+		return balance;
+	}
+
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+	
+	
 	
 
 }
