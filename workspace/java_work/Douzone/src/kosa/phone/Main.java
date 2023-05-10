@@ -28,12 +28,13 @@ public class Main {
 				m.addPhoneInfo();
 				break;
 			case "2":
-				m.listPhoneInfo();
+				m.listPhoneInfo2();
 				break;
 			case "3":
-				System.out.print("검색 이름: ");
-				String sname = DataInput.sc.nextLine();
-				m.searchPhoneInfo(sname);
+//				System.out.print("검색 이름: ");
+//				String sname = DataInput.sc.nextLine();
+//				m.searchPhoneInfo(sname);
+				m.searchPhoneInfo();
 				break;
 			case "4":
 				System.out.println("종료");

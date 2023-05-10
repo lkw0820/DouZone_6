@@ -1,0 +1,6 @@
+package kosa.phone;
+
+public class Universe extends PhoneInfo {
+	private String major;
+	private String year;
+}

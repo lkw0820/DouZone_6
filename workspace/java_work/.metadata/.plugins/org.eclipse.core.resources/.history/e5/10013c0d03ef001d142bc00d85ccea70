@@ -1,0 +1,7 @@
+package kosa.phone;
+
+public class Company extends PhoneInfo {
+	private String dept;
+	private String position;
+
+}

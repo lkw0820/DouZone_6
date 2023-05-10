@@ -12,6 +12,9 @@ public class Credit_line extends Account {
 		this.credit = credit;
 	}
 
+	//1.상속관계
+	//2.메서드의 시그니처 일치(접근제어자, 리턴형, 이름, 파라미터)
+	//3.메서드의 내용은 불일치(재정의)
 	@Override
 	public int withdraw(int amount) throws Exception {
 		// TODO Auto-generated method stub
@@ -19,13 +22,10 @@ public class Credit_line extends Account {
 		if(balance+credit<amount) {
 			throw new Exception("잔액부족");
 		}else {
-			if(getBalance()<amount) {
-				balance-= amount;
+			balance-= amount;
+			if(getBalance()<amount) 
 				credit-=Math.abs(balance);
-			}else {
-				balance-=amount;
 			}
-		}
 		setBalance(balance);
 		return balance;
 		//return super.withdraw(amount);
