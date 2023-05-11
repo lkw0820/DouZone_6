@@ -1,0 +1,25 @@
+package kosa.oop5;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Object[] obj = {
+				new Reader("둘리"),
+				new Work("길동"),
+				new Student("마이콜")
+		};
+		
+		for(int i=0;i<obj.length;i++) {
+			if(obj[i] instanceof Reader) {
+				Reader reader = (Reader)obj[i];
+				reader.speak();
+			}else if(obj[i] instanceof Work) {
+				Work work = (Work)obj[i];
+				work.speak();
+			}
+		}
+		
+	}
+
+}

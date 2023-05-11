@@ -1,0 +1,11 @@
+package kosa.oop2;
+
+public class OracleDao extends Sql {
+
+	@Override
+	public void intsert() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

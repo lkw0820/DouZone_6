@@ -18,7 +18,7 @@ public class Manager {
 	//교수님
 	public void addPhoneInfo(){
 		//1.일반 2.동창 3. 동창
-		System.out.println("1.일반 2.동창 3.회사");
+		System.out.println("1.일반 2.동창 3.직장동료");
 		System.out.print("선택: ");
 		String i= DataInput.sc.nextLine();
 		
@@ -62,15 +62,15 @@ public class Manager {
 //	}
 	//교수님
 	public void listPhoneInfo() {
-		//1.일반 2.동창 3.회사
+		//1.일반 2.동창 3.직장동료
 		for(PhoneInfo p : phones) {
 			p.show();
 			System.out.println();
 		}
 	}
 	public void listPhoneInfo2() {
-		//1.일반 2.동창 3.회사
-		System.out.println("1.일반 2.동창 3.회사 4.전체출력");
+		//1.일반 2.동창 3.직장동료
+		System.out.println("1.일반 2.동창 3.직장동료 4.전체출력");
 		System.out.print("선택: ");
 		String i= DataInput.sc.nextLine();
 		for(PhoneInfo p : phones) {

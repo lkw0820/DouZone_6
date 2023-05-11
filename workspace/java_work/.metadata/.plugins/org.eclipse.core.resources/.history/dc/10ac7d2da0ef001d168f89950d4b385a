@@ -1,0 +1,8 @@
+package kosa.oop3;
+
+public class Snippet {
+	public Service() {
+		super();
+	}
+}
+

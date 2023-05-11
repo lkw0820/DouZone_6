@@ -1,0 +1,15 @@
+package kosa.oop3;
+
+public class MainSql {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MySQLDao mysql = new MySQLDao();
+		OracleDao oracle = new OracleDao();
+		
+		Service serivce = new Service(oracle);
+		
+		serivce.insert();
+	}
+
+}

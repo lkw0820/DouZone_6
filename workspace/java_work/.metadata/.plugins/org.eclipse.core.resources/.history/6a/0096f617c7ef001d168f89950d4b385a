@@ -1,0 +1,18 @@
+package kosa.practice;
+
+public class GeneralAccount extends Account {
+
+	@Override
+	public void deposit(int amount) {
+		int balance=this.getBalance();
+		this.setBalance(balance+=amount);
+
+	}
+
+	@Override
+	public boolean withdraw(int amount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

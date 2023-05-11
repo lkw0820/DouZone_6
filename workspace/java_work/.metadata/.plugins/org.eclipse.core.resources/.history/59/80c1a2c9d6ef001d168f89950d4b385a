@@ -1,0 +1,5 @@
+package kosa.baseball;
+
+public class DataInput {
+	Scanner sc = new Scanner(System.in);
+}

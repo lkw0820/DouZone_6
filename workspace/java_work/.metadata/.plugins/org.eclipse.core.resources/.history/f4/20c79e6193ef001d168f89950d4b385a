@@ -1,0 +1,36 @@
+package kosa.oop2;
+
+public class Person {
+
+	private String name;
+	private Study study;
+	
+	public Person() {
+		super();
+	}
+	public Person(String name, Study study) {
+		super();
+		this.name = name;
+		this.study = study;
+	}
+	
+	public void doIt() {
+		study.doing();
+	}
+	
+	
+	//get set
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Study getStudy() {
+		return study;
+	}
+	public void setStudy(Study study) {
+		this.study = study;
+	}
+	
+}

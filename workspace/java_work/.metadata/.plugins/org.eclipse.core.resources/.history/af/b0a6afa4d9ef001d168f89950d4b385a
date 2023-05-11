@@ -1,0 +1,14 @@
+package kosa.baseball;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		while(true) {
+			System.out.println("1.게임 시작 2.종료");
+			System.out.print("선택: ");
+			String menu= DataInput.sc.nextLine();
+		}
+	}
+
+}

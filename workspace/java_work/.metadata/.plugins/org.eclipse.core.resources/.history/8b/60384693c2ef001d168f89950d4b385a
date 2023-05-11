@@ -1,0 +1,11 @@
+package kosa.practice;
+
+public class SpecialMember extends Member {
+
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

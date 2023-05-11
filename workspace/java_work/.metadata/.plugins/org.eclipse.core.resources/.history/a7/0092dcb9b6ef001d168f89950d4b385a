@@ -1,0 +1,17 @@
+package kosa.practice;
+
+public class GeneralAccount implements Account {
+
+	@Override
+	public void deposit() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean withdraw() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

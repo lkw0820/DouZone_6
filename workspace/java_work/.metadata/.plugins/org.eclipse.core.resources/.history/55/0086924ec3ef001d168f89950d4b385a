@@ -1,0 +1,23 @@
+package kosa.practice;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Manager {
+	
+	List<Member> arr = new ArrayList<Member>();
+	
+	//회원만
+	public void addMember() {
+		
+	}
+	
+	public void addAccount() {
+	
+	}
+
+	public Member getMember() {
+		return null;
+	}
+	
+}

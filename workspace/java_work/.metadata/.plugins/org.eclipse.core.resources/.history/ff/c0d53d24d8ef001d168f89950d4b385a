@@ -1,0 +1,19 @@
+package kosa.baseball;
+
+public class Answer {
+	private int[] answer;
+
+	public Answer() {
+		answer=new int[3];
+	}
+
+	public int[] getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(int[] answer) {
+		this.answer = answer;
+	}
+	
+
+}

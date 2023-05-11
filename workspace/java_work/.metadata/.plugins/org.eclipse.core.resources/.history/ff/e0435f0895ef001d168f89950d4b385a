@@ -1,0 +1,11 @@
+package kosa.oop2;
+
+public class Work extends Role {
+
+	@Override
+	public void doing() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,25 @@
+package kosa.baseball;
+
+public class Answer {
+	private int[] answer;
+
+	public Answer() {
+		answer=new int[3];
+	}
+	
+	public int[] input() {
+		System.out.print("첫번째 수 입력: ");
+		int menu= Integer.parseInt(DataInput.sc.nextLine());
+		return answer;
+	}
+
+	public int[] getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(int[] answer) {
+		this.answer = answer;
+	}
+	
+
+}

@@ -1,0 +1,33 @@
+package kosa.oop3;
+
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MyFrame extends Frame implements ActionListener{
+
+	public MyFrame() {
+		Button b  = new Button("Button");
+		add(b);
+		b.addActionListener(this);
+		setSize(300,200);
+		setLocation(300,200);
+		setVisible(true);
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Button b= (Button)e.getSource();
+		String label = b.getLabel();
+		System.out.println(label+"선택 됨");
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new MyFrame();
+	}
+
+
+}

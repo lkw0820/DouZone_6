@@ -1,0 +1,37 @@
+package kosa.practice;
+
+public class Check extends Account {
+	private String cardNo;
+	
+
+	public Check() {
+		super();
+	}
+
+	public Check(String id, int balance, String cardNo) {
+		super(id, balance);
+		this.cardNo = cardNo;
+	}
+
+	@Override
+	public void deposit() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean withdraw() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	//get set
+	public String getCardNo() {
+		return cardNo;
+	}
+
+	public void setCardNo(String cardNo) {
+		this.cardNo = cardNo;
+	}
+
+}

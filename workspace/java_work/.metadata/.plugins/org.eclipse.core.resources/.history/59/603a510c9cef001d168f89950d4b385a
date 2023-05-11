@@ -1,0 +1,6 @@
+package kosa.oop2;
+
+public abstract class Sql {
+	public abstract void intsert();
+
+}
