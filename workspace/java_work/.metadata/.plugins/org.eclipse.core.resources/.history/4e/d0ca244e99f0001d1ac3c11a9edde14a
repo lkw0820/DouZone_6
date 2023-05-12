@@ -1,0 +1,39 @@
+package kosa.api;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class calendarExam {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		GregorianCalendar gc1 = new GregorianCalendar();
+		Calendar gc = Calendar.getInstance();
+		System.out.println(gc);
+		System.out.println(gc1);
+		
+		String now = gc.get(Calendar.YEAR)+"년"
+				+(gc.get(Calendar.MONTH)+1)+"월"
+				+gc.get(Calendar.DATE)+"일"
+				+gc.get(Calendar.HOUR)+"시"
+				+gc.get(Calendar.MINUTE)+"분";
+		System.out.println(now);
+		
+		gc.add(Calendar.DATE, 100);
+		String future = gc.get(Calendar.YEAR)+"년"
+				+(gc.get(Calendar.MONTH)+1)+"월"
+				+gc.get(Calendar.DATE)+"일"
+				+gc.get(Calendar.HOUR)+"시"
+				+gc.get(Calendar.MINUTE)+"분";
+		System.out.println("100일후: "+future);
+		gc.set(2022, 11, 24);
+		gc.add(Calendar.DATE,200);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		//Calendar객체를 Date로 형변환 -> getTime
+		String str = sdf.format(gc.getTime());
+		System.out.println(str);
+		
+	}
+
+}

@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.util.Comparator"/>
     <fullyQualifiedTypeName name="kosa.oop.Account"/>
     <fullyQualifiedTypeName name="kosa.oop.People"/>
@@ -17,8 +16,6 @@
     <fullyQualifiedTypeName name="java.awt.Button"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="java.awt.event.WindowListener"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="kosa.oop3.Sql"/>
     <fullyQualifiedTypeName name="kosa.oop2.Role"/>
     <fullyQualifiedTypeName name="kosa.oop5.Speakable"/>
@@ -27,7 +24,6 @@
     <fullyQualifiedTypeName name="kosa.oop6.MyType"/>
     <fullyQualifiedTypeName name="kosa.practice.GeneralAccount"/>
     <fullyQualifiedTypeName name="java.lang.Thread"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="kosa.baseball.DataInput"/>
     <fullyQualifiedTypeName name="kosa.oop7.A"/>
     <fullyQualifiedTypeName name="kosa.oop7.B"/>
@@ -35,4 +31,14 @@
     <fullyQualifiedTypeName name="kosa.oop7ex4.A"/>
     <fullyQualifiedTypeName name="kosa.oop7ex4.C"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="kosa.api.StringMission"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="sun.swing.text.CountingPrintable"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.util.Calendar"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
