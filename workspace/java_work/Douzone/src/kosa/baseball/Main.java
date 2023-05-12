@@ -11,6 +11,8 @@ public class Main {
 		case "1":
 			Question q = new Question();
 			Answer a = new Answer();
+			//정답
+			System.out.print("정답: ");
 			int[] arr = q.getArr();
 			for(int i=0;i<arr.length;i++) {
 				System.out.print(arr[i]+" ");

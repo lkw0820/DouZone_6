@@ -7,9 +7,9 @@ public class Credit_line extends Account {
 		super();
 	}
 
-	public Credit_line(String id, int balance, int credit) {
+	public Credit_line(String id, int balance) {
 		super(id, balance);
-		this.credit = credit;
+		this.credit = 10000;
 	}
 
 	@Override

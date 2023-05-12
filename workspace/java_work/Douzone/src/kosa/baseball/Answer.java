@@ -13,10 +13,17 @@ public class Answer {
 	}
 	
 	public void input() {
-		for(int i=0;i<answer.length;i++) {
-			System.out.print(i+1+" 째 수 입력: ");
-			answer[i]= Integer.parseInt(DataInput.sc.nextLine());
+//		for(int i=0;i<answer.length;i++) {
+//			System.out.print(i+1+" 째 수 입력: ");
+//			answer[i]= Integer.parseInt(DataInput.sc.nextLine());
+//		}
+		System.out.println("숫자 입력");
+		String str = DataInput.sc.nextLine();
+		String[] arr = str.split("");
+		for(int i=0;i<arr.length;i++) {
+			answer[i] = Integer.parseInt(arr[i]);
 		}
+		
 		System.out.println("정답 제출 완료");
 	}
 	

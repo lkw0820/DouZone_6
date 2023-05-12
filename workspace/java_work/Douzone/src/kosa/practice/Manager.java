@@ -47,21 +47,31 @@ public class Manager {
 		int balance =Integer.parseInt(DataInput.sc.nextLine());
 		switch (menu) {
 		case "1":
+			System.out.println("일반 계좌");
 			name.setAccount(new GeneralAccount(id,balance));
 			break;
 		case "2":
+			System.out.println("체크카드");
 			System.out.print("카드번호 입력: ");
 			String cardNo = DataInput.sc.nextLine();
 			name.setAccount(new Check(id,balance,cardNo));
 			break;
 		case "3":
-			
+			System.out.println("마이너스 통장 개설");
+			name.setAccount(new Credit_line(id,balance));
 			break;
 		}
 	
+		
+		
+		
 	}
 
 	public Member getMember() {
+		return null;
+	}
+	
+	public Member[] listMember() {
 		return null;
 	}
 	

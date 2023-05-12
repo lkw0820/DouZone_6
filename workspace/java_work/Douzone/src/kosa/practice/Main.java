@@ -29,7 +29,7 @@ public class Main {
 		//마이너스 입출금 잔액보기+ 신용
 		
 		Manager m = new Manager();
-		String name=null;
+		Member name=null;
 		while(true) {
 			System.out.println("1.로그인 2.회원추가");
 			String menu = DataInput.sc.nextLine();
