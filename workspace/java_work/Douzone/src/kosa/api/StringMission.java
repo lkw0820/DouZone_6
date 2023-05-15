@@ -35,31 +35,28 @@ public class StringMission {
 //			if(arr[i].length()>max) {
 //				max=arr[i].length();
 //				maxNum=i;
-//			}else {
-//				//maxNum=i+1;
 //			}
-//			//int max=Math.max(arr[i].length(), arr[i+1].length())
 //		}
 //		System.out.println(arr[maxNum]);
 		
 		
 		//1_9
-		String str = sc.nextLine();
-		String[] arr = str.split("");
-		String answer="";
-		for(int i=0;i<arr.length;i++) {
-			try {
-				String num= Integer.toString(Integer.parseInt(arr[i]));
-				answer += num;
-			}catch(Exception e) {
-				continue;
-			}
-		}
-		//System.out.println(answer.indexOf("0"));
-		if(answer.indexOf("0")==0) {
-			answer=answer.substring(1);
-		}
-		System.out.println(answer);
+//		String str = sc.nextLine();
+//		String[] arr = str.split("");
+//		String answer="";
+//		for(int i=0;i<arr.length;i++) {
+//			try {
+//				String num= Integer.toString(Integer.parseInt(arr[i]));
+//				answer += num;
+//			}catch(Exception e) {
+//				continue;
+//			}
+//		}
+//		//System.out.println(answer.indexOf("0"));
+//		if(answer.indexOf("0")==0) {
+//			answer=answer.substring(1);
+//		}
+//		System.out.println(answer);
 
 	}
 	

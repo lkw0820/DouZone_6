@@ -1,0 +1,10 @@
+package kosa.api;
+
+public class CaledarMission1_solu {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
