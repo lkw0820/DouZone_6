@@ -1,0 +1,10 @@
+package kosa.data;
+
+public class ListExam {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
