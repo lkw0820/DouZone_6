@@ -1,5 +1,0 @@
-package kosa.oop;
-
-public class CheckingAccount extends Account {
-
-}

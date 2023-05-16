@@ -10,7 +10,7 @@ public class Main {
 		Manager m = new Manager(); //메소드 안에 있으므로 Main과 Manager는 의존관계
 		
 		while(true) {
-			System.out.println("1.추가 2.전체출력 3.검색 4.종료");
+			System.out.println("1.추가 2.전체출력 3.검색 4.수정 5.삭제 6.정렬 7.종료");
 			System.out.print("메뉴: ");
 			String num = DataInput.sc.nextLine();
 			//sc.nextLine();
@@ -37,6 +37,18 @@ public class Main {
 				m.searchPhoneInfo();
 				break;
 			case "4":
+				//수정
+				m.UpdatePhoneInfo();
+				break;
+			case "5":
+				//삭제
+				m.removePhoneInfo();
+				break;
+			case "6":
+				//정렬
+				m.sortPhoneInfo();
+				break;
+			case "7":
 				System.out.println("종료");
 				return;
 			}

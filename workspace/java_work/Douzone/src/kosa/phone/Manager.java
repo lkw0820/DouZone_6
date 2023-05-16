@@ -3,7 +3,7 @@ package kosa.phone;
 import java.util.*;
 
 public class Manager {
-	List<PhoneInfo> phones = new ArrayList<PhoneInfo>();;
+	List<PhoneInfo> phones = new LinkedList<PhoneInfo>();;
 	//Scanner sc = new Scanner(System.in);
 	
 	public Manager() {
@@ -109,7 +109,7 @@ public class Manager {
 //	}
 	//교수님
 	public void searchPhoneInfo() {
-		System.out.print("이름");
+		System.out.print("이름: ");
 		String name = DataInput.sc.nextLine();
 		int idx = -1;
 		for(PhoneInfo p :phones) {
@@ -122,5 +122,55 @@ public class Manager {
 		if(idx==-1) {
 			System.out.println("존재X");
 		}
+	}
+	public void UpdatePhoneInfo() {
+		System.out.print("수정할 이름: ");
+		String name=DataInput.sc.nextLine();
+		int idx = -1;
+		for(PhoneInfo p :phones) {
+			if(p.getName().equals(name)) {
+				System.out.print("수정할 이름 입력:(생략가능) ");
+				String upName=DataInput.sc.nextLine();
+				if(!upName.equals("")) {
+					p.setName(DataInput.sc.nextLine());
+				}
+				System.out.print("수정할 번호 입력:(생략가능) ");
+				String no=DataInput.sc.nextLine();
+				if(!no.equals("")) {
+					p.setPhoneNo(no);
+				}
+				System.out.print("수정할 생일 입력:(생략가능) ");
+				String birth=DataInput.sc.nextLine();
+				if(!birth.equals("")) {
+					p.setBirth(birth);
+				}
+				//p.setPhoneNo(DataInput.sc.nextLine());
+				System.out.println("수정 완료");
+			}
+			idx++;
+		}
+		if(idx==-1) {
+			System.out.println("존재X");
+		}
+	}
+	public void removePhoneInfo() {
+		System.out.print("삭제할 이름: ");
+		String name = DataInput.sc.nextLine();
+		int idx=-1;
+		for(PhoneInfo p : phones) {
+			if(p.getName().equals(name)) {
+				phones.remove(p);
+				System.out.println("삭제 완료");
+			}
+			idx++;
+		}
+		if(idx==-1) {
+			System.out.println("존재하지 않는 이름");
+		}
+	}
+
+	public void sortPhoneInfo() {
+		Collections.sort(phones);
+		
 	}
 }

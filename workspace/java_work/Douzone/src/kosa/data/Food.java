@@ -14,6 +14,11 @@ public class Food {
 		this.price = price;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Food [foodName=" + foodName + ", price=" + price + "]";
+	}
 	//set get
 	public String getFoodName() {
 		return foodName;

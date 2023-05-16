@@ -1,0 +1,22 @@
+package kosa.data;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SortExam02 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Person> list = new ArrayList<Person>();
+		list.add(new Person("홍길동",20));
+		list.add(new Person("김길동",20));
+		list.add(new Person("님길동",20));
+		list.add(new Person("딤길동",20));
+		list.add(new Person("림길동",20));
+		list.add(new Person("밈길동",20));
+		list.add(new Person("빔길동",20));
+		list.add(new Person("심길동",20));
+		System.out.println(list);
+	}
+
+}

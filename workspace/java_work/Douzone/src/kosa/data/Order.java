@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Order {
 	private LinkedList<Food> food;
+	private Food food1
 	private int amount;
 	private int tot;
 	
@@ -15,6 +16,14 @@ public class Order {
 		super();
 		food=new LinkedList<Food>();
 	}
+	
+
+	public Order(LinkedList<Food> food, int amount) {
+		super();
+		this.food = food;
+		this.amount = amount;
+	}
+
 
 	//method
 	public void request(String name, int price, int cnt) {
@@ -28,8 +37,9 @@ public class Order {
 		try {
 			Food reFood= food.poll();
 			tot+=reFood.getPrice()*amount;
+//			System.out.println(reFood.toString());
 			System.out.println("처리된 음식 이름: "+reFood.getFoodName());
-			System.out.println("처리된 음식 가격: "+reFood.getPrice());
+			System.out.println("처리된 음식 가격: "+reFood.getPrice()*amount);
 		}catch(Exception e) {
 			System.out.println("처리할 주문이 없습니다.");
 		}
