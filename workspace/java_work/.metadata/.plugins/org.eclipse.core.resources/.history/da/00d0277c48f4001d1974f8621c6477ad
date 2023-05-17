@@ -1,0 +1,5 @@
+package kosa.stream;
+
+public class Student {
+
+}

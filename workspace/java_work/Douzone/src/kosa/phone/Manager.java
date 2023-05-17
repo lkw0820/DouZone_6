@@ -1,5 +1,9 @@
 package kosa.phone;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Manager {
@@ -172,5 +176,40 @@ public class Manager {
 	public void sortPhoneInfo() {
 		Collections.sort(phones);
 		
+	}
+	
+	public void savePhoneInfo() {
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream("phoneInfo.txt"));
+			oos.writeObject(phones);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {
+				oos.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+	}
+	public void loadPhoneInfo() {
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(new FileInputStream("phoneInfo.txt"));
+			phones = (List<PhoneInfo>)ois.readObject();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {
+				ois.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
 	}
 }

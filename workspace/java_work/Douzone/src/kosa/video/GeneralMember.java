@@ -2,6 +2,7 @@ package kosa.video;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class GeneralMember {
 	private String id;
@@ -96,6 +97,7 @@ public class GeneralMember {
 			v.show();
 		}
 	}
+	
 	
 	//getter setter
 	public String getId() {

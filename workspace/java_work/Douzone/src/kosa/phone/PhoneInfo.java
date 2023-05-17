@@ -1,6 +1,8 @@
 package kosa.phone;
 
-public class PhoneInfo implements Comparable<PhoneInfo>{
+import java.io.Serializable;
+
+public class PhoneInfo implements Comparable<PhoneInfo>, Serializable{
 	private String name;
 	private String phoneNo;
 	private String birth;

@@ -1,6 +1,22 @@
 package kosa.video;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class VideoMain {
+	public void examfit(List<GeneralMember> list){
+		//list를 스트림으로 인천사람만 필터링 해서 출력
+		list.stream()
+				.filter(m -> m.getAddress().equals("인천"))
+				.forEach(m->System.out.println(m.getId()));
+		List<GeneralMember> incheon = list.stream()
+				.filter(m -> m.getAddress().equals("인천"))
+				.collect(Collectors.toList());
+		
+		//return stream;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -40,6 +56,15 @@ public class VideoMain {
 			}
 			arr[i].show();
 		}
+		List<GeneralMember> list = Arrays.asList(
+				new GeneralMember(),
+				new GeneralMember("ccc","이기원2","인천",v),
+				new GeneralMember("ddd","dllrl2", "dlscjs", 4, "ㅁㅇㄹ", "ㅁㅇㄹㅇㄻㅇㄹㅇㄹ"),
+				new GeneralMember("eee","이기원5","혜화"),
+				new GeneralMember("fff","이기원6","서울",2),
+				new GeneralMember("fff","이기원7","서울"),
+				new SpecialMember("ggg","이기원8","인천",10)
+				);
 		
 //		p.id="aaa";
 //		p.name="홍길동";
@@ -64,6 +89,7 @@ public class VideoMain {
 //		p4.info();
 //		System.out.println();
 //		p5.show();
+
 
 	}
 

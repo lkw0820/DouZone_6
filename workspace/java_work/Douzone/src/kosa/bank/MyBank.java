@@ -1,6 +1,12 @@
 package kosa.bank;
 
-public class MyBank {
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class MyBank implements Serializable{
 	private Customer[] customers;
 	public static int customersNum;
 	
@@ -35,4 +41,41 @@ public class MyBank {
 //		return newCustomers;
 		return customers;
 	}
+	
+	public void saveCustomers() {
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream("customers.txt"));
+			oos.writeObject(customers);;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {
+				oos.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public void loadCustomers() {
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(new FileInputStream("customers.txt"));
+			customers = (Customer[])ois.readObject();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {
+				
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+	}
+	
 }
