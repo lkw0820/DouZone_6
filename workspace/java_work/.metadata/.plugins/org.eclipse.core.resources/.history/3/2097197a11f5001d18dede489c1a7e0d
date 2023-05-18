@@ -1,0 +1,20 @@
+package kosa.file;
+
+import java.io.File;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		File file = new File("/DouZone_6/");
+		File arr[] = file.listFiles();
+		for(int cnt =0 ; cnt<arr.length;cnt++) {
+			String name = arr[cnt].getName();
+			if(arr[cnt].isFile())
+				System.out.println(name+" "+arr[cnt].length());
+			else
+				System.out.println(name);
+		}
+	}
+
+}

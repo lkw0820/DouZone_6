@@ -1,8 +1,0 @@
-package kosa.oop2;
-
-public class Work {
-
-	public void done() {
-		System.out.println("Work 역할");
-	}
-}

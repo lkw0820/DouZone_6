@@ -1,8 +1,0 @@
-package kosa.practice;
-
-public interface Account {
-	
-	public void deposit();
-	public boolean withdraw();
-
-}
