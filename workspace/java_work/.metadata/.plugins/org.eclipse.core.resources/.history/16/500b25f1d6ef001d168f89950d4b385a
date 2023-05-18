@@ -1,7 +1,0 @@
-package kosa.baseball;
-
-import java.util.Scanner;
-
-public class DataInput {
-	Static Scanner sc = new Scanner(System.in);
-}
