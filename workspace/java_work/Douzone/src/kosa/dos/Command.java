@@ -56,8 +56,8 @@ public class Command {
 			File dest = new File(nfile.getPath(),source.getName());
 			dest.mkdir();
 			//File file = new File(dest.getPath(),source.getName());
-			System.out.println(dest.getPath());
-			System.out.println(dest.getParent());
+//			System.out.println(dest.getPath());
+//			System.out.println(dest.getParent());
 			//System.out.println(file.getPath());
 			File[] files = source.listFiles();
 			for(int i=0;i<files.length;i++) {
@@ -111,6 +111,7 @@ public class Command {
 //			dest = newFile;
 			dest.mkdir();
 			File[] list = source.listFiles();
+			System.out.println("디렉토리 이름: "+dest.getName());
 			for(int i=0;i<list.length;i++) {
 				File d = new File(dest.getPath(),list[i].getName());//dest.getPath()가 아니라 dest만 써도 된다
 				if(list[i].isDirectory()) {

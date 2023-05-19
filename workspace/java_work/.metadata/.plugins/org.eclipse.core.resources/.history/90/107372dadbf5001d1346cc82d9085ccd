@@ -1,0 +1,25 @@
+package kosa.thread;
+
+public class MultiThreadExam {
+	class DigitThread extends Thread{
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			for(int i=0; i<10;i++) {
+				System.out.println(i);
+			}
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Thread thread = new DigitThread();
+		thread.start();
+		for(char ch='A';ch<='Z';ch++) {
+			System.out.println(ch);
+		}
+	}
+
+}

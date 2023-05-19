@@ -36,8 +36,8 @@ public class Main {
 					break;
 				case "cp":
 					File file = new File(a);
-					
-					Command.copyDirectory(file, Command.nfile);
+					File dfile = new File(Command.nfile.getPath(),file.getName());
+					Command.copyDirectory(file, dfile);
 					//Command.DirectroyCopy(file);
 					break;
 

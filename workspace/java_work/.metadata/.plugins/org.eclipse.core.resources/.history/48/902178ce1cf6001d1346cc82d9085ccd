@@ -1,0 +1,5 @@
+package kosa.net2;
+
+public class ServerSend extends Thread {
+
+}
