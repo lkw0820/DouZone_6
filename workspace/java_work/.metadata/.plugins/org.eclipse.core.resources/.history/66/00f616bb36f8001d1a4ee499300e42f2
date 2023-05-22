@@ -1,0 +1,11 @@
+package kosa.net3;
+
+public class PerClientThread extends Thread {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

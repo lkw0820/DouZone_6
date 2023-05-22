@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;Douzone/src/kosa.net3&apos;&#x0D;&#x0A;- Original project: &apos;Douzone&apos;&#x0D;&#x0A;- Destination element: &apos;Douzone/src/kosa.net3&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     kosa.net2.ClientSender.java&#x0D;&#x0A;     kosa.net2.ServerExam.java&#x0D;&#x0A;     kosa.net2.ClientReceive.java&#x0D;&#x0A;     kosa.net2.ClientExam.java" description="Copy compilation units" destination="/src&lt;kosa.net3" element1="/src&lt;kosa.net2{ClientSender.java" element2="/src&lt;kosa.net2{ServerExam.java" element3="/src&lt;kosa.net2{ClientReceive.java" element4="/src&lt;kosa.net2{ClientExam.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1684714330510" units="4" version="1.0"/>
+</session>
