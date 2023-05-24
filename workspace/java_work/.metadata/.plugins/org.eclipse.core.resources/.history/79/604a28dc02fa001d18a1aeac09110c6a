@@ -1,0 +1,65 @@
+package kosa;
+
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			System.out.println("날짜를 입력하세요, 종료:q");
+			System.out.println("형식 : yyyy-MM");
+			System.out.print("> ");
+			String pattern = "yyyy-MM";
+			String date = sc.nextLine();
+			if(date.equals("q"))break;
+			if(Pattern.matches(pattern, date)) {
+				String[] dateArr = date.split("-");
+				Schedule sc1 = new Schedule();
+				sc1.setStartDay(1);
+				Schedule sc2 = new Schedule();
+				sc2.setStartDay(1);
+				Schedule sc3 = new Schedule();
+				sc3.setStartDay(1);
+				
+				//년월입력
+				MakeCalendar mc = new MakeCalendar(Integer.parseInt(dateArr[0]),Integer.parseInt(dateArr[1]));
+				System.out.println("1.하루 일정 보기 2.일정 검색 3.뒤로가기");
+				System.out.print("> ");
+				String menu = sc.nextLine();
+				switch (menu) {
+				case "1":
+					System.out.println("일정을 볼 날짜를 입력하세요");
+					System.out.print("> ");
+					break;
+				case "2":
+					
+					break;
+				case "3":
+	
+					break;
+
+				default:
+					break;
+				}
+				//날짜
+				mc.add(sc1);
+				mc.add(sc2);
+				mc.add(sc3);
+				System.out.println("");
+				mc.daySchedule(1);;
+				//수정삭제추가
+					//추가
+					//추가할 날짜 입력 -> selecedDay dayList schedule
+					//수정
+					//삭제
+					//검색	
+			}
+		}
+		
+		
+	}
+
+}

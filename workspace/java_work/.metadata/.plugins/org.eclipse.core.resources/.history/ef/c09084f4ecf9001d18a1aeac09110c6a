@@ -1,0 +1,106 @@
+package kosa.api;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
+
+public class CalendarGUI extends JFrame {
+    private JButton prevButton;
+    private JButton nextButton;
+    private JLabel monthLabel;
+    private JTable calendarTable;
+
+    private Calendar calendar;
+
+    public CalendarGUI() {
+        setTitle("Calendar");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+        setLayout(new BorderLayout());
+
+        // 상단 패널
+        JPanel topPanel = new JPanel(new FlowLayout());
+        prevButton = new JButton("Prev");
+        nextButton = new JButton("Next");
+        monthLabel = new JLabel("", JLabel.CENTER);
+        topPanel.add(prevButton);
+        topPanel.add(monthLabel);
+        topPanel.add(nextButton);
+
+        // 달력 테이블
+        calendarTable = new JTable(6, 7);
+        calendarTable.setRowHeight(40);
+        calendarTable.setEnabled(false);
+        JScrollPane scrollPane = new JScrollPane(calendarTable);
+
+        add(topPanel, BorderLayout.NORTH);
+        add(scrollPane, BorderLayout.CENTER);
+
+        calendar = Calendar.getInstance();
+        updateCalendar();
+
+        prevButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calendar.add(Calendar.MONTH, -1);
+                updateCalendar();
+            }
+        });
+
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calendar.add(Calendar.MONTH, 1);
+                updateCalendar();
+            }
+        });
+
+        setVisible(true);
+    }
+
+    private void updateCalendar() {
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    monthLabel.setText(year + "년 " + (month + 1) + "월");
+
+    Calendar calendarCopy = (Calendar) calendar.clone();
+//    calendarCopy.set(Calendar.DAY_OF_MONTH, 1);
+    int startDay = calendarCopy.get(Calendar.DAY_OF_WEEK);
+    int numberOfDays = calendarCopy.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+//    String[] dayNames = new DateFormatSymbols().getShortWeekdays();
+//    for (int i = 0; i < 7; i++) {
+//        calendarTable.setValueAt(dayNames[i], 0, i);
+//    }
+
+    // 테이블 초기화
+    for (int row = 1; row < 6; row++) {
+        for (int column = 0; column < 7; column++) {
+            calendarTable.setValueAt(null, row, column);
+        }
+    }
+
+    int row = 1;
+    int column = startDay - 1;
+    for (int day = 1; day <= numberOfDays; day++) {
+        calendarTable.setValueAt(day, row, column);
+        if (column == 6) {
+            row++;
+            column = 0;
+        } else {
+            column++;
+        }
+    }
+}
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new CalendarGUI();
+            }
+        });
+    }
+}

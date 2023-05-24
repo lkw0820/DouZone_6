@@ -1,0 +1,10 @@
+package kosa;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MakeCalendar mc = new MakeCalendar(2023,4);
+	}
+
+}

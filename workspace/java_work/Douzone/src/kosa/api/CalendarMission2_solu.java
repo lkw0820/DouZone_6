@@ -15,7 +15,7 @@ public class CalendarMission2_solu {
 		System.out.println("일\t월\t화\t수\t목\t금\t토");
 		for(int i=1;i<week;i++) {
 			System.out.print("\t");
-		}
+		} 
 		for(int i =1;i<=n;i++) {
 			System.out.print(i+"\t");
 			if((week+i-1)%7==0) {

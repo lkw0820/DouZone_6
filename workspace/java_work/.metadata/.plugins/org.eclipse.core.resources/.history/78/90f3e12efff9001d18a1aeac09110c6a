@@ -1,0 +1,20 @@
+package kosa;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//
+		//년월입력
+		MakeCalendar mc = new MakeCalendar(2023,4);
+		//날짜
+		//수정삭제추가
+			//추가
+			//추가할 날짜 입력 -> selecedDay dayList 
+			//수정
+			//삭제
+			//검색	
+		
+	}
+
+}

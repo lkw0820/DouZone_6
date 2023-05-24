@@ -6,7 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
+		<item key="selection" value="setText"/>
 		<list key="findhistory">
+			<item value="setText"/>
 			<item value="package kosa.oop;"/>
 		</list>
 		<list key="replacehistory">
