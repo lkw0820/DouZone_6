@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<fieldset>
+<table width=450 border="1">
+<caption>기본정보 입력</caption>
+		<tbody>
+			<tr height="30">
+				<td align="center">이름</td>
+				<td><input type="text" name="userName" id="name"/></td>
+			</tr>
+			<tr height="30">
+				<td align="center">아이디</td>
+				<td><input type="text" name="userID" id="id"/><input type="button" value="중복체크"></td>
+			</tr>
+			<tr height="30">
+				<td align="center">비밀번호</td>
+				<td><input type="text" name="userPw" id="pw"/></td>
+			</tr>
+			<tr height="30">
+				<td align="center">비밀번호 확인</td>
+				<td><input type="text" name="userPwCheck" id="pwch"/></td>
+			</tr>
+			<tr height="30">
+				<td align="center">이메일</td>
+				<td>
+					<input type="text" name="email" id="email"/>
+					<label>@</label>
+					<select name="email" >
+						<option selected>선택하세요</option>
+						<option>naver</option>
+						<option>gmail</option>
+						<option>asdf</option>
+					</select>
+				</td>
+			</tr>
+			<tr height="30">
+				<td align="center">연락처</td>
+				<td><input type="text" name="phone" id="ph"/></td>
+			</tr>
+			<tr height="30">
+				<td align="center">메일 수신 여부</td>
+				<td>
+					<input type="radio" name="accept/deny" value="accept">받음
+					<input type="radio" name="accept/deny" value="deny">거절
+				</td>
+			</tr>
+			<tr height="30">
+				<td align="center">관심분야</td>
+				<td>
+					<input type="checkbox" name="java"value="java">자바
+					<input type="checkbox" name="c++"value="c++">C++
+					<input type="checkbox" name="python"value="python">파이썬
+					<input type="checkbox" name="android"value="android">안드로이드
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</fieldset>
+<fieldset>
+	<input type="submit" value="전송">
+	<input type="reset" value="취소">
+</fieldset>
+	<h2>image exam</h2>
+	<h3>상대경로</h3>
+	<img alt=""src="images/road1.jpg">
+	
+	<h3>절대경로</h3>
+	<img alt="" src="/images/road2.jpg">
+	
+	<figure>
+		<figcaption>동영상 제목</figcaption>
+		<video width="640" height="250" controls="controls">
+			<source src="Merry_Love.MP4"type="video/mp4">
+		</video>
+	</figure>
+		<h2>목록태그</h2>
+	<ul>
+		<li><a href="">기존 C/S환경의 애플리케이션을 웹브라우저를 통해서 구현</a></li>
+		<li><a href="">웹에 연결되어 작업 지향적 소프트웨어</a></li>
+		<li><a href="">라이브러리 : 사용자 중심, 건물(내가 짓는 단독주택)</a></li>
+		<li><a href="">프레임워크 : 짜여져있음, 제한적 환경, 아파트(틀이 있음)</a></li>
+		<li><a href="">html 문서의 정보와 내용만 제공</a></li>
+		<li><a href="">해드태크는 문서를 구조적으로 표현하기 위해서 사용</a></li>
+	</ul>
+	
+		<ul>
+		<li><a href="https://www.naver.com" target="_blank">네이버</a></li>
+		<li><a href="https://www.daum.net">다음</a></li>
+	</ul>
+</body>
+</html>

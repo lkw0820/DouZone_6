@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<fieldset>
+<table width=450 border="1">
+		<caption>기본정보 입력</caption>
+		<tbody>
+			<tr height="30">
+				<td align="center">이름</td>
+				<td><input type="text" name="userName" id="name"/></td>
+			</tr>
+			<tr height="30">
+				<td align="center">아이디</td>
+				<td><input type="text" name="userID" id="id"/><input type="button" value="중복체크"></td>
+			</tr>
+			<tr height="30">
+				<td align="center">비밀번호</td>
+				<td><input type="text" name="userPw" id="pw"/></td>
+			</tr>
+			<tr height="30">
+				<td align="center">비밀번호 확인</td>
+				<td><input type="text" name="userPwCheck" id="pwch"/></td>
+			</tr>
+			<tr height="30">
+				<td align="center">이메일</td>
+				<td>
+					<input type="text" name="email" id="email"/>
+					<label>@</label>
+					<select name="email" >
+						<option selected>선택하세요</option>
+						<option>naver</option>
+						<option>gmail</option>
+						<option>asdf</option>
+					</select>
+				</td>
+			</tr>
+			<tr height="30">
+				<td align="center">연락처</td>
+				<td><input type="text" name="phone" id="ph"/></td>
+			</tr>
+			<tr height="30">
+				<td align="center">메일 수신 여부</td>
+				<td>
+					<input type="radio" name="accept" value="accept">받음
+					<input type="radio" name="deny" value="deny">거절
+				</td>
+			</tr>
+			<tr height="30">
+				<td align="center">관심분야</td>
+				<td>
+					<input type="checkbox" name="java"value="java">자바
+					<input type="checkbox" name="c++"value="c++">C++
+					<input type="checkbox" name="python"value="python">파이썬
+					<input type="checkbox" name="android"value="android">안드로이드
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</fieldset>
+<fieldset>
+	<input type="submit" value="전송">
+	<input type="reset" value="취소">
+</fieldset>
+</body>
+</html>

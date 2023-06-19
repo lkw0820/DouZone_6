@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>form exam</h2>
+	<form action="서버 URL" method="post">
+		<fieldset>
+			<ol>
+				<li>
+					<label>이름</label>
+					<input type="text" name="userName" id="name" autofocus="autofocus" placeholer="홍길동"/>
+					
+				</li>
+			</ol>
+		</fieldset>
+	</form>
+
+</body>
+</html>

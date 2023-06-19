@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>image exam</h2>
+	<h3>상대경로</h3>
+	<img alt=""src="./images/road1.jpg">
+	
+	<h3>절대경로</h3>
+	<img alt="" src="/images/road2.jpg">
+</body>
+</html>
