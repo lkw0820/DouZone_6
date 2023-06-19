@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+h4{
+	font-size:50px;
+	font-weight:bold;
+	color:darkgreen;
+}
+body{
+	background-image:url(../../images/bg.jpg);
+	background-repeat: repeat-y;
+	}
