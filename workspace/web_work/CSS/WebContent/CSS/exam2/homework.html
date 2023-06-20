@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Herb Story</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+#sidemenu{
+       float: left;
+       width: 20%;
+       margin-top: 30%;
+    }
+    
+    #content{
+       margin-left: 30%;
+       border: 2px green solid;
+    }
+    
+    #sidemenu ul{
+       list-style-type: none;
+    }
+    
+    #sidemenu ul li{
+       background: url("images/menu_bg.gif")no-repeat 0 0;
+       height: 50px;
+       padding-left: 25px;
+       padding-top: 10px;
+    }
+    
+    #sidemenu ul a{
+       text-decoration: none;
+       color: darkgreen;
+       font-weight: bold;
+       font-size: 14px;
+    }
+</style>
+</head>
+<body>
+<h1>과제</h1>
+<a href="index_vert2.htm"><img src="../../images/road2.jpg"></a>
+<div id="sidemenu">
+ <ul>
+  <li><a href="#">css</a></li>
+  <li><a href="#">layout</a></li>
+  <li><a href="#">웹애플리케이션</a></li>
+
+ </ul>
+</div>
+<div id="content">
+<h3>CSS</h3>
+<p class="box">규칙: 선택자와 선언 두 부분으로 구성된다.선택자 : 규칙이 적용되는 엘리먼트, 선언부: 선택자에 적용될 스타일을 작성<br>
+- 인라인
+    
+    스타일 우선 순위 가장 높음
+    
+    직관적
+    
+    단점: 중복된 코드 발생 → 유지보수 어려움
+    
+    아주 특수한 경우에만 사용
+  - 내부 스타일
+    
+    해드태그에 작성
+    
+    한번에 스타일 적용 가능
+    
+    단점 : 해당 문서 안에서만 적용 가능
+    
+    경로는 html기준
+  - 외부 스타일
+    
+    가장 많이 사용하는 방법
+    
+    경로는 css기준
+  - 선택자
+    
+    전채 : *
+    
+    클래스 : .
+    
+    id: #
+    
+    하위 선택자 : > (선택자 > 하위 선택자)자식만 자손X → 자손포함은 (선택자 하위 선택자)
+<span class="more"><a href="#">more</a></span></p>
+<h3>layout</h3>
+<p class="box">박스(여백), 포지션(absolute,relative), float, clear
+
+position:
+
+absolute: 자신이 이동하면 다른애도 변함
+
+relative: 자신이 이동해도 다른애는 변함이 없음
+
+absolute의 기준은 윈도우 부모로 바꾸려면 부모의 포지션을 relative로 바꾼
+
+float:흘러감
+블록 요소: 한층 다씀  div(그룹), p, h1~h6, hr, ul, ol, li 등
+인라인 요소: 자기 공간만 차지함 span(그룹), a, img 등
+
+레이아웃할 때 중요<br><span class="more"><a href="#">more</a></span></p>
+<h3>웹애플리케이션</h3>
+<p class="box">기존 C/S환경의 애플리케이션을 웹브라우저를 통해서 구현
+
+웹에 연결되어 작업 지향적 소프트웨어
+
+라이브러리 : 사용자 중심, 건물(내가 짓는 단독주택)
+
+프레임워크 : 짜여져있음, 제한적 환경, 아파트(틀이 있음)
+
+html 문서의 정보와 내용만 제공
+
+바디는 화면에 출력해야하는 
+
+해드태크는 문서를 구조적으로 표현하기 위해서 사용<br> <span class="more"><a href="#">more</a></span></p>
+</div>
+</body>
+</html>
