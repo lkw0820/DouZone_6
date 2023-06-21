@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//함수를 호출할 때 함수의 파라미터의 개수가 일치 하지 않아도 오류X
+	function add(a,b,c){
+		console.log(a,b,c);
+	}
+	add(10,20,30,40);
+	
+	function sumAll(){
+		let sum=0;
+		//arguments:배열과 유사하게 사용, 파라미터를 넘어오는 것을 관리
+		
+		for(let i=0;i<arguments.length;i++){
+			sum+=arguments[i];
+		}
+		return sum;
+	}
+	
+	console.log(sumAll(1,2,3,4,5,6,7,8,9,10));
+	//함수의 파라미터 기본값 설정
+	function calcurate(total,tax=0.1,tip=0.2){
+		return total+(total*tax)+(total*tip);
+	}
+	
+	console.log(calcurate(20,0.1,0.2));
+	console.log(calcurate(100)); //default값은 순서대로 넣어야한다. 0번과 2번에 값을 넣어주면 에러 발생
+	console.log(calcurate())
+	
+	//화살표 함수(함수형 프로그래밍)
+	var greeting = function(name){
+		return 'hello '+name;
+	}
+	
+	var greeting =(name)=>{
+		return `hello ${name}`;
+	}
+	var greeting =name=>{
+		return `hello ${name}`;
+	}
+	
+	console.log(greeting('lee'));
+	
+	const multiply= x=>y=>z=> `x:${x} y:${y} z:${z}`;
+	console.log(mulitply(3)(4)(5));
+	function multiply(x){
+		return function(y){
+			return function(z){
+				return `x:${x} y:${y} z:${z}`;
+			}
+		}
+	}
+	
+	
+	
+	//함수의 실행컨택스트
+	//Lexical Scope: 선언된 위치가 상위 스코프를 정한다. => JavaScript
+	//Dynamic Scope: 실행한 위치가 스코프를 정한다.
+	
+	let var1=10;
+	function func(){
+		let var2=20;
+		console.log(var2);
+	}
+	func();
+	
+	//함수 클로저 자바스크립트는 함수 실행 후 함수의 메모리 삭제
+	//=>함수 호출 이후에도 해당 함수의 실행 컨텍스트 영역 유지
+	
+/* 	function outerFunc(){
+		let x =10;
+		let innnerFunc=function(){
+			console.log(x);
+		}
+		return innerFunc;
+	}
+	let inner = outerFunc();//함수 innerFunc가 넘어감 x를 사용해야함 메모리가 삭제 되면 안됌-> 클로저
+	inner(); */
+	
+	function outer(arg1,arg2){
+		function inner(innerArg){
+			console.log((arg1+arg2)/innerArg);
+		}
+		return inner;
+	}
+/* 	let iner=outer(16,14);
+	iner(2); */
+	let iner = outer(16,14)(2);
+	
+	//1)데이터 캐싱
+	function cashFunction(newNumb){
+		//아래 계산은 매우 오래 걸린다는 가정
+		var number=10*10;
+		
+		return number*newNumb;
+	}
+	console.log(cashFunction(10));
+	console.log(cashFunction(20));
+	
+	function cashFunction2(){
+		//아래 계산은 매우 오래 걸린다는 가정
+		var number=10*10;
+		function innerCashFunction(newNumb){
+			return number*newNumb;
+		}
+		return innerCashFunction;
+	}
+	
+	const runner = cashFunction2();
+	console.log(runner(30));
+	console.log(runner(40));//10*10을 한번만 실행함
+</script>
+</head>
+<body>
+
+</body>
+</html>

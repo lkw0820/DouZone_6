@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//예외처리
+	//try~catch
+	//throw : 인위적으로 예외 발생
+	//finally : 예외의 발생 유무와 상관없이 반드시 실행
+	function runner(){
+		try{
+		console.log('Hello');
+		
+		throw new Error('문제발생');
+		}catch(e){
+			console.log('error catch');
+		}finally{
+			console.log('finally');
+		}
+		console.log('Done');
+	}
+	runner();
+	
+	console.log('cat'&&'dog');
+	console.log('cat'||'dog');
+	
+	//옵셔널 체이닝 연산
+	let event='';
+	event = event||false;
+	console.log(event);
+</script>
+</head>
+<body>
+
+</body>
+</html>

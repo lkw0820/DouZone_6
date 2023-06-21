@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//비교연산자
+	console.log(5==5);
+	console.log(5=='5');//true
+	console.log(0=='');//true
+	console.log(true==1);
+	
+	console.log('----------------------');
+	
+	console.log(5===5);
+	console.log(5==='5');//false
+	console.log(0==='');//false 0은 데이터타입이 number ''은 문자형
+	
+	
+	//for ~in = key 값을 가져옴
+	const yuJin = {
+		name:'안유진',
+		year:2003,
+		group:'아이브 '
+	};
+	for(let key in yuJin){
+		console.log(key);
+		//console.log(yuJin[key]);
+	}
+	
+	const iveMember = ['안유진','장원영','가을','레이','리즈','이서'];
+	console.log('---------------');
+	for(let key in iveMember){
+		console.log(key+':'+iveMember[key]);
+		console.log(`${key}:${iveMember[key]}`);
+	}
+	
+	//for~of = value값을 가져옴
+	for(let value of iveMember){
+		console.log(value);
+	}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

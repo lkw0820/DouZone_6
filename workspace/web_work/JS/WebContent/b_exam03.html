@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript">
+		//hoisting
+		console.log('Hello');
+		console.log('world');
+		console.log('---------------');
+		
+		//var name = '홍길동';
+		//console.log(name);
+		
+		//모든 변수 선언문이 코드의 최상단으로 이동되는 것처럼 느껴지는 현상
+		
+		var name;
+		console.log(name); //박길동
+		name='박길동';
+		console.log(name);//박길동
+		
+		//이거는 안됌
+		//호이스팅은 되지만 호이스팅을 사용하지 못하게 막아둠 let, const
+		//console.log(yuJin);
+		//const yuJin='안유진';
+		
+		func(1,2);
+		
+		function func(a,b){
+			console.log(a,b);
+		}
+		
+		//var vs let, const 차이점
+		
+		//var variableA = 100;
+		//let variableB = 200;
+		const variableC = 300;//재할당 불가
+		
+		//variableC=400;//오류
+		//let은 지역변수 
+		//블럭 : if, for => var는 예외, 함수는 제외= 함수안에서는 지역변수-> 함수는 실행되고 나서는 메모리에서 사라짐
+		
+		{
+			var variableA = 100;
+			let variableB = 200;
+			console.log(variableB);//가능
+		}
+		//console.log(variableB);//불가능
+		{
+			console.log(variableA);//가능
+			//console.log(variableB);//불가능
+		}
+		//둘다 선언 되어있으면 지역변수가 우선이다.
+		//var myVar='전역변수';
+		function myFunc(){
+			var myVar='지역변수';
+			console.log(myVar);
+			console.log(window.myVar);//전역변수는 window
+			console.log(this.myVar);//일반함수의this=window객체
+		}
+		myFunc();
+		console.log(myVar);//함수 안에 있는거를 밖에서 사용 불가
+		
+	</script>
+</head>
+<body>
+
+	
+</body>
+</html>
