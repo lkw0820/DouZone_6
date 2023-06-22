@@ -40,9 +40,18 @@
 			return this.Height;
 		}
 	}
-	let r2=new Rectangle2(10,20);
+	//let r2=new Rectangle2(10,20);
 	document.write('<br>');
-	document.write(r2.getArea());
+	//document.write(r2.getArea());
+	
+	class Square extends Rectangle{
+		constructor(length){
+			super(length,length);
+		}
+	}
+	
+	let square = new Square(10);
+	document.write(`넓이: ${square.getArea()}`);
 </script>
 </head>
 <body>
