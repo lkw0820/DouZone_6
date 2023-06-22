@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//1 Rectangle 생성자 함수를 만들고 사각형의 넓이를 구하여보자 (getArea())
+	//생성자 함수를 통해 객체 생성하고 함수 호출
+	function Rectangle(width,height){
+		this.width=width;
+		this.height=height;
+		this.getArea=function(){
+			return width*height;
+		}
+	}
+	let r= new Rectangle(4,5);
+	document.write(r.getArea());
+	
+	//2 생성자 함수 => 클래스 기반으로 구현
+	class Rectangle2{
+		#width;
+		#height;
+		constructor(width,height){
+			this.width=width;
+			this.width=height;
+		}
+		getArea(){
+			return this.width*this.width;
+		};
+		set setwidth(width){
+			this.width=width;
+		}
+		get getwidth(){
+			return this.width;
+		}
+		set setHeight(Height){
+			this.Height=Height;
+		}
+		get getHeight(){
+			return this.Height;
+		}
+	}
+	let r2=new Rectangle2(10,20);
+	document.write('<br>');
+	document.write(r2.getArea());
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//자바스크림트 객체
+	//1. 사용자 정의 객체
+	//1-1.Object 1-2.리터럴형태  1-3.생성자함수(프로토타입)
+	
+	//2. 내장 객체(Built-In 객체)
+	//2-1. 코아객체:string, number, math, calendar, Array
+	//2-2. 브라우저 객체: 윈도우 화면의 요소 : window, document, history, navigator
+	//2-3. DOM 객체: 문서내의 모든 요소 : <div>,<form>,<input>
+	
+	//자바스크립트는 동적으로 프로퍼티를 추가/삭제 가능
+	//1.Object 객체 이용
+	let obj=new Object();
+	console.log(obj);
+	obj.name='홍길동';
+	obj.age=20;
+	console.log(`이름:${obj.name}`);
+	console.log(`나이:${obj.age}`);
+	//함수는 1급 객체이다.
+	function add(a,b){
+		let sum = a+b;
+		return sum;
+	}
+	add.result= add(10,20);
+	console.log(`결과: ${add.result}`);
+	
+	//2.리터럴 형식으로 객체 사용 => 1개의 객체를 생성해서 사용하는 경우
+	let obj2 = {
+			name:'이기원',
+			age:25,
+			display:function(){
+				console.log(this.name)
+			}
+	};
+	console.log(obj2);
+	obj2.display();
+	console.log(obj2.age);
+	console.log(obj2['age']);
+	//퀴즈
+	let obj3={
+			
+	};
+	obj3.minus=function(a,b){
+		return a-b;
+		
+	}
+	console.log(obj3.minus(5,2));
+	
+	//객체 디스트럭처링 : 객체의 프로퍼티를 풀어서 별개의 변수에 저장하는 방식 
+	//이름이 같아야하는 듯
+	let person ={
+			first:'홍',
+			last:'길동'
+	};
+	let {first,last}=person;
+	console.log(first,last);
+	
+	//변수를 객체의 key또는 value로 넣을때
+	const nameKey = 'name';
+	const nameValue = '카리나';
+	const groupKey='group';
+	const groupValue='에스파';
+	
+	const karina={
+			[nameKey]:nameValue,
+			[groupKey]:groupValue,
+			dance:function(){
+				return `${this.name}가 춤을 춥니다.`;
+			}
+	};
+	console.log(karina);
+	console.log(karina.dance());
+	
+	karina['age']=23;
+	console.log(karina);
+	//삭제
+	delete karina['age'];
+	console.log(karina);
+	
+	//const 객체 생성
+	//1. const로 선언할 경우 객체 자체를 변경할 수는 없다.
+	//2. 객체 안의 프로퍼티나 메서드는 변경가능
+	const wonYoung={
+			name:'장원영',
+			group:'아이브'
+	}
+	console.log(wonYoung);
+	
+	//wonYoung={};//불가능
+	wonYoung.group='Kosa';
+	console.log(wonYoung);
+	//key값만 뽑아오기
+	console.log(Object.keys(wonYoung));
+	console.log('####################');
+	//value값만 뽑아오기
+	console.log(Object.values(wonYoung));
+</script>
+</head>
+<body>
+
+</body>
+</html>

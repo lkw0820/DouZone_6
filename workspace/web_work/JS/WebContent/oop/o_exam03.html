@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/* 	class IdolModel{
+		name;
+		year;
+		
+		constructor(name,year){
+			this.name=name;
+			this.year=year;
+		}
+	}
+	
+	console.log(new IdolModel('카리나',2000)); */
+	
+	//생성자 함수
+/* 	function Idol(name,year){
+		this.name=name;
+		this.year=year
+		this.toString=function(){
+			document.write(this.name+' '+this.year);
+		}
+	}
+	let p=new Idol('이기원',1999)
+	p.toString();
+	
+	//리터럴 함수
+	let idol={
+			name:'ads'
+	};
+	idol.year=1999;
+	console.log(idol); */
+	
+	// #은 자바의 private같은 것
+	//정보은닉(캡슐화)
+	class IdolModel{
+		#name;
+		#year;
+		
+		constructor(name,year){
+			this.name=name;
+			this.year=year;
+		}
+		//set/get은 함수처럼 사용하는 것이 아니라 변수처럼 사용함
+		set setName(name){
+			this.name=name;
+		}
+		get getName(){
+			return this.name;
+		}
+	}
+	
+	let karina = new IdolModel('카리나',2000);
+	//console.log(karina.#name);
+	karina.setName='asd';
+	console.log(karina);
+	let asdf=karina.getName;
+	console.log(asdf);
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//3.생성자 함수를 이용하여 생성 => 다수의 객체를 생성하기 위해서
+	//생성자함수는 함수명의 시작이 대문자
+	//생성자 안의 this는 객체를 가르킨다
+	//하나의 클래스라고 생각한다, 클래스 이면서 생성자
+	function Student(name,kor,eng,mat){
+		this.name=name;
+		this.kor=kor;
+		this.eng=eng;
+		this.mat=mat;
+		this.getSum = function(){
+			return this.kor+this.eng+this.mat;
+		}
+		this.getAverage = function(){
+			return this.getSum()/3;
+		}
+		this.toString=function(){
+			return this.name+'\t'+this.getSum()+'\t'+this.getAverage();
+		}
+	}
+	let students = [];
+	students.push(new Student('이기원',100,100,100));
+	students.push(new Student('이기원2',50,60,90));
+	
+	for(let i in students){
+		document.write(students[i].toString()+"<br>");
+	}
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>
