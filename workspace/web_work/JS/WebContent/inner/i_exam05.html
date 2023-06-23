@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//정규표현식
+	//1.문자열.match(정규표현식)=> 매칭된 결과(문자열)
+	/* const result = 'sports'.match(/sp/);
+	console.log(result); */
+/* 	if(result){
+		alert('매칭');
+	} */
+	
+	//2.ReqExp.exec('문자열')=>매칭된 결과 (문자열)
+/* 	const str = 'afsdtryv jsdfq#fs';
+	const re = /js/ig;	//i:소대문자 구분없이, 2.전역검사
+	let result=re.exec(str);
+
+	while(result){
+		console.log(result);
+		result=re.exec(re);
+	} */
+	//퀴즈
+/* 	const str= 'This is a data: June 23 2023';
+	const re = /\w*\s\d+\s\d+/;
+	const result = str.match(re);
+	console.log(result); */
+	
+/* 	//퀴즈 문자열.replace(정규표현식,변경 문자열) sw=>소프트웨어
+	const str='오늘 우리는 sw세상에서 살고 있다.sw가 매우 중요한 시기이다. 그래서 sw 열심히 공부해야 겠다';
+	//const result= str.replaceAll('sw','소프트웨어');
+	const result= str.replace(/sw/ig,'소프트웨어');
+	console.log(result); */
+	
+/* 	const str='Java---JavaScript';
+	const re=/(\w+)-*(\w+)/;
+	const result=str.replace(re,'$2-$1');
+	console.log(result); */
+	
+	//이메일 체크
+	//정규표현식.test(문자열)=>해당 문자열이 정규표현식에 매칭 유무t/f
+	//숫자 앞, @없 gewonlee99@naver.com
+	const str = 'gewonlee99@naver.comasd';
+	const re=/^[\D]\w+@\w+\.\w{3}$/;
+	const result=re.test(str);
+	console.log(result);
+	if(result){
+		alert('성공');
+	}else{
+		alert('실패')
+	}
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//이벤트 핸들러에서 this는 이벤트 대상
+	window.onload = function(){
+		const links = document.getElementsByTagName('a');
+		for(let i=0;i<links.length;i++){
+			links[i].onclick=function(){
+				window.opener.document.fmt.address.value = this.innerHTML;
+				self.close();
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>주소검색</h2>
+	<ul>
+		<li><a href="#">서울시 강남구 대치동</a></li>
+		<li><a href="#">서울시 종로구 명륜동</a></li>
+		<li><a href="#">인천시 남동구 간석동</a></li>
+	</ul>
+</body>
+</html>

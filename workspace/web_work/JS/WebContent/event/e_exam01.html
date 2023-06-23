@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function doProcess(){
+		let result= document.getElementById('result');
+		resut = document.querySelector('#result');
+		
+		result.innerHTML='<span>event result</span>';
+	}
+	function doProcess2(){
+		alert('event result22');
+	}
+	window.onload = function(){
+		const btn =document.getElementById('btn');
+		//btn.onclick = doProcess2;
+		//btn.onclick = doProcess;
+		
+		//이벤트 리스너 방식
+		btn.addEventListener('click',doProcess2,false);
+		btn.addEventListener('click',doProcess,false);
+		
+	}
+	
+</script>
+</head>
+<body>
+	<input type='button' value='버튼1' onclick='doProcess()'>&nbsp;&nbsp;
+	<input type='button' value='버튼2	' id='btn'>
+	<div id='result'></div>
+<!-- 	<script type="text/javascript">
+		const btn =document.getElementById('btn');
+		btn.onclick = doProcess2;
+	</script> -->
+</body>
+</html>

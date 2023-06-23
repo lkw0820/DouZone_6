@@ -150,7 +150,11 @@ class FemaleIdol extends Idol{
 	console.log(bts);
 	const korea = new Country('korea',groups=[ive,bts]);
 	console.log(korea);
- 
+ 	const korea2 = new Country('대한민국', [new IdolGroup('ive',iveMembers.map((x)=>new FemaleIdol(x['name'],x['year']),),),
+ 		new IdolGroup('bts',btsMembers.map(
+	    (x) => new MaleIdol(x['name'], x['year']),),),
+ 		]);
+ 	console.log(korea2);
  
  
  
