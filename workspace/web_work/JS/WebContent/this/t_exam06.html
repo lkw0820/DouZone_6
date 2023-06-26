@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var data='Global data';
+	
+	var obj1={data:'obj'};
+	function func(){
+		//this.data='ads'
+		console.log(this.data);
+	}
+	//const f =new func();
+	
+	func.apply(obj1);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

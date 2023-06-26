@@ -12,7 +12,17 @@
 	}
 	
 	window.onload = function(){
+		var img = document.getElementById('default');
+		const defaultImage = img.src;
 		
+		const imgs = document.getElementsByTagName('img');
+		for(let i=0;i<imgs.length;i++){
+			imgs[i].onmouseover=function(){
+				img.src=this.src;
+			}
+			imgs[i].onmouseout=function(){
+				img.src=defaultImage;
+		}
 	}
 	
 	

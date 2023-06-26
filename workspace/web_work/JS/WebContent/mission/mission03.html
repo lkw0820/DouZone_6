@@ -13,15 +13,20 @@
 			num2 : 0,
 			sum : 0,
 			cals : function(){
-				num1=document.fmt.f1.innerHTML;
-				num2=document.fmt.f2.innerHTML;
+				num1=ParseInt(document.fmt.f1.value);
+				num2=ParseInt(document.fmt.f2.value);
+				console.log(num1);
+				console.log(num2);
+				console.log(this);
+				console.log(e.target)
 				//this.value '+,'-'
-				if(this.value==='plus'){
+				if(this.value==='+'){
 					sum=num1+num2;
-				}else{
+				}else if(this.value==='-'){
 					sum=num1-num2;
 				}
 				document.fmt.result.value=sum;
+				console.log(document.fmt.result);
 			}
 	};
 	

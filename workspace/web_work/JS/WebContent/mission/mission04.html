@@ -1,46 +1,61 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-<script type="text/javascript">
-	
-	
-	
-	
-</script>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>Insert title here</title>
+   <script type="text/javascript">
+      
+      let total=0;
+      let pre=0;
+      function calc(){
+    	  console.log(this);
+    	  const obj=this;
+    	  if(obj.type == 'checkbox'){
+    		  if(obj.checked==true){
+    			  total+=parseInt(obj.value);
+    		  }else{
+    			  total-=parseInt(obj.value);
+    		  }
+    		  //console.log(total);
+    	  }else if(obj.type == 'radio'){
+    		  total-=pre;
+    		  total+=parseInt(obj.value);
+    		  pre=parseInt(obj.value);
+    		  console.log(total);
+    		  console.log(pre);
+    	  }
+    	  document.fmt.result.value=total;
+      }
+      
+      window.onload = function(){
+    	  const inputs = document.getElementsByTagName('input');
+    	  for(let i =0;i<inputs.length;i++){
+    		  inputs[i].onclick = calc;
+    	  }
+      }
+
+
+
+   </script>
 </head>
-<body>	
-<form name="fmt">
-	µÎºÎ 400¿ø
-	<input type="checkbox" value="400" >
-	Äá³ª¹° 150¿ø
-	<input type="checkbox" value="150">
-	°£Àå 1500¿ø
-	<input type="checkbox" value="1500">
-	<br><br>
-	Äü ¼­ºñ½º
-	<input type="radio" name="del" value="5000">
-	ÅÃ¹è
-	<input type="radio" name="del" value="2500">
-	<br><br>
-	
-	ÁöºÒÇÏ½Ç ±İ¾×Àº : <input type="text"" name="result">
-	
-	
-</form>
+
+<body>
+   <form name="fmt">
+      ë‘ë¶€ 400ì›
+      <input type="checkbox" value="400">
+      ì½©ë‚˜ë¬¼ 150ì›
+      <input type="checkbox" value="150">
+      ê°„ì¥ 1500ì›
+      <input type="checkbox" value="1500">
+      <br><br>
+      í€µ ì„œë¹„ìŠ¤
+      <input type="radio" name="del" value="5000">
+      íƒë°°
+      <input type="radio" name="del" value="2500">
+      <br><br>
+
+      ì§€ë¶ˆí•˜ì‹¤ ê¸ˆì•¡ì€ : <input type="text" name="result">
+
+
+   </form>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

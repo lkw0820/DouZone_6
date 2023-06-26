@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	let data =10; //windowX
+	function func(){
+		this.data=20;//window
+		
+		data=30//let
+		console.log('1.data:'+data); //30
+		console.log('1.this.data:'+this.data);//20
+		console.log('1.window.data:'+window.data);//20
+	}
+	func();
+</script>
+</head>
+<body>
+
+</body>
+</html>

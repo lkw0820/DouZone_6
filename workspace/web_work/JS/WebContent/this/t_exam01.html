@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//this키워드는 바인딩 객체가 생성되는 시점에 결정됨
+	
+	//1)일반 함수 안에서 호출할 때는 this가 최상위 객체(window, global)를 가르킨다
+	function testFunction(){
+		return this;
+	}
+	console.log(testFunction());
+	
+	//2)리터럴 형식 객체 안에서 this는 해당 객체를 가르킨다
+	const yuJin = {
+			name:'안유진',
+			year:2003,
+			sayHello:function(){
+				return `안녕하세요 저는 ${this.name}입니다.`;
+			}
+	}
+	console.log(yuJin.sayHello());
+	
+	//3)생성자 함수의 this: new 키워드를 이용해서 객체를 생성했을때 this는 해당 객체를 가르킨다
+	function Person(name,year){
+		this.name=name;
+		this.year=year;
+		
+		this.sayHello=function(){
+			return `안녕하세요 저는 ${this.name}입니다.`;
+		}
+	}
+	const yuJin2 = new Person('안유진',2003);
+	console.log(yuJin2.sayHello());
+	
+	//apply(),call(),bind() : this를 변경 가능하게 한다
+	function returnName(){
+		return this.name; //this=window
+	}
+	console.log(returnName());
+	
+	const karina = {
+			name:'카리나',
+	}
+	console.log(returnName.call(karina));
+	
+	//call-> 컴마를 기준으로 arguments를 순서대로 넘긴다. 
+	//apply-> aguments를 리스트로 입력해야한다.
+	function mulitiply(x,y,z){
+		return `${this.name}/결과값: ${x*y*z}`;
+	}
+	
+	console.log(mulitiply.call(karina,3,4,5)); //call과 apply의 처음에는 this로 할 거를 하고 arguments를 넣는다
+	console.log(mulitiply.apply(karina,[3,4,5]));
+</script>
+</head>
+<body>
+
+</body>
+</html>

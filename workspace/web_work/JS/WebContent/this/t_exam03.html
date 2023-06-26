@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+//리터럴객체, 생성자 함수, 프로토타입 안에서의 this 해당 객체
+	var data =10;
+	function MyClass(){
+		this.data=0;
+	}
+	myClass.prototype.method1=function(){
+		this.data =20;
+		data=30;
+		console.log('1.data:'+data); //30
+		console.log('1.this.data:'+this.data);//30 20
+		console.log('1.window.data:'+window.data);//30
+	}
+	var m1 = new MyClass();
+	me1.method1();
+</script>
+</head>
+<body>
+
+</body>
+</html>
