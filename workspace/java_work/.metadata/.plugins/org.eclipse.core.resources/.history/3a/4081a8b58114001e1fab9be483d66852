@@ -1,0 +1,42 @@
+package kosa.practice;
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Study {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedList<Integer> queue = new LinkedList<Integer>(); 
+		Scanner sc = new Scanner(System.in);
+		int n = Integer.parseInt(sc.nextLine());
+		for(int i=0;i<n;i++) {
+			String[] str=sc.nextLine().split(" ");
+			switch (str[0]) {
+			case "push":
+				queue.add(Integer.parseInt(str[1]));
+				System.out.println(str[1]);
+				break;
+			case "pop":
+				queue.remove(queue.size()-1);
+				System.out.println(queue.get(queue.size()-1));
+				break;
+			case "size":
+				
+				break;
+			case "empty":
+				
+				break;
+			case "front":
+				
+				break;
+			case "back":
+				
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+}

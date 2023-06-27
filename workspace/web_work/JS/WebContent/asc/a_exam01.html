@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/* 	const borrow =20;
+	const payWith10Perc = new Promise((resolve,reject)=>{
+		resolve(borrow*1.1);
+	});
+	
+	payWith10Perc
+		.then(result=>{
+			console.log(result+'만원');
+		});
+	console.log('done'); 
+	----------------------------------------------------------------*/
+	
+	/* const borrow =20;
+	const payWith10Perc = new Promise((resolve,reject)=>{
+		setTimeout(()=>{
+			if(Math.random()<0.5){
+				reject('망함');
+			}else{
+				resolve(borrow*1.1);
+			}
+		},1000)
+	});
+	
+	payWith10Perc
+		.then(result=>{
+			console.log(result+'만원');
+		}
+	).catch(msg=>{
+		console.log(msg);
+	})
+	.finally(()=>{
+		console.log('작업완료');
+	})
+	
+	console.log('done'); 
+	-------------------------------------------------------------------------*/
+	
+	//비동기함수 안에서 연속적인 작업 수행
+/* 	new Promise((resolve)=>{
+		resolve(2);
+	})
+	.then(i=>i*4)
+	.then(i=>i-3)
+	.then(i=>i**2)
+	.then(i=>{
+		console.log(i);
+	}) --------------------------*/
+	
+	//const borrow =20;
+	/* function moneyLend(borrow){
+		return new Promise((resolve,reject)=>{
+			setTimeout(()=>{
+				if(Math.random()<0.1){
+					reject('망함');
+				}else{
+					resolve(borrow*1.1);
+				}
+			},1000)
+		});
+	}
+
+	moneyLend(20)
+		.then(result=>moneyLend(result))
+		.then(moneyLend)
+		.then(moneyLend)
+		.then(moneyLend)
+		.then(result=>{
+			console.log('반납: '+result+'만원');
+		})
+		.catch(msg=>{
+			console.log(msg);
+		})
+		.finally(()=>{
+			console.log('대금업 완료');
+		}) ----------------------------------------------------------------------*/
+		
+/* 	function getMultiPromise(number){
+		return new Promise((resolve,reject)=>{
+			setTimeout(()=>{
+				resolve(number*10);
+			},1000)
+		});
+	}
+	
+	async function doAsyncWorks(){ //비동기식 함수
+		const result1 = await getMultiPromise(1); //await문이 있는것이 실행될때까지 나머지 대기
+		console.log(result1);
+		
+		const result2 = await getMultiPromise(2);
+		console.log(result2);
+		
+		const result3 = await getMultiPromise(3);
+		console.log(result3);
+	}
+	doAsyncWorks();
+	console.log('done'); */
+	
+	function moneyLend(borrow){
+	return new Promise((resolve,reject)=>{
+		setTimeout(()=>{
+			if(Math.random()<0.1){
+				reject('망함');
+			}else{
+				resolve(borrow*1.1);
+			}
+		},1000)
+	});	
+}
+	async function asynWork(){
+		try{
+			const result = await moneyLend(20);
+			const result2 = await moneyLend(result);
+			const result3 = await moneyLend(result2);
+			console.log('반납: '+result3+'만원')
+		}catch(msg){
+			console.log(msg);
+		}finally{
+			console.log('대금 종료');
+		}
+		//result => await moneyLend(result);
+		
+
+		
+		
+	}
+	asynWork();
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

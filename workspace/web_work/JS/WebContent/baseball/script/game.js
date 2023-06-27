@@ -13,14 +13,26 @@
 			btn.addEventListener('click',inputNum,false);
 		}
 		let answer=[];
+		//정답 만들기
+		function makeAnswer(){
+			answer.push(Math.floor(Math.random()*(9-1)+1));
+			do{
+				answer.push(Math.floor(Math.random()*(9-1)+1));
+			}while(answer[0]==answer[1]);
+			do{
+				answer.push(Math.floor(Math.random()*(9-1)+1));
+			}while(answer[0]==answer[2]||answer[1]==answer[2]);
+		}
+		
 		//console.log(Math.floor(Math.random()*(9-1)+1));
-		answer.push(Math.floor(Math.random()*(9-1)+1));
-		do{
-			answer.push(Math.floor(Math.random()*(9-1)+1));
-		}while(answer[0]==answer[1]);
-		do{
-			answer.push(Math.floor(Math.random()*(9-1)+1));
-		}while(answer[0]==answer[2]||answer[1]==answer[2]);
+//		answer.push(Math.floor(Math.random()*(9-1)+1));
+//		do{
+//			answer.push(Math.floor(Math.random()*(9-1)+1));
+//		}while(answer[0]==answer[1]);
+//		do{
+//			answer.push(Math.floor(Math.random()*(9-1)+1));
+//		}while(answer[0]==answer[2]||answer[1]==answer[2]);
+		makeAnswer();
 		console.log(answer);
 		const b1= document.querySelector('#ball1');
 		const b2= document.querySelector('#ball2');
@@ -29,8 +41,13 @@
 		let input=[];
 		let cnt=0;
 		const clear = document.querySelector('#clear');
+		const reset = document.querySelector('#reset');
 		const count = document.querySelector('#count');
 		clear.addEventListener('click',clearValue,false);
+		reset.addEventListener('click',resetValue,false);
+		function resetValue(){
+			result.value='';
+		}
 		let mod=10;
 		function clearValue(){
 			input=[];
@@ -64,6 +81,9 @@
 					str='정답입니다.'+cnt+'번째로 맞췄습니다.\n';
 					cnt=0;
 					mod=10;
+					answer=[];
+					makeAnswer();
+					console.log(answer);
 				}else{
 					str = input[0]+' '+ input[1]+' '+input[2]+' -> '+s+'S '+b+'B\n';
 					mod--;
@@ -71,8 +91,17 @@
 				//console.log(count.value);
 				result.value+=str;
 				
-				count.innerHTML='도전 / '+mod+'회';
 				
+				if(mod==0){
+					result.value+='실패\n';
+					//result.value='';
+					cnt=0;
+					mod=10;
+					answer=[];
+					makeAnswer();
+					console.log(answer);
+				}
+				count.innerHTML='도전 / '+mod+'회';
 				//초기화
 				input=[];
 				b1.value='';

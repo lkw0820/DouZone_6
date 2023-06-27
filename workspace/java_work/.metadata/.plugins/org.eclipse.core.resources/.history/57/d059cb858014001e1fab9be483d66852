@@ -1,0 +1,13 @@
+package kosa.practice;
+
+import java.util.LinkedList;
+
+public class Study {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LinkedList<Integer> queue = new LinkedList<Integer>(); 
+		Scanner sc = new Scanner(System.in);
+	}
+
+}
