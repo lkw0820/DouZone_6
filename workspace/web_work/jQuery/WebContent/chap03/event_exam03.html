@@ -1,9 +1,20 @@
-癤�<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
     <script>
-       
+    //attr vs prop
+    //checkbox radio 값변경 change라는 이벤트
+    //:checkbox : checkbox인것을 가져온다
+       $(function(){
+    	   $('#all-check').change(function(){
+    		   if(this.checked){
+    			   $('#check-item :checkbox').prop('checked',true);
+    		   }else{
+    			   $('#check-item :checkbox').prop('checked',false);
+    		   }
+    	   });
+       });
     </script>
 </head>
 <body>
