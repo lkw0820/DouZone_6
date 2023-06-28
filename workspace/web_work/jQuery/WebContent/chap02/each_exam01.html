@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 변수를 선언합니다
+            var array = [
+                { name: 'Hanbit Media', link: 'http://hanbit.co.kr' },
+                { name: 'Naver', link: 'http://naver.com' },
+                { name: 'Daum', link: 'http://daum.net' }
+            ];
+            // $.each() 메서드를 사용합니다.
+            //예) <a href="http://hanbit.co.kr">Hanbit Media</a>
+            let output ="";
+            const arr2 = $.map(array,function(item,index){
+            	if(item.name=='Daum'){
+            		return item;
+            	}
+            })
+            $.each(arr2,function(index,item){
+            	output+='<a href="'+item.link+'">'+item.name+'</a><br>';
+            });
+            $('body').html(output);
+           
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
