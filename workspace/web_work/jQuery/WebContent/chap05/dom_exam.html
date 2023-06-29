@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	$('div').append($('a'))//막내 자식에 삽입
+	$('div').prepend($('a'))//첫째 자식에 삽입
+	$('div').appendTo($('a'))//반대 a에 막내 자식으로 div삽입
+	$('div').prependTo($('a'))//반대 a에 첫째 자식으로 div삽입
+	$('span').before($('a'))
+	
+	$(function(){
+		//$('div').append($('b'));
+		//$('span').prependTo($('b'));
+		//$('div').before($('b'));
+		//$('div').after($('b'));
+		//$('div').insertAfter($('b'));
+		$('div').insertBefore($('b'));
+		alert($('body').html());
+	});
+	
+</script>
+</head>
+<body>
+<!-- 	<div>
+		<a>prepend</a>
+		<b>aaaa</b>
+		<span>bbbb</span>
+		<a>append</a>
+	</div>
+	<div>
+		<a>aaaa</a>
+		<span>bbbb</span>
+	</div> -->
+	
+	<div>jQuery</div>
+	
+	<span>javaScript</span>
+	
+	<b>Java</b>
+</body>
+</html>

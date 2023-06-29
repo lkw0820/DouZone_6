@@ -28,6 +28,51 @@ $(function(){
 		}else{
 			$('.more').text('read more');
 		}
-	})
+	});
 	
+});
+
+$(function(){
+	const $speech = $('div.speech');
+	const defaultSize = parseInt($speech.css('fontSize'));//parseInt()자신이 변환할수있는것만 변환해서 리턴함
+	console.log(defaultSize);
+	$('#switcher button').click(function(){
+		let num = parseInt($speech.css('fontSize'));
+		
+		switch(this.id){
+			case 'switcher-large':
+				num *=1.2;
+				break;
+			case 'switcher-small':
+				num /=1.2;
+				break;
+			default:
+				num = defaultSize;
+				break;
+		}
+		
+		$speech.animate({fontSize:num+'px'},'slow');
+	});
 })
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
