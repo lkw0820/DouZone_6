@@ -1,16 +1,16 @@
-<%@page import="kosa.purchaseOrder"%>
+<%@page import="kosa.purchaseDetail"%>
 <%@page import="java.util.List"%>
 <%@page import="net.sf.json.JSONArray"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     <%!
-    List<purchaseOrder> list;
+    List<purchaseDetail> list;
     %>
     
     
 	<%
-	String date = request.getParameter("date");
+	
 	String pno = request.getParameter("pno");
 	String aCode = request.getParameter("aCode");
 	String aName = request.getParameter("aName");
@@ -19,12 +19,12 @@
 	
 	
 	if(list == null){		
-		list = new ArrayList<purchaseOrder>();		
+		list = new ArrayList<purchaseDetail>();		
 		if(date != null){
-			list.add(new purchaseOrder(date,pno,aCode,aName,eName,status));	
+			list.add(new purchaseDetail(date,pno,aCode,aName,eName,status));	
 		}
 	}else if(date != null){	
-		list.add(new purchaseOrder(date,pno,aCode,aName,eName,status));
+		list.add(new purchaseDetail(date,pno,aCode,aName,eName,status));
 	}
 	
 	

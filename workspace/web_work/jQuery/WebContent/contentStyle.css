@@ -1,0 +1,30 @@
+@charset "UTF-8";
+   table{
+      width:100%;
+   }
+   #top{
+   		
+      height:350px;
+      border:1px solid;
+      overflow:auto; 
+   }
+   #bottom{
+
+      height:350px;
+      border:1px solid;
+      overflow:auto; 
+   }
+   #overallSubmit{
+      float:right;
+   }
+   #graph{
+   		margin-top:35px;
+   	float:right;
+   		border:1px solid;
+   		height:700px;
+   		width:29%;
+   }
+   .content{
+   		display:inline-block;
+   		width:70%;
+   }
