@@ -4,27 +4,36 @@
    }
    #top{
    		
-      height:350px;
+      height:340px;
       border:1px solid;
       overflow:auto; 
    }
    #bottom{
 
-      height:350px;
+      height:340px;
       border:1px solid;
       overflow:auto; 
    }
    #overallSubmit{
       float:right;
    }
+   #detailSubmit{
+      float:right;
+   }
    #graph{
    		margin-top:35px;
-   	float:right;
+   		margin-right:5px;
+   		float:right;
    		border:1px solid;
-   		height:700px;
+   		height:720px;
    		width:29%;
    }
    .content{
    		display:inline-block;
    		width:70%;
+   		margin-left:5px;
+   }
+   #bottom input{
+		width:100%;
+		box-sizing:border-box;	
    }

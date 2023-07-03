@@ -12,19 +12,26 @@
 	<%
 	
 	String pno = request.getParameter("pno");
-	String aCode = request.getParameter("aCode");
-	String aName = request.getParameter("aName");
-	String eName = request.getParameter("eName");
-	String status = request.getParameter("status");
+	String productCode = request.getParameter("productCode");
+	String productName = request.getParameter("productName");
+	String unit = request.getParameter("unit");
+	String cnt = request.getParameter("cnt");
+	String price = request.getParameter("price");
+	String supplyValue = request.getParameter("supplyValue");
+	String vat = request.getParameter("vat");
+	String totalPrice = request.getParameter("totalPrice");
+	String note = request.getParameter("note");
+	
+
 	
 	
 	if(list == null){		
 		list = new ArrayList<purchaseDetail>();		
-		if(date != null){
-			list.add(new purchaseDetail(date,pno,aCode,aName,eName,status));	
+		if(pno != null){
+			list.add(new purchaseDetail(pno,productCode,productName,unit,cnt,price,supplyValue,vat,totalPrice,note));	
 		}
-	}else if(date != null){	
-		list.add(new purchaseDetail(date,pno,aCode,aName,eName,status));
+	}else if(pno != null){	
+		list.add(new purchaseDetail(pno,productCode,productName,unit,cnt,price,supplyValue,vat,totalPrice,note));
 	}
 	
 	
