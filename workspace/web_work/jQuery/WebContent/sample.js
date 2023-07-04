@@ -10,9 +10,9 @@ $(function(){
 	btnOverall.disabled=true;//등록버튼을 처음에 비활성화
 	let status3=false;
 	var pNames=[];
-	var prices=[];
-	//var selectedPno;
+	var counts=[];
 	var currentPno;
+	var currentDate;
 	
 	
 	function LoadOverall(item){	
@@ -46,12 +46,18 @@ $(function(){
 	});
 	//위에거 추가
 	$('#overallAdd').on('click',function(){
+		
 		if(status==true){
 			let html = '<tr><td><input type="date" name="date"></td>';
 			html+='<td><input type="text" name="pno"></td>';
 			html+='<td><input type="checkbox" class="form-check-input"></td>';
-			html+='<td><input type="text" name="aCode"></td>';
-			html+='<td><input type="text" name="aName"></td>';
+			html+='<td><input type="text" name="aCode" id="Code"></td>';
+			html+='<td><select id="selectA">';
+			html+='<option selected disabled hidden>선택하세요</option>';
+			html+='<option value="D1901">금빛계란농장</option>';
+			html+='<option value="F2801">한빛프레시원</option>';
+			html+='<option value="M1034">매일유업</option>';
+			html+='</select></td>';
 			html+='<td><input type="text" name="eName"></td>';
 			html+='<td><input type="text" name="status"></td></tr>';
 			$('#overall').prepend(html);
@@ -62,6 +68,14 @@ $(function(){
 			alert("등록을 먼저해주세용")
 		}
 	});
+	$('tbody').on('change','#selectA',function(e){
+		e.stopPropagation();
+		console.log($(this).val());
+		console.log($(this).find('option:selected').text());
+		console.log($(this).parent().parent().find('td').eq(3).find('input').attr('value',$(this).val()));
+
+	})
+	
 	$('#searchDate').change(function(){
 		let selectedDate=this.value;
 		$('#overall tbody').empty();
@@ -94,8 +108,8 @@ $(function(){
 	}
 	function loadDetail(currentPno){
 		$('#detail tbody').empty();
-		pNames.lenght=0;//차트를 위한 배열 초기화
-		prices.lenght=0;
+		pNames=[];//차트를 위한 배열 초기화
+		counts=[];
 		$.ajax({
 			url:'serverDetail.jsp',
 			type:'post',
@@ -116,22 +130,102 @@ $(function(){
 						html+='<td>'+item.note+'</td></tr>';
 						$('#detail').append(html);
 						pNames.push(item.productName);
-						prices.push(item.price);
+						counts.push(item.cnt);
 					}
 					
-				//console.log('성공');
+				
 				})
+				console.log(pNames);
+				var context = document
+			    .getElementById('myChart')
+			    .getContext('2d');
+				var myChart = new Chart(context, {
+			    type: 'bar', // 차트의 형태
+			    data: { // 차트에 들어갈 데이터
+			        labels: pNames,
+			        datasets: [
+			            { //데이터
+			                label: currentDate, //차트 제목
+			                fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+			                data: counts,
+			                backgroundColor: [
+			                    //색상
+			                    'rgba(255, 99, 132, 0.2)',
+			                    'rgba(54, 162, 235, 0.2)',
+			                    'rgba(255, 206, 86, 0.2)',
+			                    'rgba(75, 192, 192, 0.2)',
+			                    'rgba(153, 102, 255, 0.2)',
+			                    'rgba(255, 159, 64, 0.2)'
+			                ],
+			                borderColor: [
+			                    //경계선 색상
+			                    'rgba(255, 99, 132, 1)',
+			                    'rgba(54, 162, 235, 1)',
+			                    'rgba(255, 206, 86, 1)',
+			                    'rgba(75, 192, 192, 1)',
+			                    'rgba(153, 102, 255, 1)',
+			                    'rgba(255, 159, 64, 1)'
+			                ],
+			                borderWidth: 1 //경계선 굵기
+			            } ,
+			            {
+			                label: '적정재고량',
+			                fill: false,
+			                type:'line',
+			                data: [
+			                    8, 34, 12, 24
+			                ],
+			                backgroundColor: 'rgb(157, 109, 12)',
+			                borderColor: 'rgb(157, 109, 12)'
+			            } 
+			        ]
+			    },
+			    options: {
+			        scales: {
+			            yAxes: [
+			                {
+			                    ticks: {
+			                        beginAtZero: true
+			                    }
+			                }
+			            ]
+			        }
+			    }
+			});
 			}
 		});
 
 	}
 	
 	//등록 버튼을 누르면 input이 text로 바뀌고 detail입력창 생성
-	$('#1').submit(function(){
+	$('#1').submit(function(e){
+		e.preventDefault();
 		console.log('asdfasdf');
 		search.disabled=false;
 		status=true;
 		btnOverall.disabled=true;
+		
+		console.log($('#Code').val());
+		$("#Code").parent().next().empty();
+		switch($('#Code').val()){
+		
+			case "D1901":
+				html ='<td><input type="text" name="aName" value="Golden Egg Farm"></td>';
+				console.log(html);
+				$("#Code").parent().next().append(html);
+				break;
+			case "F2801":
+				html ='<td><input type="text" name="aName" value="Hanbi Fresh One"></td>';
+				console.log(html);
+				$("#Code").parent().next().append(html);
+				break;
+			case "M1034":
+				html ='<td><input type="text" name="aName" value="maeil"></td>';
+				console.log(html);
+				$("#Code").parent().next().append(html);
+				break;
+		}
+		//console.log(html);
 		$.ajax({
 			url:'serverP.jsp',
 			type:'post',
@@ -152,6 +246,7 @@ $(function(){
 	});
 	$('#2').submit(function(e){
 		e.preventDefault();
+		status3=true;
 		$.ajax({
 			url:'serverDetail.jsp',
 			type:'post',
@@ -170,73 +265,13 @@ $(function(){
 	$('#overall').on('click','tbody tr',function(){
 		console.log('성공');
 		currentPno=$(this).find('td').eq(1).text();//선택된 발주번호
-		console.log(currentPno);
+		currentDate=$(this).find('td').eq(0).text();//선택된 날짜
+		//console.log(currentPno);
 		loadDetail(currentPno);
 		status3=true;
 		
 		//차트 관련
-		console.log(pNames);
-		console.log(prices);
-		var context = document
-	    .getElementById('myChart')
-	    .getContext('2d');
-		var myChart = new Chart(context, {
-	    type: 'bar', // 차트의 형태
-	    data: { // 차트에 들어갈 데이터
-	        labels: [
-	            //x 축
-	            '1','2','3','4','5','6','7'
-	        ],
-	        datasets: [
-	            { //데이터
-	                label: 'test1', //차트 제목
-	                fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
-	                data: [
-	                    21,19,25,20,23,26,25 //x축 label에 대응되는 데이터 값
-	                ],
-	                backgroundColor: [
-	                    //색상
-	                    'rgba(255, 99, 132, 0.2)',
-	                    'rgba(54, 162, 235, 0.2)',
-	                    'rgba(255, 206, 86, 0.2)',
-	                    'rgba(75, 192, 192, 0.2)',
-	                    'rgba(153, 102, 255, 0.2)',
-	                    'rgba(255, 159, 64, 0.2)'
-	                ],
-	                borderColor: [
-	                    //경계선 색상
-	                    'rgba(255, 99, 132, 1)',
-	                    'rgba(54, 162, 235, 1)',
-	                    'rgba(255, 206, 86, 1)',
-	                    'rgba(75, 192, 192, 1)',
-	                    'rgba(153, 102, 255, 1)',
-	                    'rgba(255, 159, 64, 1)'
-	                ],
-	                borderWidth: 1 //경계선 굵기
-	            }/* ,
-	            {
-	                label: 'test2',
-	                fill: false,
-	                data: [
-	                    8, 34, 12, 24
-	                ],
-	                backgroundColor: 'rgb(157, 109, 12)',
-	                borderColor: 'rgb(157, 109, 12)'
-	            } */
-	        ]
-	    },
-	    options: {
-	        scales: {
-	            yAxes: [
-	                {
-	                    ticks: {
-	                        beginAtZero: true
-	                    }
-	                }
-	            ]
-	        }
-	    }
-	});
+
 	});
 
 	//detail추가버튼 해당 테이블을 클릭하였을때 활성화
@@ -245,6 +280,7 @@ $(function(){
 			//let currentPno=$('#detail tobody').find('td').find('input').eq(0).text();
 			console.log(currentPno);
 			insertDetail(currentPno);
+			status==false;
 		}
 	});
 	
@@ -271,5 +307,4 @@ $(function(){
 //			}
 //		});
 //	});
-	
 });
