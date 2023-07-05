@@ -68,6 +68,7 @@ $(function(){
 			alert("등록을 먼저해주세용")
 		}
 	});
+	
 	$('tbody').on('change','#selectA',function(e){
 		e.stopPropagation();
 		console.log($(this).val());
@@ -232,16 +233,13 @@ $(function(){
 			data:$(this).serialize(),
 			dataType:'json',
 			success:function(data){
-				console.log('보내기 성공');
 				LoadOverall(data[data.length-1]);
-				console.log(data[data.length-1].pno);
 				loadDetail(data[data.length-1].pno);
 				insertDetail(data[data.length-1].pno);
 				currentPno=data[data.length-1].pno;
 			}
 		});
 		overall.deleteRow(1);
-		//$('#1')[0].reset();
 		return false;
 	});
 	$('#2').submit(function(e){
@@ -253,20 +251,16 @@ $(function(){
 			data:$(this).serialize(),
 			dataType:'json',
 			success:function(data){
-				console.log('보내기 성공');
 				console.log(this);
 				loadDetail(currentPno);
-				//insertDetail(data[data.length-1].pno);
 			}
 		});
 	});
 
 	//테이블 클릭해서 해당 주문번호에 해당하는 품목들 가져오기
 	$('#overall').on('click','tbody tr',function(){
-		console.log('성공');
 		currentPno=$(this).find('td').eq(1).text();//선택된 발주번호
 		currentDate=$(this).find('td').eq(0).text();//선택된 날짜
-		//console.log(currentPno);
 		loadDetail(currentPno);
 		status3=true;
 		
@@ -277,7 +271,6 @@ $(function(){
 	//detail추가버튼 해당 테이블을 클릭하였을때 활성화
 	$('#detailAdd').on('click',function(){
 		if(status3==true){
-			//let currentPno=$('#detail tobody').find('td').find('input').eq(0).text();
 			console.log(currentPno);
 			insertDetail(currentPno);
 			status==false;
