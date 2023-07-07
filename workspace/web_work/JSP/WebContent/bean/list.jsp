@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%
     	BoardDao dao = BoardDao.getInstance(); 
     	List<Board> list = dao.listBoard();
@@ -26,7 +27,6 @@
 			<th>등록일</th>
 			<th>조회수</th>
 		</tr>
-
 		<c:forEach var="board" items="${list }">
 		<tr>
 			<td>${board.seq }</td>
@@ -35,7 +35,10 @@
 
 			<td>${board.writer }</td>
 
-			<td>${board.regdate }</td>
+			<td>
+				<fmt:parseDate var="dt" value="${board.regdate }" pattern="yyyy-MM-dd"></fmt:parseDate>
+				<fmt:formatDate value="${dt}" pattern="yyyy-MM-dd"/>
+			</td>
 
 			<td>${board.hitcount }</td>
 		</tr>
