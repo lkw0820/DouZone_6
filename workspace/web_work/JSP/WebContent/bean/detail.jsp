@@ -6,6 +6,7 @@
 	int seq = Integer.parseInt(request.getParameter("seq"));
 	 BoardDao dao = BoardDao.getInstance();
 	 Board board = dao.detailBoard(seq);
+	 request.setAttribute("board", board);
 %>
 <!DOCTYPE html>
 <html>
@@ -16,13 +17,13 @@
 <body>
 	<h2>글 세부 보기</h2>
 	<ul>
-		<li><%=board.getSeq() %></li>
-		<li><%=board.getTitle() %></li>
-		<li><%=board.getWriter() %></li>
-		<li><%=board.getContents() %></li>
+		<li>${board.seq }</li>
+		<li>${board.title }</li>
+		<li>${board.writer }</li>
+		<li>${board.contents }</li>
 	</ul>
 	<br><br>
-	<a href="updateForm.jsp?seq=<%=board.getSeq() %>">글 수정</a>
-	<a href="deleteForm.jsp?seq=<%=board.getSeq() %>">글 삭제</a>
+	<a href="updateForm.jsp?seq=${board.seq }">글 수정</a>
+	<a href="deleteForm.jsp?seq=${board.seq }">글 삭제</a>
 </body>
 </html>
