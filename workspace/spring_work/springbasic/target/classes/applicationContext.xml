@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="oracleDao" class="kosa.di.OracleDao"/>
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+<!-- 	<bean id="oracleDao" class="kosa.di.OracleDao"/>
 	<bean id="mySQLDao" class="kosa.di.MySQLDao"/>
 	<bean id="writeService" class="kosa.di.WriteService">
-		<!-- <constructor-arg ref="mySQLDao"></constructor-arg> 생성자 방식-->
-		<!-- set 방식 -->
+		<constructor-arg ref="mySQLDao"></constructor-arg> 생성자 방식
+		set 방식
 		<property name="dao" ref="oracleDao"></property>
-	</bean>
+	</bean> -->
+	<context:component-scan base-package="kosa.di"></context:component-scan>
 
 </beans>
