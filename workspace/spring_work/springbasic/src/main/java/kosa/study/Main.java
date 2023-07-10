@@ -12,6 +12,8 @@ public class Main {
 		
 		Person p = (Person)factory.getBean("person");
 		p.doIt();
+		p.setName("이기원");
+		System.out.println(p.getName());
 	}
 
 }
