@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class Factory {
 	@Bean
 	public Dao oracleDao() {
-		return new OracleDao();
+		return new MySQLDao();
 	}
 	
 	@Bean

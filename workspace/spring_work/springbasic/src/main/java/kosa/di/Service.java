@@ -1,5 +1,5 @@
 package kosa.di;
 
 public interface Service {
-	public void insertSerivce();
+	public void insertService();
 }

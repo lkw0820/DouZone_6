@@ -17,11 +17,12 @@ public class WriteService implements Service {
 		this.dao = dao;
 	}
 
-	public void insertSerivce() {
+	public void insertService() {
 		// TODO Auto-generated method stub
 		dao.insertBoard();
 		
 	}
+	
 	public Dao getDao() {
 		return dao;
 	}
