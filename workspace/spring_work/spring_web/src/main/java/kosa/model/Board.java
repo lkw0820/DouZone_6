@@ -1,9 +1,20 @@
 package kosa.model;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Board {
 	private int seq;
-	private String writer;
+	//JSR303
+	@NotEmpty(message = "반드시 입력하세요.")
+	@Size(min=2,max=5, message="글자수 2~5까지")
 	private String title;
+	
+	@Pattern(regexp = "[0-9a-zA-Z가-힣]*", message="특수문자 금지")
+	private String writer;
+	
 	private String contents;
 	private String regdate;
 	private int hitcount;

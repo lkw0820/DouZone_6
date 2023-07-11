@@ -16,5 +16,21 @@
 		<property name="prefix" value="/view/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	
+	<!-- DB setting -->
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="mySqlSessionFactoryBean"></constructor-arg>
+	</bean>
+	
+	<bean id="mySqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource"></property>
+		<property name="configLocation" value="/WEB-INF/mybatis-config.xml"></property>
+	</bean>
+	
+	<bean id="myDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/oracle"></property>
+		<property name="resourceRef" value="true"/>
+	</bean>
 
 </beans>
