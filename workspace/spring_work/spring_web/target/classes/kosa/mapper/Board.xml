@@ -6,12 +6,13 @@
 
 <mapper namespace="kosa.mapper.BoardMapper">
 	<cache />
-	
+
 	<insert id="insertBoard" parameterType="Board">
-		insert into board(seq,title,writer,contents,regdate,hitcount) 
-			values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
+		insert into
+		board(seq,title,writer,contents,regdate,hitcount)
+		values(board_seq.nextval,#{title},#{writer},#{contents},sysdate,0)
 	</insert>
-	
+
 	<select id="listBoard" parameterType="Search" resultType="Board">
 		select * from board
 		<if test="area != null">
@@ -20,23 +21,46 @@
 				<foreach collection="area" item="item" open="(" close=")"
 					separator="OR">
 					${item} LIKE #{searchKey}
-					
+
 				</foreach>
 			</where>
 		</if>
-		 order by seq desc
+		order by seq desc
 	</select>
-	
+
 	<select id="detailBoard" parameterType="int" resultType="Board">
-		select * from board where seq=#{seq}
+		select *
+		from board where seq=#{seq}
 	</select>
 	<delete id="deleteBoard" parameterType="int">
-		delete from board where seq=#{seq}
+		delete from board where
+		seq=#{seq}
 	</delete>
 	<update id="updateBoard" parameterType="Board">
-		update board set title=#{title}, writer=#{writer}, contents=#{contents} where seq=#{seq}
+		update board set
+		title=#{title}, writer=#{writer}, contents=#{contents} where
+		seq=#{seq}
 	</update>
 	
+	
+	<resultMap type="Blog" id="blogResult">
+		<id property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<association property="author" column="author_id"
+			javaType="Author">
+			<id property="author_id" column="author_id" />
+			<result property="name" column="name" />
+			<result property="address" column="address" />
+		</association>
+	</resultMap>
+	<select id="selectBlog" parameterType="int"
+		resultMap="blogResult">
+		select b.id as id, b.title as title, b.content as content, b.author_id as
+		author_id, a.author_id as author_id, a.name as name, a.address as
+		address from blog b, author a where b.author_id = a.author_id and id =
+		#{id}
+	</select>
 </mapper>
 
 

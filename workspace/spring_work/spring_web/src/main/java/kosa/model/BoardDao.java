@@ -32,4 +32,7 @@ public class BoardDao {
 		System.out.println(board.getSeq());
 		sqlTemplate.getMapper(BoardMapper.class).updateBoard(board);
 	}
+	public Blog selectBlog() {
+		return sqlTemplate.getMapper(BoardMapper.class).selectBlog(100);
+	}
 }

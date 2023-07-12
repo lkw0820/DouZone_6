@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosa.model.Blog;
 import kosa.model.Board;
 import kosa.model.BoardDao;
 import kosa.model.Search;
@@ -72,5 +73,10 @@ public class BoardController {
 		dao.updateBoard(board);
 		return "redirect:board_list";
 	}
-
+	@GetMapping("/blog")
+	public String blog() {
+		Blog blog = dao.selectBlog();
+		System.out.println(blog);
+		return "";
+	}
 }
