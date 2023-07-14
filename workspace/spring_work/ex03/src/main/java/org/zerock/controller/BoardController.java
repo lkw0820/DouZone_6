@@ -20,6 +20,8 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	@GetMapping("/register")
+	public void register() {}
 	
 	@GetMapping("/list")
 	public void list(Model model) {
@@ -34,22 +36,27 @@ public class BoardController {
 		rttr.addFlashAttribute("result",board.getBno());
 		return "redirect:/board/list";
 	}
-	@GetMapping("/get")
+	@GetMapping({"/get","/modify"})
 	public void get(Model model,@RequestParam("bno") Long bno) {
-		log.info("get...");
-		service.get(bno);
+		log.info("get or modify");
+		model.addAttribute("board", service.get(bno));
 	}
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
 		log.info("remove...");
-		service.remove(bno);
-		rttr.addFlashAttribute("result",bno);
+		if(service.remove(bno)) {
+			rttr.addFlashAttribute("result","success");
+		}
+		
 		return "redirect:/board/list";
 	}
 	@PostMapping("/modify")
-	public String modify(BoardVO board) {
+	public String modify(BoardVO board,RedirectAttributes rttr) {
 		log.info("modify....");
-		service.modify(board);
+		
+		if(service.modify(board)) {
+			rttr.addFlashAttribute("result","success");
+		}
 		return "redirect:/board/list";
 	}
 }
