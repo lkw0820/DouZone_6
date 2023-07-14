@@ -75,11 +75,12 @@
 								<option value="TWC"
 									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목
 									or 내용 or 작성자</option>
-							</select> <input type='text' name='keyword'
-								value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
-								type='hidden' name='pageNum'
-								value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
-								type='hidden' name='amount'
+							</select> 
+							<input type='text' name='keyword'
+								value='<c:out value="${pageMaker.cri.keyword}"/>' /> 
+							<input type='hidden' name='pageNum'
+								value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
+							<input type='hidden' name='amount'
 								value='<c:out value="${pageMaker.cri.amount}"/>' />
 							<button class='btn btn-default'>Search</button>
 						</form>
@@ -105,8 +106,8 @@
             </c:if> --%>
 
 						<c:if test="${pageMaker.prev}">
-							<li class="paginate_button previous"><a
-								href="${pageMaker.startPage -1}">Previous</a></li>
+							<li class="paginate_button previous">
+							<a href="${pageMaker.startPage-1}">Previous</a></li>
 						</c:if>
 
 						<c:forEach var="num" begin="${pageMaker.startPage}"

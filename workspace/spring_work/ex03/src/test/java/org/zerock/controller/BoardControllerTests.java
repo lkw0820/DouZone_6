@@ -45,9 +45,9 @@ public class BoardControllerTests {
 //	@Test
 //	public void testRegister() throws Exception{
 //		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
-//				.param("title","새로워")
-//				.param("content","어려워")
-//				.param("writer","누굴까")
+//				.param("title","zxc")
+//				.param("content","zxc")
+//				.param("writer","zxc")
 //				).andReturn().getModelAndView().getViewName());
 //	}
 
@@ -65,14 +65,21 @@ public class BoardControllerTests {
 //				.param("bno", "12")
 //				).andReturn().getModelAndView().getViewName());
 //	}
+//	@Test
+//	public void testModify() throws Exception{
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
+//				.param("bno", "9")
+//				.param("title", "수정이용")
+//				.param("content","update")
+//				.param("writer", "lkw"))
+//				.andReturn().getModelAndView().getViewName());
+//	}
 	@Test
-	public void testModify() throws Exception{
-		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
-				.param("bno", "9")
-				.param("title", "수정이용")
-				.param("content","update")
-				.param("writer", "lkw"))
-				.andReturn().getModelAndView().getViewName());
+	public void testList() throws Exception{
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "2")
+				.param("amount", "10"))
+				.andReturn().getModelAndView().getModelMap());
 	}
 
 }

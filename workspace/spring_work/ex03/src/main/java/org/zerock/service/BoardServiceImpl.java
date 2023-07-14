@@ -46,6 +46,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public boolean remove(Long bno) {
 		// TODO Auto-generated method stub
+		log.info("remove.....");
 		if(mapper.deleteBoard(bno)>0) {
 			return true;
 		}else {
@@ -53,10 +54,23 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 
+//	@Override
+//	public List<BoardVO> getList() {
+//		// TODO Auto-generated method stub
+//		return mapper.getList();
+//	}
+
 	@Override
-	public List<BoardVO> getList() {
-		// TODO Auto-generated method stub
-		return mapper.getList();
+	public List<BoardVO> getList(Criteria cri) {
+		log.info("listpaging");
+		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("total count");
+		
+		return mapper.getTotalCount(cri);
 	}
 
 
