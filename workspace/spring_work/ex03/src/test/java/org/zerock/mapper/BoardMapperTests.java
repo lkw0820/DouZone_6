@@ -26,14 +26,14 @@ public class BoardMapperTests {
 //	public void test() {
 //		mapper.getList().forEach(board->log.info(board));
 //	}
-	@Test
-	public void testPaging() {
-		Criteria cri = new Criteria();
-		cri.setPageNum(2);
-		cri.setAmount(10);
-		List<BoardVO> list = mapper.getListWithPaging(cri);
-		list.forEach(board->log.info(board));
-	}
+//	@Test
+//	public void testPaging() {
+//		Criteria cri = new Criteria();
+//		cri.setPageNum(2);
+//		cri.setAmount(10);
+//		List<BoardVO> list = mapper.getListWithPaging(cri);
+//		list.forEach(board->log.info(board));
+//	}
 //	@Test
 //	public void test() {
 //		BoardVO board = new BoardVO();
@@ -58,5 +58,13 @@ public class BoardMapperTests {
 //		log.info(mapper.updateBoard(board1));
 //		mapper.getList().forEach(board->log.info(board));
 //	}
+	@Test
+	public void testSearch() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("테스트");
+		cri.setType("TC");
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		list.forEach(board->log.info(board));
+	}
 
 }
