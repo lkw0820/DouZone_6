@@ -27,7 +27,7 @@ public class Criteria {
     this.pageNum = pageNum;
     this.amount = amount;
   }
-  
+  //검색용
   public String[] getTypeArr() {
     
     return type == null? new String[] {}: type.split("");
