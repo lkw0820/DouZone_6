@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 public class ContractVO {
 	private String contract_no;
-	private String suppl_no;
-	private String compo_no;
+	private SupplierVO supplier;
+	private ComponentVO component;
 	private Date start_date;
 	private Date end_date;
-	private char yn;
+	private Date contract_date;
 }

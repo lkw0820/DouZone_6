@@ -2,6 +2,115 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.zerock.mapper.MapperKW">
+<mapper namespace="com.kapple.mapper.MapperKW">
+	
+	<select id="test" resultType="Date">
+		select sysdate from dual
+	</select>
+	
+	<resultMap type="com.kapple.domain.SupplierVO" id="supplierMap">
+		<id property="suppl_no" column="suppl_no"/>
+		<result property="suppl_no" column="suppl_no"/>
+		<result property="suppl_name" column="suppl_name"/>
+		<result property="ceo_name" column="ceo_name"/>
+		<result property="category" column="category"/>
+		<result property="phone" column="phone"/>
+		<collection property="transport" resultMap="transportMap"></collection>
+	</resultMap>
+	<resultMap type="com.kapple.domain.TransportationVO" id="transportMap">
+		<id property="transport_no" column="transport_no"/>
+		<result property="transport_no" column="transport_no"/>
+		<result property="transport_category" column="transport_category"/>
+		<result property="transport_charge" column="transport_charge"/>
+		<result property="additional_condition" column="additional_condition"/>
+	</resultMap>
+	
+	<!-- 공급사 리스트 -->
+	<select id="supplierList" resultMap="supplierMap" parameterType="String">
+		<![CDATA[
+			select s.suppl_no, suppl_name, ceo_name, category
+				from supplier s join proposal p
+				on s.suppl_no=p.suppl_no join component c
+				on p.compo_no=c.compo_no
+				where c.compo_name = #{compo_name}
+		]]>
+	</select>
+	<select id="supplierCnt" resultType="int" parameterType="String">
+		<![CDATA[
+			select count(*) from supplier s join proposal p
+				on s.suppl_no=p.suppl_no join component c
+				on p.compo_no=c.compo_no
+				where c.compo_name = #{compo_name}
+		]]>
+	</select>
+	<!-- 회사 상세 정보 -->
+	<select id="supplierDetail" resultType="com.kapple.domain.SupplierDetailVO" parameterType="String">
+		<![CDATA[
+			select suppl_name, ceo_name, category, phone, biz_no, transport_category
+				from supplier s join transportation t
+				on s.transport_no=t.transport_no join biz_certificate b
+				on s.suppl_no=b.suppl_no
+				where s.suppl_no=#{suppl_no}
+		]]>
+	</select> 
+	
+	<resultMap type="com.kapple.domain.ProposalVO" id="proposalMap">
+		<id property="proposal_no" column="proposal_no"/>
+		<result property="proposal_no" column="proposal_no"/>
+		<result property="price" column="price"/>
+		<result property="quantity" column="quantity"/>
+		<result property="defective_rate" column="defective_rate"/>
+		<result property="quality_grade" column="quality_grade"/>
+		<result property="prod_period" column="prod_period"/>
+		<result property="proposal_date" column="proposal_date"/>
+		<collection property="supplier" resultMap="supplierMap"></collection>
+		<collection property="component" resultMap="componentMap"></collection>
+	</resultMap>
+	<resultMap type="com.kapple.domain.ComponentVO" id="componentMap">
+		<id property="compo_no" column="compo_no"/>
+		<result property="compo_no" column="compo_no"/>
+		<result property="compo_name" column="compo_name"/>
+		<result property="unit" column="unit"/>
+		<result property="detail" column="detail"/>
+	</resultMap>
 
+	<select id="getProposal" resultMap="proposalMap">
+		<![CDATA[
+			select p.proposal_no, suppl_name, compo_name, price, quantity, defective_rate, quality_grade, prod_period
+			from proposal p full outer join supplier s
+			on p.suppl_no=s.suppl_no full outer join component c
+			on p.compo_no=c.compo_no
+			where compo_name=#{compo_name} and p.suppl_no=#{suppl_no}
+		]]>
+	</select>
+	
+	<select id="componentDetail" resultType="com.kapple.domain.ComponentVO">
+		<![CDATA[
+			select * from component where compo_name=#{compo_name}
+		]]>
+	</select>
+	
+	
+	<!-- 판매사 -->
+	<resultMap type="com.kapple.domain.RetailerVO" id="retailerMap">
+		<id property="retail_no" column="retail_no"/>
+		<result property="retail_no" column="retail_no"/>
+		<result property="retail_name" column="retail_name"/>
+		<result property="ceo_name" column="ceo_name"/>
+		<result property="category" column="category"/>
+		<result property="phone" column="phone"/>
+		<result property="scale_grade" column="scale_grade"/>
+		<collection property="transport" resultMap="transportMap"></collection>
+	</resultMap>
+	<!-- 판매사 리스트 -->
+	<select id="retailerList" resultMap="retailerMap" parameterType="String">
+		<![CDATA[
+			select r.retail_no, retail_name, ceo_name, category, phone, scale_grade
+			from retailer r join sale_predict s
+			on r.retail_no=s.retail_no join product p
+			on s.prod_no=p.prod_no
+			where prod_name=#{prod_name}
+		]]>
+	</select>
+	
 </mapper>

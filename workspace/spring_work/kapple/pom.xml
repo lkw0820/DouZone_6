@@ -134,8 +134,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.4</version>
+			<artifactId>ojdbc8</artifactId>
+			<version>21.5.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.zaxxer</groupId>
@@ -211,7 +211,24 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+<!-- 아래 3개 추가 for use with Oracle wallets -->
+		<dependency>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>oraclepki</artifactId>
+			<version>21.5.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>osdt_cert</artifactId>
+			<version>21.5.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>osdt_core</artifactId>
+			<version>21.5.0.0</version>
+		</dependency>
 
+		
 	</dependencies>
 	<build>
 		<plugins>

@@ -8,5 +8,5 @@ public class ProductVO {
 	private String unit;
 	private String prod_name;
 	private String prod_detail;
-	private String model_no;
+	private ModelVO model;
 }
