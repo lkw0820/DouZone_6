@@ -23,8 +23,8 @@
 				
 					<!-- 부품/상품 검색창 -->
 					<div class="search-box" id="componentSearchBox">
-						<form class="position-relative" data-bs-toggle="search" data-bs-display="static" action="/comparsionSupplier" method="post">
-							<input class="form-control search-input search" type="search" placeholder="부품 검색창" aria-label="Search" name="compo_name"/>
+						<form class="position-relative" data-bs-toggle="search" data-bs-display="static" action="/comparsionSupplier" method="get">
+							<input class="form-control search-input search" type="search" placeholder="부품 검색창" aria-label="Search" name="compo_name" id="searchItemInput"/>
 							<span class="fas fa-search search-box-icon"></span>
 						</form>
 					</div>
@@ -56,23 +56,9 @@
 								<div class="row justify-content-between align-items-center mb-4">
 								
 									<!-- 카드 타이틀 및 설명, 카드 헤더 내용 -->
-									<div class="col-auto">
-									<c:if test="${not empty compo_name }">
-										<h3 class="text-1100" id="supplierCardTitle"><c:out value="${compo_name }"/></h3>
-										<button class="btn btn-primary" id="componentDetail">
-											부품상세보기
-										</button>
-										<p class="mb-0 text-700"><c:out value="${compo_name } 공급사"/></p>
-									</c:if>
-									<c:if test="${empty compo_name }">
+									<div class="col-auto" id="head">
 										<h3 class="text-1100" id="supplierCardTitle">부품을 검색해주세요</h3>
 										<p class="mb-0 text-700"></p>
-									</c:if>
-										<input type="hidden" name="compo_name" id="compo_name" value="${compoDetail.compo_name }">
-										<input type="hidden" name="compo_no" id="compo_no" value="${compoDetail.compo_no }">
-										<input type="hidden" name="detail" id="detail" value="${compoDetail.detail }">
-										<input type="hidden" name="unit" id="unit" value="${compoDetail.unit }">
-
 									</div>
 
 									
@@ -83,7 +69,7 @@
 											<div class="col-auto d-flex">
 												<p class="mb-0 ms-sm-3 fs--1 text-700 fw-bold">
 													<span class="fas fa-filter me-1 fw-extra-bold fs--2"></span>
-													<span id="supplierTasks">${count} tasks</span>
+													<span id="supplierTasks">tasks</span>
 												</p>
 											</div>
 										</div>
@@ -119,41 +105,6 @@
 											</thead>
 											
 											<tbody class="list" id="bulk-select-body">
-												
-												
-												<!-- 이후 삭제해도 됨, 동적으로 생성 -->
-												<c:forEach items="${sList }" var="supplier">
-													<tr>
-													<td class="fs--1 align-middle">
-														<div class="form-check mb-0 fs-0">
-															<input class="form-check-input" type="checkbox"
-																data-bulk-select-row="{&quot;name&quot;:&quot;Anna&quot;,&quot;email&quot;:&quot;anna@example.com&quot;,&quot;age&quot;:18}" />
-														</div>
-													</td>
-													<td class="align-middle ps-3 no"><c:out value="${supplier.suppl_no }"/></td>
-													<td class="align-middle name"><c:out value="${supplier.suppl_name }"/></td>
-													<td class="align-middle ceo"><c:out value="${supplier.ceo_name }"/></td>
-													<td class="align-middle cate"><c:out value="${supplier.category }"/></td>
-													<td class="align-middle white-space-nowrap text-end pe-0">
-														<div
-															class="font-sans-serif btn-reveal-trigger position-static">
-															<button
-																class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2"
-																type="button" data-bs-toggle="dropdown"
-																data-boundary="window" aria-haspopup="true"
-																aria-expanded="false" data-bs-reference="parent">
-																<span class="fas fa-ellipsis-h fs--2"></span>
-															</button>
-															<div class="dropdown-menu dropdown-menu-end py-2">
-																<a class="dropdown-item supplierDetail" href="#!" >View</a><a
-																	class="dropdown-item" href="#!">Export</a>
-																<div class="dropdown-divider"></div>
-																<a class="dropdown-item text-danger" href="#!">Remove</a>
-															</div>
-														</div>
-													</td>
-												</tr>
-												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -318,32 +269,61 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/test.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		var compo_name;
 		$('#searchItem').on('click',function(){
-			$('form.position-relative').submit();
+			//$('form.position-relative').submit();
+			compo_name=$('#componentSearchBox').find('input').val()
+			$('#supplierCardTitle').html(compo_name);
+			var str="";
+			var str2="";
+			Service.supplierDTO(compo_name,function(data){
+				//console.log(data);
+				for(let i=0;i<data.slist.length;i++){
+					str+='<tr><td class="fs--1 align-middle"><div class="form-check mb-0 fs-0"><input class="form-check-input" type="checkbox"data-bulk-select-row="{&quot;name&quot;:&quot;Anna&quot;,&quot;email&quot;:&quot;anna@example.com&quot;,&quot;age&quot;:18}" />'
+					str+='</div></td><td class="align-middle ps-3 no">'+data.slist[i].suppl_no+'</td><td class="align-middle name">'+data.slist[i].suppl_name+'</td>'
+					str+="<td class='align-middle ceo'>"+data.slist[i].ceo_name+"</td><td class='align-middle cate'>"+data.slist[i].category+"</td><td class='align-middle white-space-nowrap text-end pe-0'>"
+					str+="<div class='font-sans-serif btn-reveal-trigger position-static'>"
+					str+="<button class='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>"
+					str+="<span class='fas fa-ellipsis-h fs--2'></span></button><div class='dropdown-menu dropdown-menu-end py-2'><a class='dropdown-item supplierDetail' href='#!' >View</a><a class='dropdown-item' href='#!'>Export</a>"
+					str+="<div class='dropdown-divider'></div><a class='dropdown-item text-danger' href='#!'>Remove</a></div></div></td></tr>"
+
+				}
+				$('#bulk-select-body').empty();
+				$('#bulk-select-body').append(str);
+				str2='<h3 class="text-1100" id="supplierCardTitle">'+compo_name+'</h3><button class="btn btn-primary" id="componentDetail">부품상세보기</button><p class="mb-0 text-700">'+compo_name+' 공급사</p>'
+				$('#head').empty();
+				$('#head').append(str2);
+				$('#supplierTasks').html('');
+				$('#supplierTasks').html(data.count+' task');
+			})
 			
-			$('#supplierCardTitle').html($('#componentSearchBox').find('input').val());
 		});
 		
-		$('#componentDetail').on("click",function(e){
-			$('#componentModal').find("input[name='compo_name']").val($('#compo_name').val());
-			$('#componentModal').find("input[name='compo_no']").val($('#compo_no').val());
-			$('#componentModal').find("input[name='detail']").val($('#detail').val());
-			$('#componentModal').find("input[name='unit']").val($('#unit').val());
-			$("#componentModal").modal("show");
+		$('#head').on("click",'#componentDetail',function(e){
+			Service.supplierDTO(compo_name,function(data){
+				console.log(data)
+				$('#componentModal').find("input[name='compo_name']").val(data.compoDetail.compo_name);
+				$('#componentModal').find("input[name='compo_no']").val(data.compoDetail.compo_no);
+				$('#componentModal').find("input[name='detail']").val(data.compoDetail.detail);
+				$('#componentModal').find("input[name='unit']").val(data.compoDetail.unit);
+				$("#componentModal").modal("show");
+			})
+
 		});
 		//모달 창
-		$(".supplierDetail").on("click", function(e){
+
+		$('#bulk-select-body').on("click", ".supplierDetail",function(e){
 			var suppl_no=$(this).closest('tr').children('.ps-3').html();
-			var supplierDetail;
-			Service.getSupplier(suppl_no,function(result){
-				 supplierDetail=result;
+			//var supplierDetail;
+			Service.getSupplier(suppl_no,function(supplierDetail){
+				 //supplierDetail=result;
 				 $('#myModal').find("input[name='suppl_name']").val(supplierDetail.suppl_name);
 				 $('#myModal').find("input[name='ceo_name']").val(supplierDetail.ceo_name);
 				 $('#myModal').find("input[name='category']").val(supplierDetail.category);
@@ -388,7 +368,7 @@
 			  },
 			  series: [
 			    {
-			      name: 'Budget vs spending',
+			      name: 'comparison',
 			      type: 'radar',
 			      data: proposal
 			    }
@@ -397,7 +377,7 @@
 			option && myChart.setOption(option);
 		}
 		//체크박스 클릭시 제안 표시
-		$('#bulk-select-body').find('input.form-check-input').on("change",function(){
+		$('#bulk-select-body').on("change",'input.form-check-input',function(){
 			var suppl_no=$(this).closest('tr').children('.ps-3').html();
 			var compo_name=$('#supplierCardTitle').html();
 			if($(this).is(':checked')){
@@ -439,7 +419,6 @@
 				Service.getProposal({suppl_no:suppl_no,compo_name},function(result){
 					var proposal_no=result.proposal_no;
 					for(let i=0; i<td.length;i++){
-
 	 					if(td.eq(i).html()==proposal_no){
 							td.eq(i).parent().remove();
 							proposal.splice(i,1);
@@ -449,6 +428,14 @@
 				})
 			}
 		});
+	    function handleEnterKeyPress(event) {
+	        if (event.key === 'Enter') {
+	            event.preventDefault(); // 기본 Enter 동작 막기
+	            document.getElementById('searchItem').click(); // 검색 버튼 클릭
+	        }
+	    }
+	    const searchInput = document.getElementById('searchItemInput');
+	    searchInput.addEventListener('keypress', handleEnterKeyPress);
 	});
 </script>
 

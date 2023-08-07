@@ -1,6 +1,7 @@
 package com.kapple.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class ControllerBY {
 
 	@Autowired
 	private ServiceBY service;
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/addSupplier")
 	public void moveToAddSupplier(Model model) {
 		log.info("move to AddSupplier Page..................................");

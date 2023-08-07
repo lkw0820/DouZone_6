@@ -43,7 +43,7 @@
 				where c.compo_name = #{compo_name}
 		]]>
 	</select>
-	<!-- 회사 상세 정보 -->
+	<!-- 공급사 상세 정보 -->
 	<select id="supplierDetail" resultType="com.kapple.domain.SupplierDetailVO" parameterType="String">
 		<![CDATA[
 			select suppl_name, ceo_name, category, phone, biz_no, transport_category
@@ -112,5 +112,105 @@
 			where prod_name=#{prod_name}
 		]]>
 	</select>
+	<select id="retailerCnt" resultType="int" parameterType="String">
+		<![CDATA[
+			select count(*) from retailer r join sale_predict s
+				on r.retail_no=s.retail_no join product p
+				on s.prod_no=p.prod_no
+				where p.prod_name = #{prod_name}
+		]]>
+	</select>
+		<!-- 판매사 상세 정보 -->
+	<select id="retailerDetail" resultType="com.kapple.domain.RetailerDetailVO" parameterType="String">
+		<![CDATA[
+			select retail_name, ceo_name, category, phone, biz_no, transport_category, scale_grade
+				from retailer r full outer join transportation t
+				on r.transport_no=t.transport_no full outer join biz_certificate b
+				on r.retail_no=b.retail_no
+				where r.retail_no=#{retail_no}
+		]]>
+	</select> 
+	<resultMap type="com.kapple.domain.ProductVO" id="productMap">
+		<id property="prod_no" column="prod_no"/>
+		<result property="prod_no" column="prod_no"/>
+		<result property="unit" column="unit"/>
+		<result property="prod_name" column="prod_name"/>
+		<result property="prod_detail" column="prod_detail"/>
+		<collection property="model" resultMap="modelMap"></collection>
+	</resultMap>
+	<resultMap type="com.kapple.domain.ModelVO" id="modelMap">
+		<id property="model_no" column="model_no"/>
+		<result property="model_no" column="model_no"/>
+		<result property="capacity" column="capacity"/>
+		<result property="color" column="color"/>
+		<result property="release_date" column="release_date"/>
+		<result property="model_name" column="model_name"/>
+	</resultMap>
+	<select id="productDetail" resultMap="productMap">
+		<![CDATA[
+		select prod_no, prod_name, unit, prod_detail, m.model_no, model_name, capacity, color, release_date 
+		from product p join model m on p.model_no=m.model_no where prod_name=#{prod_name}
+		]]>
+	</select>
 	
+	<resultMap type="com.kapple.domain.SalePredictVO" id="salePredictMap">
+		<id property="sale_predict_no" column="sale_predict_no"/>
+		<result property="sale_predict_no" column="sale_predict_no"/>
+		<result property="sales_amount" column="sales_amount"/>
+		<result property="purchasing_grade" column="purchasing_grade"/>
+		<result property="price" column="price"/>
+		<result property="transport_grade" column="transport_grade"/>
+		<result property="predict_date" column="predict_date"/>
+		<collection property="retailer" resultMap="retailerMap"></collection>
+		<collection property="product" resultMap="productMap"></collection>
+	</resultMap>
+	
+	<select id="getPredict" resultMap="salePredictMap">
+		<![CDATA[
+			select sale_predict_no, retail_name, prod_name, sales_amount, purchasing_grade, price, transport_grade
+			from sale_predict s join product p
+			on s.prod_no=p.prod_no join retailer r
+			on s.retail_no=r.retail_no
+			where prod_name=#{prod_name} and r.retail_no=#{retail_no}
+		]]>
+	</select>
+	
+	<resultMap type="com.kapple.domain.EmpVO" id="empMap">
+		<id property="emp_no" column="emp_no"/>
+		<result property="emp_name" column="emp_name"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="address" column="address"/>
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="hiredate" column="hiredate"/>
+		<collection property="authList" resultMap="authListMap"></collection>
+		<collection property="department" resultMap="deptMap"></collection>
+	</resultMap>
+	<resultMap type="com.kapple.domain.DepartmentVO" id="deptMap">
+		<id property="dept_no" column="dept_no"/>
+		<result property="dept_no" column="dept_no"/>
+		<result property="dept_name" column="dept_name"/>
+		<result property="TOO" column="TOO"/>
+		<result property="ext_phone" column="ext_phone"/>
+	</resultMap>
+	<resultMap type="com.kapple.domain.AuthorityVO" id="authListMap">
+		<result property="emp_no" column="emp_no"/>
+		<result property="auth_grade" column="auth_grade"/>
+	</resultMap>
+	<select id="read" resultMap="empMap">
+		<![CDATA[
+			select e.emp_no,emp_name, email, phone, address, id, pw, hiredate, auth_grade, d.dept_name, TOO, ext_phone
+			from emp e join department d
+			on e.dept_no=d.dept_no join authority a
+			on e.emp_no=a.emp_no
+			where id=#{id} 
+		]]>
+	</select>
+	
+	<update id="updateEmp" parameterType="com.kapple.domain.EmpVO">
+		<![CDATA[
+			update emp set address=#{address},email=#{email},phone=#{phone} where id=#{id}
+		]]>
+	</update>
 </mapper>

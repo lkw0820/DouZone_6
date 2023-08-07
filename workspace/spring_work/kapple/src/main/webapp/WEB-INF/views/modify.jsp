@@ -5,7 +5,7 @@
 <%@include file="includes/header.jsp"%>
 <sec:authentication property="principal" var="pinfo"/>
 <sec:authorize access="isAuthenticated()">
-	<%-- <c:if test="${not empty pinfo }"> --%>
+	<c:if test="${not empty pinfo }">
 		<section class="pt-5 pb-9">
 		
        		<div class="container-large mx-12 my-10">
@@ -16,12 +16,7 @@
 	            </div>
 	            <div class="col-auto">
 	              <div class="row g-2 g-sm-3">
-	                <!-- <div class="col-auto">
-	                  <button class="btn btn-phoenix-danger"><span class="fas fa-trash-alt me-2"></span>delete account</button>
-	                </div>
-	                <div class="col-auto">
-	                  <button class="btn btn-phoenix-secondary pw"><span class="fas fa-key me-2 pw"></span>change pw</button>
-	                </div> -->
+	                
 	              </div>
 	            </div>
 	          </div>
@@ -40,22 +35,9 @@
 	                        <div class="col-12 col-sm-auto flex-1">
 	                          <h3 class="fw-bolder mb-2"><c:out value="${pinfo.emp.emp_name }"/></h3>
 	                          <p class="mb-0">
-<%--  	                          <c:forEach items="${pinfo.emp.authList}" var="auth" varStatus="status">
-	                          	<c:if test="${status.index eq 1}">
-	                          		관리자
-	                          	</c:if>
-	                          	<c:if test="${status.index eq 0}">
-	                          		사원
-	                          	</c:if>	                          	
+	                          <c:forEach items="${pinfo.emp.authList}" var="auth">
 	                          	<c:out value="${auth.auth_grade }"/><br>
-	                          </c:forEach></p> --%>
-	                          <c:if test="${pinfo.emp.authList.size() eq 2}">
-	                          	관리자<br>
-	                          </c:if>
-	                          <c:if test="${pinfo.emp.authList.size() eq 1}">
-	                          	사원<br>
-	                          </c:if>
-	                          </p>
+	                          </c:forEach></p>
 	                          <a class="fw-bold dept" href="#!">
 	                          	<c:out value="${pinfo.emp.department.dept_name }"/>
 	                          </a>
@@ -67,7 +49,7 @@
 	                    <div>
 	                      <h6 class="mb-2 text-800">hiredate</h6>
 	                      <h4 class="fs-1 text-1000 mb-0"><fmt:formatDate value="${pinfo.emp.hiredate}" pattern="yyyy/MM/dd"/></h4>
-	                      <input type="hidden"  id="year" value="<fmt:formatDate value="${pinfo.emp.hiredate}" pattern="yyyy"/>">
+	                      <input type="hidden" id="year" value="<fmt:formatDate value="${pinfo.emp.hiredate}" pattern="yyyy"/>">
 	                    </div>
 	                    <div class="text-end">
 	                      <h6 class="mb-2 text-800">years</h6>
@@ -81,67 +63,43 @@
 	                </div>
 	              </div>
 	            </div>
-	            
 	            <div class="col-12 col-lg-8">
 	              <div class="card h-100">
 	                <div class="card-body">
+	                <form action="/modify" method="post">
 	                  <div class="border-bottom border-dashed border-300">
 	                    <h4 class="mb-3 lh-sm lh-xl-1"> user info
-	                      <button class="btn btn-link p-0 modify" type="button"> <span class="fas fa-edit fs--1 ms-3 text-500"></span></button>
+	                      <!-- <button class="btn btn-link p-0 modify" type="button"> <span class="fas fa-edit fs--1 ms-3 text-500"></span></button> -->
 	                    </h4>
 	                  </div>
-						<c:if test="${vo eq null }">
-							<div class="pt-4 mb-2">
-		                    <div class="row justify-content-between">
-		                      <div class="col-4">
-		                        <h5 class="text-1000">Address</h5>
-		                      </div>
-		                      <div class="col-auto">
-		                        <p class="text-800"><c:out value="${pinfo.emp.address }"/></p>
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <div class="border-top border-dashed border-300 pt-4">
-		                    <div class="row flex-between-center mb-2">
-		                      <div class="col-auto">
-		                        <h5 class="text-1000 mb-0">Email</h5>
-		                      </div>
-		                      <div class="col-auto"><a class="lh-1" href="mailto:${pinfo.emp.email }"><c:out value="${pinfo.emp.email }"/></a></div>
-		                    </div>
-		                    <div class="row flex-between-center">
-		                      <div class="col-auto">
-		                        <h5 class="text-1000 mb-0">Phone</h5>
-		                      </div>
-		                      <div class="col-auto"><a href="tel:+${pinfo.emp.phone }">+<c:out value="${pinfo.emp.phone }"/></a></div>
-		                    </div>
-		                  </div>
-						</c:if>
-						<c:if test="${vo ne null }">
-							<div class="pt-4 mb-2">
-		                    <div class="row justify-content-between">
-		                      <div class="col-4">
-		                        <h5 class="text-1000">Address</h5>
-		                      </div>
-		                      <div class="col-auto">
-		                        <p class="text-800"><c:out value="${vo.address }"/></p>
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <div class="border-top border-dashed border-300 pt-4">
-		                    <div class="row flex-between-center mb-2">
-		                      <div class="col-auto">
-		                        <h5 class="text-1000 mb-0">Email</h5>
-		                      </div>
-		                      <div class="col-auto"><a class="lh-1" href="mailto:${vo.email }"><c:out value="${vo.email }"/></a></div>
-		                    </div>
-		                    <div class="row flex-between-center">
-		                      <div class="col-auto">
-		                        <h5 class="text-1000 mb-0">Phone</h5>
-		                      </div>
-		                      <div class="col-auto"><a href="tel:+${vo.phone }">+<c:out value="${vo.phone }"/></a></div>
-		                    </div>
-		                  </div>
-						</c:if>
+	                  <div class="pt-4 mb-2">
+	                    <div class="row justify-content-between">
+	                      <div class="col-4">
+	                        <h5 class="text-1000">Address</h5>
+	                      </div>
+	                      <div class="col-auto">
+	                      	<input type="hidden" name="id" value="${pinfo.emp.id }">
+	                        <p class="text-800"><input type="text" name="address" value="<c:out value="${pinfo.emp.address }"/>"></p>
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div class="border-top border-dashed border-300 pt-4">
+	                    <div class="row flex-between-center mb-2">
+	                      <div class="col-auto">
+	                        <h5 class="text-1000 mb-0">Email</h5>
+	                      </div>
+	                      <div class="col-auto"><input type="text" name="email" value="<c:out value="${pinfo.emp.email }"/>"></div>
+	                    </div>
+	                    <div class="row flex-between-center">
+	                      <div class="col-auto">
+	                        <h5 class="text-1000 mb-0">Phone</h5>
+	                      </div>
+	                      <div class="col-auto"><input type="text" name="phone" value="<c:out value="${pinfo.emp.phone }"/>"></div>
+	                    </div>
+	                  </div>
+	                  <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
+	                  <button id='modalModifyBtn' type="submit" class="btn btn-primary " style="float: right; margin-top:5px">Modify</button>
+	                  </form>
 	                </div>
 	              </div>
 	            </div>
@@ -218,7 +176,7 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-<%-- </c:if> --%>
+</c:if>
 <form action="/modify" method="get" id="modify">
 	<input type="hidden" name="pinfo" id="pinfo" value="${pinfo }">
 </form>
@@ -234,9 +192,9 @@ $(document).ready(function(){
 	let years= hiredate-year;
 	$('.years').html(years+'years');
 	
-	$('.dept').on('click',function(e){
+/* 	$('.dept').on('click',function(e){
 		$('#deptModal').modal("show");
-	})
+	}) */
 	$('.pw').on('click',function(){
 		console.log("asdasd");
 		$('#changePwModal').modal("show");
@@ -244,10 +202,6 @@ $(document).ready(function(){
 	$(".modalCloseBtn").on("click",function(e){
 		$("#deptModal").modal("hide");
 		$("#changePwModal").modal("hide");
-	});
-	$('.modify').on("click",function(e){
-		console.log("asdasd");
-		$("#modify").submit();
 	});
 	/* $('#pwsearchBtn').on("click",function(){
 		let checkPw=$('#checkPw').val();

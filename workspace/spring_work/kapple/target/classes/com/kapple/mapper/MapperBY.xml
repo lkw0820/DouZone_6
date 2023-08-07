@@ -12,4 +12,44 @@
 		]]>
 	</select> 
 	
+	<!-- 공급사 등록 -->
+	<insert id="insertSupplier">
+		<![CDATA[
+			insert into supplier (suppl_no, suppl_name, ceo_name, category, phone)
+			values (SUPPLIER_SEQ.nextval, #{suppl_name}, #{ceo_name}, #{category}, #{phone})
+		]]>
+	</insert>
+	
+	<!-- 공급사 등록 with Select Key -->
+	<insert id="insertSupplierWithSK">
+		<selectKey keyProperty="suppl_no" order="BEFORE" resultType="String">
+			select seq_board.nextval from dual
+		</selectKey>
+
+		<![CDATA[
+			insert into supplier (suppl_no, suppl_name, ceo_name, category, phone)
+			values (#{suppl_no}, #{suppl_name}, #{ceo_name}, #{category}, #{phone})
+		]]>
+	</insert>
+
+	<!-- 제안 등록 -->
+	<insert id="insertProposal">
+		<![CDATA[
+			insert into proposal (proposal_no, suppl_no, compo_no, price, quantity, defective_rate, quality_grade, prod_period, proposal_date)
+			values (PROPOSAL_SEQ.nextval, #{supplier.suppl_no}, #{component.compo_no}, #{price}, #{quantity}, #{defective_rate}, #{quality_grade}, #{prod_period}, sysdate)
+		]]>
+	</insert>
+	
+	<!-- 제안 등록 with Select Key -->
+	<insert id="insertProposalWithSK">
+		<selectKey keyProperty="proposal_no" order="BEFORE" resultType="String">
+			select seq_board.nextval from dual
+		</selectKey>
+
+		<![CDATA[
+			insert into proposal (proposal_no, suppl_no, compo_no, price, quantity, defective_rate, quality_grade, prod_period, proposal_date)
+			values (#{proposal_no}, #{supplier.suppl_no}, #{component.compo_no}, #{price}, #{quantity}, #{defective_rate}, #{quality_grade}, #{prod_period}, sysdate)
+		]]>
+	</insert>
+	
 </mapper>

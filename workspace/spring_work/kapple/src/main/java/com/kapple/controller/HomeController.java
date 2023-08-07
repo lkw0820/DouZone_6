@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,8 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value = "/*", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -44,17 +46,17 @@ public class HomeController {
 	 * @GetMapping("/addSupplier") public void moveToAddSupplier() {
 	 * log.info("move to AddSupplier Page.................................."); }
 	 */
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/addRetailer")
 	public void moveToAddRetailer() {
 		log.info("move to addRetailer Page.....................................");
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/comparsionSupplier")
 	public void moveToComparsionSupplier() {
 		log.info("move to ComparsionSupplier Page.....................................");
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/comparsionRetailer")
 	public void moveToComparsionRetailer() {
 		log.info("move to ComparsionRetailer Page.....................................");

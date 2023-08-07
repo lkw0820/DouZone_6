@@ -18,12 +18,12 @@ public class mapperTestMK {
 	@Autowired
 	private MapperMK mapper;
 	
-	// VO¸¦ @DataÇØ³ö¼­ beanµî·ÏÀº ¾ÈÇØµµ µÇ´Âµ¥, ÀÌ°Ô Autowired·Î ¾ÈµÇ°í ²À Á÷Á¢ »ı¼ºÇØ¾ß ÇÏ´Â ÀÌÀ¯´Â...?
+	// VOë¥¼ @Dataí•´ë†”ì„œ beanë“±ë¡ì€ ì•ˆí•´ë„ ë˜ëŠ”ë°, ì´ê²Œ Autowiredë¡œ ì•ˆë˜ê³  ê¼­ ì§ì ‘ ìƒì„±í•´ì•¼ í•˜ëŠ” ì´ìœ ëŠ”...?
 	private TestTblVO test = new TestTblVO();
 	
 	@Test
 	public void testInsert() {
-		test.setContents("Å×½ºÆ® ³»¿ë");
+		test.setContents("test");
 		test.setAnynum(123456);
 		mapper.insert(test);
 		log.info(test);

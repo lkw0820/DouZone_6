@@ -12,7 +12,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@kapplescm_high?TNS_ADMIN=C:\\Users\\KOSA\\Downloads\\Wallet_kapplescm"></property>
+			value="jdbc:log4jdbc:oracle:thin:@kapplescm_high?TNS_ADMIN=C:/Users/KOSA/Downloads/Wallet_kapplescm"></property>
 		<property name="username" value="dev"></property>
 		<property name="password" value="Douzone12345"></property>
 	</bean>

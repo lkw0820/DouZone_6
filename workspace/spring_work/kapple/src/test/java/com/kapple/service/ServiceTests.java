@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.kapple.domain.EmpVO;
 import com.kapple.mapper.mapperTests;
 
 import lombok.extern.log4j.Log4j;
@@ -22,9 +23,28 @@ public class ServiceTests {
 //	public void test() {
 //		service.supplierListService("부품이름1").forEach(supplier -> log.info(supplier));
 //	}
+//	@Test
+//	public void test() {
+//		log.info(service.productDetail("고객사이름51"));
+//	}
+//	@Test
+//	public void test() {
+//		EmpVO vo = new EmpVO();
+//		vo.setAddress("update address");
+//		vo.setEmail("update email");
+//		vo.setPhone("update phone");
+//		vo.setId("id200");
+//		if(service.updateEmp(vo)) {
+//			log.info("successsdasdasdasdasdasdasdadasdasdasd");
+//		}else {
+//			log.info("fail");
+//		}
+//		
+//	}
 	@Test
 	public void test() {
-		log.info(service.getProposal("부품이름3", "SPPL10775"));
+		service.productDetail("아이폰12미니");
 	}
+	
 
 }

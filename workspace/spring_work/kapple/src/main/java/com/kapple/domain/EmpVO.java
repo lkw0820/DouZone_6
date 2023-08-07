@@ -1,5 +1,8 @@
 package com.kapple.domain;
 
+import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -12,4 +15,6 @@ public class EmpVO {
 	private String address;
 	private String id;
 	private String pw;
+	private List<AuthorityVO> authList;
+	private Date hiredate;
 }
