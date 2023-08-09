@@ -9,4 +9,6 @@ import lombok.Data;
 public class addSupplierRequest {
 	 private SupplierVO supplier;
 	 private ProposalVO proposal;
+	 private String logo_uuid;
+	 private String file_uuid;
 }

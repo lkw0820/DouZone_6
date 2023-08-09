@@ -12,6 +12,48 @@
 		]]>
 	</select> 
 	
+	<!-- 임시저장 리스트 가져오기 -->
+	<select id="getSupplDraftList" resultType="com.kapple.domain.SupplDraftVO">
+		<![CDATA[
+			select *
+			from suppl_drafts order by PROPOSAL_DATE DESC
+		]]>
+	</select> 
+	
+	<!--  공급사 리스트 가져오기 -->
+	<resultMap id="BizCertificateSupplierResultMap" type="com.kapple.domain.BizCertificateVO">
+		<id property="biz_no" column="BIZ_NO" />
+        <result property="large_category" column="LARGE_CATEGORY" />
+        <result property="sub_category" column="SUB_CATEGORY" />
+        <result property="address" column="ADDRESS" />
+        <association property="supplier" resultMap="SupplierResultMap" />
+    </resultMap>
+
+    <resultMap id="SupplierResultMap" type="com.kapple.domain.SupplierVO">
+        <id property="suppl_no" column="SUPPL_NO" />
+        <result property="suppl_name" column="SUPPL_NAME" />
+        <result property="ceo_name" column="CEO_NAME" />
+        <result property="category" column="CATEGORY" />
+        <result property="phone" column="PHONE" />
+    </resultMap>
+
+    <!-- 조인된 결과를 매핑하는 SQL -->
+    <select id="getSupplInfoWithAddress" resultMap="BizCertificateSupplierResultMap">
+        SELECT
+            S."SUPPL_NAME",
+            S."CEO_NAME",
+            S."CATEGORY",
+            S."PHONE",
+            BC."ADDRESS"
+        FROM
+            "DEV"."BIZ_CERTIFICATE" BC
+        JOIN
+            "DEV"."SUPPLIER" S
+        ON
+            BC."SUPPL_NO" = S."SUPPL_NO"
+    </select>
+   
+	
 	<!-- 공급사 등록 -->
 	<insert id="insertSupplier">
 		<![CDATA[
@@ -23,7 +65,7 @@
 	<!-- 공급사 등록 with Select Key -->
 	<insert id="insertSupplierWithSK">
 		<selectKey keyProperty="suppl_no" order="BEFORE" resultType="String">
-			select seq_board.nextval from dual
+			select 'SPPL' || SUPPLIER_SEQ.nextval from dual
 		</selectKey>
 
 		<![CDATA[
@@ -36,14 +78,14 @@
 	<insert id="insertProposal">
 		<![CDATA[
 			insert into proposal (proposal_no, suppl_no, compo_no, price, quantity, defective_rate, quality_grade, prod_period, proposal_date)
-			values (PROPOSAL_SEQ.nextval, #{supplier.suppl_no}, #{component.compo_no}, #{price}, #{quantity}, #{defective_rate}, #{quality_grade}, #{prod_period}, sysdate)
+			values ('PROP' ||PROPOSAL_SEQ.nextval, #{supplier.suppl_no}, #{component.compo_no}, #{price}, #{quantity}, #{defective_rate}, #{quality_grade}, #{prod_period}, sysdate)
 		]]>
 	</insert>
 	
 	<!-- 제안 등록 with Select Key -->
 	<insert id="insertProposalWithSK">
 		<selectKey keyProperty="proposal_no" order="BEFORE" resultType="String">
-			select seq_board.nextval from dual
+			select 'PROP' || PROPOSAL_SEQ.nextval from dual
 		</selectKey>
 
 		<![CDATA[
@@ -51,5 +93,50 @@
 			values (#{proposal_no}, #{supplier.suppl_no}, #{component.compo_no}, #{price}, #{quantity}, #{defective_rate}, #{quality_grade}, #{prod_period}, sysdate)
 		]]>
 	</insert>
+	
+	<!-- 임시저장 등록 -->
+	<insert id="insertDraft">
+		<![CDATA[
+			INSERT INTO suppl_drafts (
+			    suppl_name, ceo_name, categories, phone, compo_no, compo_name, price,quantity, defective_rate, quality_grade, prod_period, proposal_date, attachfile, address, logopath
+			) VALUES (
+				#{suppl_name}, #{ceo_name}, #{categories}, #{phone}, #{compo_no}, #{compo_name}, #{price}, #{quantity}, #{defective_rate}, #{quality_grade}, #{prod_period}, sysdate, #{attachfile}, #{address}, #{logopath} 
+			)
+		]]>
+	</insert>
+	
+	<!-- 공급사 로고 등록 -->
+	<insert id="insertSupplLogo">
+		<![CDATA[
+	        INSERT INTO SUPPL_LOGO (UUID, FILE_NAME, FILE_SIZE, FILE_TYPE, FILE_URL)
+	        VALUES (#{uuid}, #{file_name}, #{file_size}, #{file_type}, #{file_url})
+	    ]]>
+    </insert>
+    
+    <!-- 공급사 파일 등록 -->
+	<insert id="insertSupplFile">
+		<![CDATA[
+	        INSERT INTO SUPPL_FILE (UUID, FILE_NAME, FILE_SIZE, FILE_TYPE, DATA_URL)
+	        VALUES (#{uuid}, #{file_name}, #{file_size}, #{file_type}, #{data_url})
+	    ]]>
+    </insert>
+    
+    <!--  로고 이미지 공급사 번호 업데이트 -->
+	<update id="updateSupplNoInLogo">
+	    <![CDATA[
+	        UPDATE SUPPL_LOGO
+	        SET SUPPL_NO = #{suppl_no}
+	        WHERE UUID = #{uuid}
+	    ]]>
+	</update>
+	
+	 <!--  공급사 파일 공급사 번호 업데이트 -->
+	<update id="updateSupplNoInFile">
+	    <![CDATA[
+	        UPDATE SUPPL_FILE
+	        SET SUPPL_NO = #{suppl_no}
+	        WHERE UUID = #{uuid}
+	    ]]>
+	</update>
 	
 </mapper>

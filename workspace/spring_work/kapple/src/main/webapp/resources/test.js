@@ -101,6 +101,7 @@ var Service = (function(){
 			}
 		});
 	}
+
 	function checkPw(param,callback,error){
 		let id=param.id;
 		let checkPw=param.checkPw;
@@ -119,6 +120,7 @@ var Service = (function(){
 				}
 		});
 	}
+
 	
 	return{
 		getSupplier:getSupplier,
@@ -128,6 +130,7 @@ var Service = (function(){
 		supplierDTO:supplierDTO,
 		retailerDTO:retailerDTO,
 		checkPw:checkPw
+
 	};
 	
 })();

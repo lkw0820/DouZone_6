@@ -38,10 +38,6 @@ public class ControllerKW {
 
 	@Autowired
 	private ServiceKW service;
-	@Autowired
-    private PasswordEncoder passwordEncoder;
-	//@Autowired
-    //private AuthenticationManager authenticationManager;
 	
 	 @GetMapping("/comparsionSupplier/{compo_name}") 
 	 public ResponseEntity<SupplierDTO> comparsionSupplier(@PathVariable("compo_name") String compo_name) { 
@@ -66,6 +62,7 @@ public class ControllerKW {
 		return new ResponseEntity<ProposalVO>(service.getProposal(compo_no, suppl_no),HttpStatus.OK);
 	}
 	
+
 	@GetMapping("/comparsionRetailer/{prod_name}")
 	public ResponseEntity<RetailerDTO> comparsionRetailer(@PathVariable("prod_name") String prod_name) {
 		log.info("retailerList.....");

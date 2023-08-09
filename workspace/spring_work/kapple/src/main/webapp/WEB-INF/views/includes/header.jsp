@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link href="resources/assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
     <link href="resources/vendors/leaflet/leaflet.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		
@@ -50,7 +51,7 @@
     <main class="main" id="top">
 
       <!-- 사이드바 -->
-      <nav class="navbar navbar-vertical navbar-expand-lg badge-light" style="min-height: 400%">
+      <nav class="navbar navbar-vertical navbar-expand-lg badge-light" style="min-height: 100%; height:1050px">
         <script>
           var navbarStyle = window.config.config.phoenixNavbarStyle;
           if (navbarStyle && navbarStyle !== 'transparent') {
@@ -384,7 +385,7 @@
 	                </div>
 	              </div>
 	            </li>
-	          </ul>
+	          </ul>S
           	<%-- </c:if> --%>
          </sec:authorize>
 <%--          <c:if test="${pinfo eq null}">

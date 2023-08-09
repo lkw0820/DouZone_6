@@ -17,7 +17,6 @@
     <script src="resources/vendors/is/is.min.js"></script>
     <script src="resources/vendors/fontawesome/all.min.js"></script>
     <script src="resources/vendors/lodash/lodash.min.js"></script>
-    <script src="resources/https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="resources/vendors/list.js/list.min.js"></script>
     <script src="resources/vendors/feather-icons/feather.min.js"></script>
     <script src="resources/vendors/dayjs/dayjs.min.js"></script>

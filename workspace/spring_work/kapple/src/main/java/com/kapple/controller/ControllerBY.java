@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kapple.service.ServiceBY;
 
@@ -20,10 +21,14 @@ public class ControllerBY {
 	private ServiceBY service;
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/addSupplier")
-	public void moveToAddSupplier(Model model) {
+	public void moveToAddSupplier(@RequestParam(name = "param", required = false, defaultValue = "0") String parameterValue, Model model) {
 		log.info("move to AddSupplier Page..................................");
 		
+		model.addAttribute("checkRegi", parameterValue);
 		// 부품 리스트 불러오기 
 		model.addAttribute("componentList",service.getComponentList());
+		model.addAttribute("draftList",service.getSupplDraftList());
+		model.addAttribute("supplierList",service.getSupplInfoWithAddress());
 	}
+	
 }

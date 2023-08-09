@@ -35,9 +35,12 @@
 	                        <div class="col-12 col-sm-auto flex-1">
 	                          <h3 class="fw-bolder mb-2"><c:out value="${pinfo.emp.emp_name }"/></h3>
 	                          <p class="mb-0">
-	                          <c:forEach items="${pinfo.emp.authList}" var="auth">
-	                          	<c:out value="${auth.auth_grade }"/><br>
-	                          </c:forEach></p>
+	                          <c:if test="${pinfo.emp.authList.size() eq 2}">
+	                          	관리자<br>
+	                          </c:if>
+	                          <c:if test="${pinfo.emp.authList.size() eq 1}">
+	                          	사원<br>
+	                          </c:if></p>
 	                          <a class="fw-bold dept" href="#!">
 	                          	<c:out value="${pinfo.emp.department.dept_name }"/>
 	                          </a>
