@@ -38,7 +38,7 @@ function App() {
     <div>
       {number}
     </div>
-    <button onClick={double}>submit</button>
+    <button className='btn btn-primary'onClick={double}>submit</button>
     </React.Fragment>
   );
 }

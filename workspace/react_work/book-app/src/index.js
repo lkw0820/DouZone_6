@@ -8,6 +8,13 @@ import CommentList from './chapter5/CommentList';
 import Counter from './chapter7/Counter';
 import Accommodate from './chapter7/Accommodate';
 import SimpleCounter from './chapter7/SimpleCounter';
+import ConfirmButton from './chapter8/ConfirmButton';
+import LandingPage from './chapter9/LandingPage';
+import NumberList from './chapter10/NumberList';
+import AttendanceBook from './chapter10/AttendanceBook';
+import NameForm from './chapter11/NameForm';
+import ProfileCard from './chapter13/ProfileCard';
+import A from './mission/A';
 
 
 // const name = "홍길동";
@@ -29,12 +36,13 @@ import SimpleCounter from './chapter7/SimpleCounter';
 //     Hello, {formatName()}
 //   </h1>
 // );
-
+const numbers = [1,2,3,4,5]
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //root.render(element);
 root.render(
   <React.StrictMode>
-    <SimpleCounter/>
+    {/* <NumberList numbers={numbers}/> */}
+    <A/>
   </React.StrictMode>
 );
 
