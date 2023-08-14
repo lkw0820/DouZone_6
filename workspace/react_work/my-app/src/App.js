@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <NavBar/>
-      <div className='container'>
+      <div className='container mt-3'>
         <Switch>
         {/* exact는 정확한 url일때만 */}
           {routers.map((route)=>{

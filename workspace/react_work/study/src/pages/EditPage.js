@@ -1,6 +1,8 @@
+import InsertForm from "../components/InsertForm";
+
 const EditPage =() =>{
     return(
-        <div>EditPage</div>
+        <InsertForm editing={true}/>
     );
 }
 

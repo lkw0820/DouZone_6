@@ -1,14 +1,21 @@
 {
   "posts": [
     {
-      "title": "안녕",
-      "body": "하세요",
+      "title": "asd123",
+      "body": "asd123",
+      "createdAt": 1691990758178,
       "id": 1
     },
     {
-      "title": "안녕",
-      "body": "하세요",
+      "title": "123up",
+      "body": "123up",
+      "createdAt": 1691995902626,
       "id": 2
+    },
+    {
+      "title": "asd",
+      "content": "asd",
+      "id": 3
     }
   ]
 }
