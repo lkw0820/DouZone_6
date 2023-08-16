@@ -27,9 +27,10 @@ const ShowPage =()=>{
         return <Spinner/>
     }
     return (
-        <div>
-            <div className="d-flex">
-                <h1 className="flex-grow-1">{post.title}</h1><hr/>
+        <div className="text-center">
+            <div className="d-flex ">
+                <h1 className="flex-grow-1">{post.title}</h1>
+                
                 <div>
                     <Link
                         className="btn btn-primary"
@@ -37,6 +38,7 @@ const ShowPage =()=>{
                     >Edit</Link>
                 </div>
             </div>
+            <hr/>
             <small className="text-muted">{printDate(post.createAt)}</small>
             <p>{post.content}</p>
         </div>

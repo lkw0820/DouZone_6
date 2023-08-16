@@ -19,9 +19,11 @@ const Card=({title,children,onClick})=>{
 Card.propTypes={
     title:PropTypes.string.isRequired,
     children : PropTypes.element,
+    onClick : PropTypes.func,
 }
 Card.defaultProps={
     children:null,
+    onClick:()=>{},
 }
 
 export default Card;

@@ -1,19 +1,30 @@
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () =>{
     return(
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
+    <nav className="navbar navbar-dark bg-dark">
+        <div className="container">
           <Link className="navbar-brand" to="/">Home</Link>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link active"  to="/blog">Blog</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active"  to="/blog/create">create</Link>
-              </li>
-
-            </ul>
+          <ul className="navbar-nav" style={{flexDirection:'row'}}>
+            <li className="nav-item me-2">
+              <NavLink 
+                activeClassName="active" 
+                className="nav-link active"  
+                to="/blog"
+              >
+                Blog
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink 
+                activeClassName="active" 
+                className="nav-link active"  
+                to="/admin"
+              >
+                Admin
+              </NavLink>
+            </li>
+          </ul>
         </div>
       </nav>
     );

@@ -10,14 +10,27 @@ const BlogForm = ({editing}) =>{
   const [title,setTitle] = useState('');
   const [body,setBody] = useState('');
   const history = useHistory();
+  const [originalTitle, setOriginalTitle] = useState('');
+  const [originalBody, setOriginalBody] = useState('');
+  const [publish,setPublish] = useState(false);
+  const [originalPublish,setOriginalPublish] = useState(false);
+
   useEffect(()=>{
     if(editing){
       axios.get(`http://localhost:3001/posts/${id}`).then((res)=>{
         setTitle(res.data.title);
         setBody(res.data.body);
+        setPublish(res.data.publish);
+        setOriginalTitle(res.data.title);
+        setOriginalBody(res.data.body);
+        setOriginalPublish(res.data.publish);
       });
     }
-  },[])
+  },[id,editing]);
+
+  const isEdited= ()=>{
+    return title !== originalTitle || body !== originalBody || publish !== originalPublish;
+  }
   
   // const getPost = () =>{ //서버에서 데이타를 가져오는 것은 useEffect에서 사용하는 것이 좋다
   //   axios.get(`http://localhost:3001/posts/${id}`).then((res)=>{
@@ -33,19 +46,33 @@ const BlogForm = ({editing}) =>{
       axios.patch(`http://localhost:3001/posts/${id}`,{
       title:title,
       body:body,
+      publish:publish,
     }).then(()=>{
-      history.push('/blogs');
+      history.push('/admin');
     });
     }else{//새로만들때
       axios.post('http://localhost:3001/posts',{
         title:title,
         body:body,
+        publish:publish,
         createdAt:Date.now()
       }).then(()=>{
-        history.push('/blogs');
+        history.push('/admin');
       });
     }
     
+  }
+
+  const goBack = () =>{
+    if(editing){
+      history.push(`/blogs/${id}`);
+    }else{
+      history.push('/blogs');
+    }
+  }
+
+  const onChangePublish=(e)=>{
+    setPublish(e.target.checked);
   }
 
   return(
@@ -70,11 +97,32 @@ const BlogForm = ({editing}) =>{
           }}
           rows="10"/>
       </div>
+
+      <div className='form-check mb-3'>
+        <input
+          className='form-check-input'
+          type='checkbox'
+          checked={publish}
+          onChange={onChangePublish}
+        />
+        <label className='form-check-label'>
+          Publish
+        </label>
+      </div>
+
+
       <button 
         className='btn btn-primary'
         onClick={onSubmit}
-        >
-          {editing ? 'Edit':'Post'}</button>
+        disabled={editing && !isEdited()}
+      >
+        {editing ? 'Edit':'Post'}</button>
+      <button 
+        className='btn btn-danger ms-3'
+        onClick={goBack}
+      >
+        Cancel
+      </button>
     </div>
   );
 }
