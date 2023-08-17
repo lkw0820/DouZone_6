@@ -1,8 +1,11 @@
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { bool } from 'prop-types';
 import { useParams } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+import Toast from './Toast';
+
 
 
 const BlogForm = ({editing}) =>{
@@ -14,7 +17,13 @@ const BlogForm = ({editing}) =>{
   const [originalBody, setOriginalBody] = useState('');
   const [publish,setPublish] = useState(false);
   const [originalPublish,setOriginalPublish] = useState(false);
+  const [titleError,setTitleError] = useState(false);
+  const [bodyError,setBodyError] = useState(false);
+  //const [toasts,setToasts] = useState([]);
+  const toasts = useRef([]);
+  const [toastRerender,setToastRerender] = useState(false);
 
+  
   useEffect(()=>{
     if(editing){
       axios.get(`http://localhost:3001/posts/${id}`).then((res)=>{
@@ -32,35 +41,70 @@ const BlogForm = ({editing}) =>{
     return title !== originalTitle || body !== originalBody || publish !== originalPublish;
   }
   
-  // const getPost = () =>{ //서버에서 데이타를 가져오는 것은 useEffect에서 사용하는 것이 좋다
-  //   axios.get(`http://localhost:3001/posts/${id}`).then((res)=>{
-  //     setTitle(res.data.title);
-  //     setBody(res.data.body);
-  //   });
 
-  // }
-  
+  const validateForm = () =>{
+    let validated = true;
+    if(title===''){
+      setTitleError(true);
+      validated=false;
+    }
+    if(body===''){
+      setBodyError(true);
+      validated=false;
+    }    
+    return validated;
+  }
+
+  const deleteToast = (id)=>{
+    const filteredToasts = toasts.current.filter(toast=>{
+        return toast.id !==id;
+    });
+    //setToasts(filteredToasts);
+    toasts.current = filteredToasts;
+    setToastRerender(prev => !prev);
+}
+
+  const addToast = (toast) =>{
+    const id = uuidv4();
+    const toastWithId = {
+        ...toast,
+        id,
+    }
+    //setToasts(prev => [...prev,toastWithId]);
+    toasts.current = [...toasts.current,toastWithId];
+    setToastRerender(prev => !prev);
+    setTimeout(()=>{
+        deleteToast(id);
+    },3000);
+  }
 
   const onSubmit = ()=>{
-    if(editing){//수정할때
-      axios.patch(`http://localhost:3001/posts/${id}`,{
-      title:title,
-      body:body,
-      publish:publish,
-    }).then(()=>{
-      history.push('/admin');
-    });
-    }else{//새로만들때
-      axios.post('http://localhost:3001/posts',{
+    setTitleError(false);
+    setBodyError(false);
+    if(validateForm()){
+      if(editing){//수정할때
+        axios.patch(`http://localhost:3001/posts/${id}`,{
         title:title,
         body:body,
         publish:publish,
-        createdAt:Date.now()
       }).then(()=>{
         history.push('/admin');
       });
+      }else{//새로만들때
+        axios.post('http://localhost:3001/posts',{
+          title:title,
+          body:body,
+          publish:publish,
+          createdAt:Date.now()
+        }).then(()=>{
+          addToast({
+            text:'Successfully created',
+            type: 'success'
+          })
+          //history.push('/admin');
+        });
+      }
     }
-    
   }
 
   const goBack = () =>{
@@ -77,25 +121,35 @@ const BlogForm = ({editing}) =>{
 
   return(
     <div>
+      <Toast
+        toasts={toasts.current}
+        deleteToast={deleteToast}
+      />
       <h1>{editing ? 'Edit':'Create'} a blog post</h1>
       <div className='mb-3'>
         <label className='form-label'>Title</label>
         <input 
           value= {title}
-          className='form-control' 
+          className={`form-control ${titleError ? 'border-danger':''}`}
           onChange={(e)=>{
             setTitle(e.target.value);//input state binding
           }}/>
+          {titleError &&<div className='text-danger'>
+            Title is required
+          </div>}
       </div>
       <div className='mb-3'>
         <label className='form-label'>Body</label>
         <textarea 
           value={body} 
-          className='form-control' 
+          className={`form-control ${bodyError ? 'border-danger':''}`}
           onChange={(e)=>{
             setBody(e.target.value);//input state binding
           }}
           rows="10"/>
+          {bodyError&&<div className='text-danger'>
+            Body is required
+          </div>}
       </div>
 
       <div className='form-check mb-3'>
