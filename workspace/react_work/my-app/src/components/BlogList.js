@@ -9,6 +9,8 @@ import Pagination from "./Pagination";
 import {useLocation} from 'react-router-dom';
 import Toast from "./Toast";
 import { v4 as uuidv4 } from 'uuid';
+import useToast from "../Hooks/toast";
+import { useSelector } from "react-redux";
 
 const BlogList = ({isAdmin}) =>{
     const history = useHistory();
@@ -22,9 +24,10 @@ const BlogList = ({isAdmin}) =>{
     const [numberOfPages,setNumberOfPages] = useState(0); //총 페이지 수
     const [searchText, setSearchText] = useState('');
     //const [toasts,setToasts] = useState([]);
-    const toasts = useRef([]);
+    //const toasts = useRef([]);
     const [toastRerender,setToastRerender] = useState(false);
-
+    //const [toasts, addToast, deleteToast] = useToast();
+    const {addToast} = useToast();
 
     const limit =5; //페이지당 글개수
 
@@ -67,30 +70,6 @@ const BlogList = ({isAdmin}) =>{
         setCurrentPage(parseInt(pageParam) || 1);
         getPosts(parseInt(pageParam) || 1);
     },[pageParam,getPosts]) //[]빈배열은 한번만실행
-
-    const deleteToast = (id)=>{
-        const filteredToasts = toasts.current.filter(toast=>{
-            return toast.id !==id;
-        });
-        //setToasts(filteredToasts);
-        toasts.current = filteredToasts;
-        setToastRerender(prev => !prev);
-    }
-    
-      const addToast = (toast) =>{
-        const id = uuidv4();
-        const toastWithId = {
-            ...toast,
-            id,
-        }
-        //setToasts(prev => [...prev,toastWithId]);
-        toasts.current = [...toasts.current,toastWithId];
-        setToastRerender(prev => !prev);
-        setTimeout(()=>{
-            deleteToast(id);
-        },3000);
-      }
-    
 
     const deletBlog=(e,id)=>{
         e.stopPropagation();
@@ -146,10 +125,6 @@ const BlogList = ({isAdmin}) =>{
 
     return( 
         <div>
-            <Toast 
-                toasts={toasts.current}
-                deleteToast={deleteToast}
-            />
             {/* <div className="d-flex justify-content-between">
                 <h1>Blogs</h1>
                 <Link to="/blogs/create" className="btn btn-success h-25">

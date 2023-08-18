@@ -5,8 +5,8 @@ import { bool } from 'prop-types';
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import Toast from './Toast';
-
-
+//import useToast from '../Hooks/toast';
+import useToast from '../Hooks/toast';
 
 const BlogForm = ({editing}) =>{
   const {id} = useParams();
@@ -20,8 +20,10 @@ const BlogForm = ({editing}) =>{
   const [titleError,setTitleError] = useState(false);
   const [bodyError,setBodyError] = useState(false);
   //const [toasts,setToasts] = useState([]);
-  const toasts = useRef([]);
-  const [toastRerender,setToastRerender] = useState(false);
+  //const toasts = useRef([]);
+  //const [toastRerender,setToastRerender] = useState(false);
+  //const [toasts, addToast, deleteToast] = useToast();
+  const {addToast} = useToast();
 
   
   useEffect(()=>{
@@ -55,29 +57,6 @@ const BlogForm = ({editing}) =>{
     return validated;
   }
 
-  const deleteToast = (id)=>{
-    const filteredToasts = toasts.current.filter(toast=>{
-        return toast.id !==id;
-    });
-    //setToasts(filteredToasts);
-    toasts.current = filteredToasts;
-    setToastRerender(prev => !prev);
-}
-
-  const addToast = (toast) =>{
-    const id = uuidv4();
-    const toastWithId = {
-        ...toast,
-        id,
-    }
-    //setToasts(prev => [...prev,toastWithId]);
-    toasts.current = [...toasts.current,toastWithId];
-    setToastRerender(prev => !prev);
-    setTimeout(()=>{
-        deleteToast(id);
-    },3000);
-  }
-
   const onSubmit = ()=>{
     setTitleError(false);
     setBodyError(false);
@@ -101,7 +80,7 @@ const BlogForm = ({editing}) =>{
             text:'Successfully created',
             type: 'success'
           })
-          //history.push('/admin');
+          history.push('/admin');
         });
       }
     }
@@ -121,10 +100,7 @@ const BlogForm = ({editing}) =>{
 
   return(
     <div>
-      <Toast
-        toasts={toasts.current}
-        deleteToast={deleteToast}
-      />
+
       <h1>{editing ? 'Edit':'Create'} a blog post</h1>
       <div className='mb-3'>
         <label className='form-label'>Title</label>
@@ -182,7 +158,7 @@ const BlogForm = ({editing}) =>{
 }
 
 BlogForm.proTypes={
-  editing: bool
+  editing: bool,
 }
 BlogForm.defaultProps={
   editing:false //생성: false 수정:true

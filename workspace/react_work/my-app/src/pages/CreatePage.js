@@ -1,9 +1,9 @@
 import BlogForm from "../components/blogForm";
 
-const CreatePage = () =>{
+const CreatePage = ({ addToast }) =>{
     return(
         <div>
-            <BlogForm/>
+            <BlogForm addToast={addToast}/>
         </div>
     )
 }
