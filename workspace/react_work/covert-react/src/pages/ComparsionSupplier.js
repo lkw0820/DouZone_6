@@ -1,5 +1,11 @@
+import SearchBar from "../components/SearchBar"
+
 const ComparsionSupplier = () =>{
-    return()
+    return (
+        <div>
+            <SearchBar/>
+        </div>
+    )
 }
 
 export default ComparsionSupplier;
