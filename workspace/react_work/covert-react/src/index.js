@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ComparsionSupplier from './pages/ComparsionSupplier';
+import Test from './pages/Test';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ComparsionSupplier />
+     <ComparsionSupplier />
+    {/* <Test/> */}
   </React.StrictMode>
 );
 
