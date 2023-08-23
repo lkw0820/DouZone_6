@@ -6,5 +6,17 @@
         "ceo":"lkw",
         "cate":"qwe"
     }
-]
+  ],
+  "contracts":[
+    {
+      "no":1,
+      "companyName":"asd",
+      "component":"poi",
+      "price":123,
+      "quantity":123,
+      "defective":"123",
+      "quality":"1",
+      "prod_period":"10"
+    }
+  ]
 }

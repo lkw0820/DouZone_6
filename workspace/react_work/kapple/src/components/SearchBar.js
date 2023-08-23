@@ -1,7 +1,7 @@
 const SearchBar = () =>{
     return(
         
-        <div className="mb-9">
+        <div className="mt-11">
           {/* 페이지 타이틀 */}
           <div className="row g-3 mb-4">
             <div className="col-auto">

@@ -4,7 +4,7 @@ import ComparsionChart from "../components/ComparsionChart";
 
 const CompareSupplier = () => {
     return (
-            <div className="container-fluid" >
+        <div className="container mt-100" >
             <SearchBar/>
             <div className="row">
                 <div className="col-lg">

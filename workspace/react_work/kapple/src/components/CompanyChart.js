@@ -1,17 +1,24 @@
-
-import { useState } from "react";
+import axios from "axios";
+import { useState,useEffect } from "react";
 
 const SupplierChart = ({heads}) =>{
-    const [supplier,setSupplier] = useState([]);
+    const [suppliers,setSuppliers] = useState([]);
 
     const getSupplier = ()=>{
-
+      axios.get('http://localhost:3001/suppliers').then((res)=>{
+        console.log(res.data);
+        setSuppliers(res.data);
+      })
     }
+
+    useEffect(()=>{
+      getSupplier();
+    },[])
  console.log(heads);
     return (
-        <div className="content">
+        <div className="m-1">
         <div className="mb-9">
-          <div className="mx-n4 mt-3">
+          <div className="mx-n3 mt-3">
             <div className="row g-3">
               <div className="col-12 col-6 col-6 min-vh-75">
                 <div className="card supplierCard h-100">
@@ -71,6 +78,52 @@ const SupplierChart = ({heads}) =>{
                           </thead>
                           <tbody className="list" id="bulk-select-body">
                             {/* Contents of the table body go here */}
+                            <tr>
+                              <td className="fs--1 align-middle"><div className="form-check mb-0 fs-0"><input className="form-check-input" type="checkbox"data-bulk-select-row="{&quot;name&quot;:&quot;Anna&quot;,&quot;email&quot;:&quot;anna@example.com&quot;,&quot;age&quot;:18}" /></div></td>
+                              <td className="align-middle ps-3 no">예시1</td>
+                              <td className="align-middle name">예시1</td>
+                              <td className='align-middle ceo'>예시1</td>
+                              <td className='align-middle cate'>예시1</td>
+                              <td className='align-middle white-space-nowrap text-end pe-0'>
+                                <div className='font-sans-serif btn-reveal-trigger position-static'> 
+                                  <button className='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>
+                                    <span className='fas fa-ellipsis-h fs--2'></span>
+                                  </button>
+                                  <div className='dropdown-menu dropdown-menu-end py-2'>
+                                    <a className='dropdown-item supplierDetail' href='#!' >View</a>
+                                    <a className='dropdown-item' href='#!'>Export</a>
+                                    <div className='dropdown-divider'></div>
+                                    <a className='dropdown-item text-danger' href='#!'>Remove</a>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            {
+                              suppliers.map(supplier=>{
+                                return (
+                                  <tr key={supplier.no}>
+                                    <td className="fs--1 align-middle"><div className="form-check mb-0 fs-0"><input className="form-check-input" type="checkbox"data-bulk-select-row="{&quot;name&quot;:&quot;Anna&quot;,&quot;email&quot;:&quot;anna@example.com&quot;,&quot;age&quot;:18}" /></div></td>
+                                    <td className="align-middle ps-3 no">{supplier.no}</td>
+                                    <td className="align-middle name">{supplier.name}</td>
+                                    <td className='align-middle ceo'>{supplier.ceo}</td>
+                                    <td className='align-middle cate'>{supplier.cate}</td>
+                                    <td className='align-middle white-space-nowrap text-end pe-0'>
+                                      <div className='font-sans-serif btn-reveal-trigger position-static'> 
+                                        <button className='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>
+                                          <span className='fas fa-ellipsis-h fs--2'></span>
+                                        </button>
+                                        <div className='dropdown-menu dropdown-menu-end py-2'>
+                                          <a className='dropdown-item supplierDetail' href='#!' >View</a>
+                                          <a className='dropdown-item' href='#!'>Export</a>
+                                          <div className='dropdown-divider'></div>
+                                          <a className='dropdown-item text-danger' href='#!'>Remove</a>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                )
+                              })
+                            }
                           </tbody>
                         </table>
                       </div>
