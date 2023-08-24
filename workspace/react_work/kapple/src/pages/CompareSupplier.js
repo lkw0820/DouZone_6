@@ -5,10 +5,10 @@ import ComparsionChart from "../components/ComparsionChart";
 const CompareSupplier = () => {
     return (
         <div className="container mt-100" >
-            <SearchBar/>
+            <SearchBar title={"공급 제안"}/>
             <div className="row">
                 <div className="col-lg">
-                    <SupplierChart heads={["no","name","ceo","cate"]}/>
+                    <SupplierChart heads={["no","name","ceo","cate"]} classification={"부품"}/>
                 </div>
                 <div className="col-lg">
                     <ComparsionChart heads={["no","name","Component","price","quantity","defective","quality","period"]}/>

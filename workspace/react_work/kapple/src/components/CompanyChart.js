@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState,useEffect } from "react";
 
-const SupplierChart = ({heads}) =>{
+const SupplierChart = ({heads,classification}) =>{
     const [suppliers,setSuppliers] = useState([]);
 
     const getSupplier = ()=>{
@@ -26,7 +26,7 @@ const SupplierChart = ({heads}) =>{
                     <div className="row justify-content-between align-items-center mb-4">
                       <div className="col-auto" id="head">
                         <h3 className="text-1100" id="supplierCardTitle">
-                          부품을 검색해주세요
+                          {classification}을 검색해주세요
                         </h3>
                         <p className="mb-0 text-700"></p>
                       </div>

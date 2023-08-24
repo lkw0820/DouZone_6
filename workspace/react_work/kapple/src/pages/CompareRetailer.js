@@ -5,16 +5,16 @@ import ComparsionChart from "../components/ComparsionChart";
 const CompareRetailer = () => {
     return (
         <div className="container-fluid" >
-            {/* <SearchBar/>
+            <SearchBar title={"판매 예측"}/>
             <div className="row">
                 <div className="col-lg">
-                    <SupplierChart heads={["no","name","ceo","cate"]}/>
+                    <SupplierChart heads={["no","name","ceo","cate","scale"]} classification={"상품"}/>
                 </div>
                 <div className="col-lg">
-                    <ComparsionChart heads={["no","name","Component","price","quantity","defective","quality","period"]}/>
+                    <ComparsionChart heads={["no","name","Product","sales_amount","구매자 등급","단가","운임 등급"]}/>
                 </div>
                 
-            </div> */}
+            </div>
             
         </div>
     );

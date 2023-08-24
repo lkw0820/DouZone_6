@@ -1,4 +1,4 @@
-const SearchBar = () =>{
+const SearchBar = ({title}) =>{
     return(
         
         <div className="mt-11">
@@ -6,7 +6,7 @@ const SearchBar = () =>{
           <div className="row g-3 mb-4">
             <div className="col-auto">
               <h2 className="mb-0" id="pageTitle">
-                공급 제안 비교
+                {title} 비교
               </h2>
             </div>
           </div>
