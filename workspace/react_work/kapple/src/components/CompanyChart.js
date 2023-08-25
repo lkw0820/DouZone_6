@@ -1,20 +1,33 @@
 import axios from "axios";
 import { useState,useEffect } from "react";
 
-const SupplierChart = ({heads,classification}) =>{
-    const [suppliers,setSuppliers] = useState([]);
+const SupplierChart = ({heads,classification,retailer}) =>{
+    const [companys,setCompany] = useState([]);
+    
 
     const getSupplier = ()=>{
       axios.get('http://localhost:3001/suppliers').then((res)=>{
         console.log(res.data);
-        setSuppliers(res.data);
+        setCompany(res.data);
+      })
+    }
+
+    const getRetailer = ()=>{
+      axios.get('http://localhost:3001/retailers').then((res)=>{
+        //console.log(res.data);
+        setCompany(res.data);
       })
     }
 
     useEffect(()=>{
-      getSupplier();
+      if(retailer){
+        getRetailer();
+      }else{
+        
+        getSupplier();
+      }
     },[])
- console.log(heads);
+ //console.log(heads);
     return (
         <div className="m-1">
         <div className="mb-9">
@@ -26,7 +39,7 @@ const SupplierChart = ({heads,classification}) =>{
                     <div className="row justify-content-between align-items-center mb-4">
                       <div className="col-auto" id="head">
                         <h3 className="text-1100" id="supplierCardTitle">
-                          {classification}을 검색해주세요
+                          {retailer?"상품":"부품"}을 검색해주세요
                         </h3>
                         <p className="mb-0 text-700"></p>
                       </div>
@@ -99,14 +112,15 @@ const SupplierChart = ({heads,classification}) =>{
                               </td>
                             </tr>
                             {
-                              suppliers.map(supplier=>{
+                              companys.map(company=>{
                                 return (
-                                  <tr key={supplier.no}>
+                                  <tr key={company.no}>
                                     <td className="fs--1 align-middle"><div className="form-check mb-0 fs-0"><input className="form-check-input" type="checkbox"data-bulk-select-row="{&quot;name&quot;:&quot;Anna&quot;,&quot;email&quot;:&quot;anna@example.com&quot;,&quot;age&quot;:18}" /></div></td>
-                                    <td className="align-middle ps-3 no">{supplier.no}</td>
-                                    <td className="align-middle name">{supplier.name}</td>
-                                    <td className='align-middle ceo'>{supplier.ceo}</td>
-                                    <td className='align-middle cate'>{supplier.cate}</td>
+                                    <td className="align-middle ps-3 no">{company.no}</td>
+                                    <td className="align-middle name">{company.name}</td>
+                                    <td className='align-middle ceo'>{company.ceo}</td>
+                                    <td className='align-middle cate'>{company.cate}</td>
+                                    {retailer&&<td className='align-middle cate'>{company.scale}</td>}
                                     <td className='align-middle white-space-nowrap text-end pe-0'>
                                       <div className='font-sans-serif btn-reveal-trigger position-static'> 
                                         <button className='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>

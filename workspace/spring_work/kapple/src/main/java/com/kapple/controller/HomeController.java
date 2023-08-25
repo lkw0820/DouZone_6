@@ -51,21 +51,7 @@ public class HomeController {
 	 * @GetMapping("/addSupplier") public void moveToAddSupplier() {
 	 * log.info("move to AddSupplier Page.................................."); }
 	 */
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@GetMapping("/addRetailer")
-	public void moveToAddRetailer() {
-		log.info("move to addRetailer Page.....................................");
-	}
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/comparsionSupplier")
-	public void moveToComparsionSupplier() {
-		log.info("move to ComparsionSupplier Page.....................................");
-	}
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/comparsionRetailer")
-	public void moveToComparsionRetailer() {
-		log.info("move to ComparsionRetailer Page.....................................");
-	}
+	 
 	
 //	@GetMapping("/statistics/overview")
 //	public void moveToStatistics() {

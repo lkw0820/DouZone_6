@@ -8,10 +8,10 @@ const CompareSupplier = () => {
             <SearchBar title={"공급 제안"}/>
             <div className="row">
                 <div className="col-lg">
-                    <SupplierChart heads={["no","name","ceo","cate"]} classification={"부품"}/>
+                    <SupplierChart heads={["no","name","ceo","cate"]} classification={"부품"} retailer={false}/>
                 </div>
                 <div className="col-lg">
-                    <ComparsionChart heads={["no","name","Component","price","quantity","defective","quality","period"]}/>
+                    <ComparsionChart heads={["no","name","Component","price","quantity","defective","quality","period"]} retailer={false}/>
                 </div>
                 
             </div>

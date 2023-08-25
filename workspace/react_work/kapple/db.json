@@ -7,6 +7,15 @@
         "cate":"qwe"
     }
   ],
+  "retailers":[
+    {
+      "no":1,
+        "name":"asd",
+        "ceo":"lkw",
+        "cate":"qwe",
+        "scale":"123"
+    }
+  ],
   "contracts":[
     {
       "no":1,
@@ -17,6 +26,17 @@
       "defective":"123",
       "quality":"1",
       "prod_period":"10"
+    }
+  ],
+  "predicts":[
+    {
+      "no":1,
+      "name":"qwe",
+      "productName":"qwe",
+      "predictAmount" : 123,
+      "purchasingGrade":40,
+      "price":1000,
+      "transportGrade":1
     }
   ]
 }
