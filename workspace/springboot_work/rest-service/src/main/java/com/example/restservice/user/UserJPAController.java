@@ -3,7 +3,6 @@ package com.example.restservice.user;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -11,38 +10,36 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@NoArgsConstructor
-public class UserController {
+@RequestMapping("/jpa")
+public class UserJPAController {
 
     @Autowired
-    private UserService service;
+    private UserRepository userRepository;
 
     @GetMapping("/users")
     public List<User> allUser(){
-//        for(User user : users){
-//            return user;
-//        }
-//        return null;
-        return service.findAll();
+        return userRepository.findAll();
     }
 
     @GetMapping("/users/{id}")
-    public EntityModel<User> oneUser(@PathVariable int id){
-        User user = service.findOne(id);
-        if(user == null){
+    public EntityModel<Optional<User>> oneUser(@PathVariable int id){
+        //optional 사용 이유 : null 방지용
+        Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent()){
             throw new UserNotFoundException(String.format("ID[%s] Not Found",id));
         }
-        return EntityModel.of(user, linkTo(methodOn(UserController.class).allUser()).withRel("all-users"));
+        return EntityModel.of(user, linkTo(methodOn(UserJPAController.class).allUser()).withRel("all-users"));
     }
 
     @PostMapping("/users")
     public ResponseEntity create(@Valid @RequestBody User user){
-        User savedUser = service.save(user);
+        User savedUser = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -54,9 +51,6 @@ public class UserController {
 
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id){
-        User user = service.deleteById(id);
-        if(user==null){
-            throw new UserNotFoundException(String.format("ID[%s] Not Found",id));
-        }
+        userRepository.deleteById(id);
     }
 }
