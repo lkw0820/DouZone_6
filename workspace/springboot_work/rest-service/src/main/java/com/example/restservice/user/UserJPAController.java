@@ -22,10 +22,38 @@ public class UserJPAController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PostRepository postRepository;
+
     @GetMapping("/users")
     public List<User> allUser(){
         return userRepository.findAll();
     }
+
+    @GetMapping("/users/{id}/posts")
+    public List<Post> allPostsByUser(@PathVariable int id){
+        Optional<User> user= userRepository.findById(id);
+        if(!user.isPresent()){
+            throw new UserNotFoundException(String.format("ID[%s] Not Found",id));
+        }
+        return user.get().getPosts(); //get() Optional객체에서 get을 해야 user 객체가 된다
+    }
+    @PostMapping("/users/{id}/posts")
+    public ResponseEntity<Post> createPosts(@PathVariable int id, @RequestBody Post post){
+        Optional<User> user= userRepository.findById(id);
+        if(!user.isPresent()){
+            throw new UserNotFoundException(String.format("ID[%s] Not Found",id));
+        }
+        post.setUser(user.get()); //id가 없음
+        Post savePost=postRepository.save(post); //savePost는 DB에 저장된 id값도 가져옴
+        //201 Ok만들어주는것
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savePost.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+
 
     @GetMapping("/users/{id}")
     public EntityModel<Optional<User>> oneUser(@PathVariable int id){
@@ -38,7 +66,7 @@ public class UserJPAController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity create(@Valid @RequestBody User user){
+    public ResponseEntity<User> create(@Valid @RequestBody User user){
         User savedUser = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()

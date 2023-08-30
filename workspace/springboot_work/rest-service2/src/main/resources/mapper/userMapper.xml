@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kosa.restservice2.mapper.UserMapper">
+<!--    <select id="findAllUsers" resultType="User">-->
+<!--        <![CDATA[-->
+<!--            select * from users2-->
+<!--        ]]>-->
+<!--    </select>-->
+<!--    property는 자바 객체에서 이름 column은 db에서 이름-->
+    <resultMap id="userMap" type="User">
+        <id property="id" column="u_id"/>
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="joinDate" column="joinDate"/>
+        <result property="password" column="password"/>
+        <result property="ssn" column="ssn"/>
+        <collection property="posts" resultMap="postMap"/>
+    </resultMap>
+    <resultMap id="postMap" type="Post">
+        <id property="id" column="p_id"/>
+        <result property="id" column="id"/>
+        <result property="description" column="description"/>
+        <result property="user_id" column="user_id"/>
+    </resultMap>
+
+
+    <select id="findAllUsers" resultMap="userMap">
+        <![CDATA[
+        select u.id as u_id,name,joinDate,password,ssn,p.id as p_id,description,user_id
+            from users2 u left outer join posts p on u.id=p.user_id
+        ]]>
+    </select>
+
+    <select id="findUser" resultType="User" parameterType="Integer">
+        <![CDATA[
+        select * from users2 where id=#{id}
+        ]]>
+    </select>
+
+    <insert id="createUser">
+        insert into users2 values(user_seq.nextval,#{name},sysdate,#{password},#{ssn})
+    </insert>
+
+    <insert id="createPost" parameterType="Post">
+        insert into posts values (posts_seq.nextval,#{description},#{user_id})
+    </insert>
+</mapper>
+
+
+
+

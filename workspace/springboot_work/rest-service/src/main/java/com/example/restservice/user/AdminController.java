@@ -19,8 +19,8 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private UserService service;
+//    @Autowired
+//    private UserService service;
 
 //    @GetMapping("/users")
 //    public MappingJacksonValue allUser(){
