@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Graph from "./Graph";
+import Star from "./Star";
+import DefectiveRate from "./DefectiveRate";
 const ComparsionChart = ({heads,retailer}) =>{
 
   const [datas,setDatas] = useState([]);
@@ -75,14 +77,14 @@ const ComparsionChart = ({heads,retailer}) =>{
                               console.log(data);
                               return(
                                 <tr key={data.no}>
-                                  <td className="align-middle ps-3">{data.no}</td>
-                                  <td className="align-middle">{data.companyName}</td>
-                                  <td className="align-middle">{data.component}</td>
-                                  <td className="align-middle">{data.price}</td>
-                                  <td className="align-middle">{data.quantity}</td>
-                                  <td className="align-middle">{data.defective}</td>
-                                  <td className="align-middle">{data.quality}</td>
-                                  <td className="align-middle">{data.prod_period}</td>
+                                  <td className="align-middle ps-3 fw-semi-bold text-1000 mb-0">{data.no}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.companyName}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.component}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.price}</td> {/*tr끼리 비교해서 색깔 부여할 예정 */}
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.quantity}</td>{/*tr끼리 비교해서 색깔 부여할 예정 */}
+                                  <DefectiveRate defective={data.defective}/>
+                                  <Star quality={data.quality}/>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.prod_period}</td>{/*tr끼리 비교해서 색깔 부여할 예정 */}
                                 </tr>
                               )
                             }):
@@ -90,13 +92,13 @@ const ComparsionChart = ({heads,retailer}) =>{
                               console.log(data);
                               return(
                                 <tr key={data.no}>
-                                  <td className="align-middle ps-3">{data.no}</td>
-                                  <td className="align-middle">{data.name}</td>
-                                  <td className="align-middle">{data.productName}</td>
-                                  <td className="align-middle">{data.predictAmount}</td>
-                                  <td className="align-middle">{data.purchasingGrade}</td>
-                                  <td className="align-middle">{data.price}</td>
-                                  <td className="align-middle">{data.transportGrade}</td>
+                                  <td className="align-middle ps-3 fw-semi-bold text-1000 mb-0">{data.no}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.name}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.productName}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.predictAmount}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.purchasingGrade}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.price}</td>
+                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.transportGrade}</td>
                                 </tr>
                               )
                             })

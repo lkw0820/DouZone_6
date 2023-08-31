@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosa.restaurants.mapper.RestaurantMapper">
+    <resultMap id="restaurantMap" type="Restaurant">
+        <id property="id" column="id"/>
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="address" column="address"/>
+        <result property="createAt" column="created_at"/>
+        <result property="updateAt" column="updated_at"/>
+        <collection property="menus" resultMap="menuMap"/>
+        <collection property="reviews" resultMap="reviewMap"/>
+    </resultMap>
+    <resultMap id="menuMap" type="Menu">
+        <id property="id" column="m_id"/>
+        <result property="id" column="m_id"/>
+        <result property="name" column="m_name"/>
+        <result property="price" column="m_price"/>
+        <result property="createAt" column="m_created_at"/>
+        <result property="updateAt" column="m_updated_at"/>
+        <result property="restaurant_id" column="restaurant_id"/>
+    </resultMap>
+    <resultMap id="reviewMap" type="Review">
+        <id property="id" column="id"/>
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="score" column="score"/>
+        <result property="createAt" column="created_at"/>
+        <result property="restaurant_id" column="restaurant_id"/>
+    </resultMap>
+    <select id="getAll" resultMap="restaurantMap">
+        select id,name,address,created_at,updated_at from restaurant
+    </select>
+
+    <select id="getOne" resultMap="restaurantMap" parameterType="Integer">
+        select
+            r.id,r.name,r.address,r.created_at,r.updated_at,
+            m.id as m_id,m.name as m_name,m.price as m_price,m.created_at as m_created_at,m.updated_at m_updated_at, restaurant_id
+        from restaurant r join menu m on r.id=m.restaurant_id
+        where r.id=#{id}
+    </select>
+    <insert id="save" >
+        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
+            select restaurant_seq.nextval from dual
+        </selectKey>
+        insert into restaurant (id,name,address,created_at,updated_at) values (#{id},#{name},#{address},sysdate,sysdate)
+    </insert>
+
+    <insert id="menuSave" >
+        insert into Menu values(menu_seq.nextval,#{restaurant_id},#{name},#{price},sysdate,sysdate)
+    </insert>
+
+    <update id="update">
+        update restaurant set name=#{name}, address=#{address}, updated_at=sysdate where id=#{id}
+    </update>
+
+    <update id="menuUpdate">
+        update menu set name=#{name}, price=#{price}, updated_at=sysdate where id=#{id}
+    </update>
+
+    <select id="getMenus">
+        select * from menu where restaurant_id=#{restaurant_id}
+    </select>
+    
+    <delete id="delete" parameterType="Integer">
+        delete from restaurant where id=#{id}
+    </delete>
+</mapper>

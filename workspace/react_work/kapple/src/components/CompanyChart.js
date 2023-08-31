@@ -116,11 +116,11 @@ const SupplierChart = ({heads,classification,retailer}) =>{
                                 return (
                                   <tr key={company.no}>
                                     <td className="fs--1 align-middle"><div className="form-check mb-0 fs-0"><input className="form-check-input" type="checkbox"data-bulk-select-row="{&quot;name&quot;:&quot;Anna&quot;,&quot;email&quot;:&quot;anna@example.com&quot;,&quot;age&quot;:18}" /></div></td>
-                                    <td className="align-middle ps-3 no">{company.no}</td>
-                                    <td className="align-middle name">{company.name}</td>
-                                    <td className='align-middle ceo'>{company.ceo}</td>
-                                    <td className='align-middle cate'>{company.cate}</td>
-                                    {retailer&&<td className='align-middle cate'>{company.scale}</td>}
+                                    <td className="align-middle ps-3 fs--1 fw-semi-bold text-1000 mb-0">{company.no}</td>
+                                    <td className="align-middle fs--1 fw-semi-bold text-1000 mb-0">{company.name}</td>
+                                    <td className='align-middle fs--1 fw-semi-bold text-1000 mb-0'>{company.ceo}</td>
+                                    <td className='align-middle fs--1 fw-semi-bold text-1000 mb-0'>{company.cate}</td>
+                                    {retailer&&<td className='align-middle fs--1 fw-semi-bold text-1000 mb-0'>{company.scale}</td>}
                                     <td className='align-middle white-space-nowrap text-end pe-0'>
                                       <div className='font-sans-serif btn-reveal-trigger position-static'> 
                                         <button className='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>
