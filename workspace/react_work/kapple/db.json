@@ -23,8 +23,38 @@
       "component":"poi",
       "price":123,
       "quantity":123,
+      "defective":0.01,
+      "quality":6,
+      "prod_period":"10"
+    },
+    {
+      "no":2,
+      "companyName":"asd",
+      "component":"poi",
+      "price":123,
+      "quantity":123,
       "defective":0.05,
       "quality":1,
+      "prod_period":"10"
+    },
+    {
+      "no":3,
+      "companyName":"asd",
+      "component":"poi",
+      "price":123,
+      "quantity":123,
+      "defective":0.08,
+      "quality":5,
+      "prod_period":"10"
+    },
+    {
+      "no":4,
+      "companyName":"asd",
+      "component":"poi",
+      "price":123,
+      "quantity":123,
+      "defective":0.04,
+      "quality":9,
       "prod_period":"10"
     }
   ],

@@ -3,7 +3,10 @@ import { useState,useEffect } from "react";
 
 const SupplierChart = ({heads,classification,retailer}) =>{
     const [companys,setCompany] = useState([]);
-    
+    const headers=[
+      {accessor:"no",Header:"no"},{accessor:"no",Header:"no"},{accessor:"no",Header:"no"},
+      {accessor:"no",Header:"no"}
+    ]
 
     const getSupplier = ()=>{
       axios.get('http://localhost:3001/suppliers').then((res)=>{

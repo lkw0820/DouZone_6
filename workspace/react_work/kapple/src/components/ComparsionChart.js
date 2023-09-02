@@ -1,11 +1,25 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useMemo } from "react";
 import Graph from "./Graph";
 import Star from "./Star";
 import DefectiveRate from "./DefectiveRate";
-const ComparsionChart = ({heads,retailer}) =>{
+import Table from "../components/Table";
 
+const ComparsionChart = ({heads,retailer}) =>{
+  const suplHeaders =[
+    {accessor:"no",Header:"no",},{accessor:"companyName",Header:"name",},{accessor:"component",Header:"Component",},{accessor:"price",Header:"price",},
+    {accessor:"quantity",Header:"quantity",},
+    {accessor:"defective",Header:"defective",Cell:({cell:{value}})=><DefectiveRate defective={value}/> },
+    {accessor:"quality",Header:"quality", Cell:({cell:{value}})=><Star quality={value}/>},
+    {accessor:"prod_period",Header:"period",},
+  ]
+  const reHeaders=[
+    {accessor:"no", Header:"no"},{accessor:"name", Header:"name"},{accessor:"productName", Header:"productName"},{accessor:"predictAmount", Header:"predictAmount"},
+    {accessor:"purchasingGrade", Header:"purchasingGrade"},{accessor:"price", Header:"price"},{accessor:"transportGrade", Header:"transportGrade"},
+  ]
+  const columns = useMemo(() => (retailer?reHeaders:suplHeaders),[]);
   const [datas,setDatas] = useState([]);
+  const data = useMemo(()=>datas,[datas])
 
   const getContract = () =>{
     axios.get('http://localhost:3001/contracts').then((res)=>{
@@ -17,7 +31,7 @@ const ComparsionChart = ({heads,retailer}) =>{
       setDatas(res.data);
     })
   }
-
+  
   useEffect(()=>{
     if(retailer){
       getPredict();
@@ -40,77 +54,11 @@ const ComparsionChart = ({heads,retailer}) =>{
                   </div>
                   <p className="text-700 mb-4">{retailer?"판매 예측 ":"공급 제안 "}설명</p>
 
-                  <div id="tableComparsionS" data-list='{"valueNames":["proposal_no","suppl_name","compo_name","price","quantity","defective_rate","quality_grade","prod_period"],"page":5,"pagination":true}'>
+                  <div id="tableComparsionS">
                     <div className="table-responsive">
-                      <table className="table table-sm fs--1 mb-0">
-                        <thead>
-                          <tr>
-                            {/* <th className="sort border-top ps-3 asc" data-sort="proposal_no">제안 번호</th>
-                            <th className="sort border-top" data-sort="suppl_name">공급사 이름</th>
-                            <th className="sort border-top" data-sort="compo_name">부품 이름</th>
-                            <th className="sort border-top" data-sort="price">단가</th>
-                            <th className="sort border-top" data-sort="quantity">수량</th>
-                            <th className="sort border-top" data-sort="defective_rate">불량률</th>
-                            <th className="sort border-top" data-sort="quality_grade">품질등급</th>
-                            <th className="sort border-top" data-sort="prod_period">생산기간</th> */}
-                            {
-                              heads.map((head,index)=>{
-                                return <th className="sort border-top" key={index}>{head}</th>
-                              })
-                            }
-                          </tr>
-                        </thead>
-                        <tbody className="list" id="proposalList">
-                          {/* Contents of the table body go here */}
-                          {/* <tr>
-                            <td className="align-middle ps-3 proposal_no">제안번호</td>
-                            <td className="align-middle suppl_name">공급사 이름</td>
-                            <td className="align-middle compo_name">부품 이름</td>
-                            <td className="align-middle price">단가</td>
-                            <td className="align-middle quantity">수량</td>
-                            <td className="align-middle defective_rate">불량률</td>
-                            <td className="align-middle quality_grade">품질 등급</td>
-                            <td className="align-middle prod_period">생산기간</td>
-                          </tr> */}
-                          {
-                            !retailer?datas.map(data=>{
-                              console.log(data);
-                              return(
-                                <tr key={data.no}>
-                                  <td className="align-middle ps-3 fw-semi-bold text-1000 mb-0">{data.no}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.companyName}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.component}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.price}</td> {/*tr끼리 비교해서 색깔 부여할 예정 */}
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.quantity}</td>{/*tr끼리 비교해서 색깔 부여할 예정 */}
-                                  <DefectiveRate defective={data.defective}/>
-                                  <Star quality={data.quality}/>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.prod_period}</td>{/*tr끼리 비교해서 색깔 부여할 예정 */}
-                                </tr>
-                              )
-                            }):
-                            datas.map(data=>{
-                              console.log(data);
-                              return(
-                                <tr key={data.no}>
-                                  <td className="align-middle ps-3 fw-semi-bold text-1000 mb-0">{data.no}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.name}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.productName}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.predictAmount}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.purchasingGrade}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.price}</td>
-                                  <td className="align-middle fw-semi-bold text-1000 mb-0">{data.transportGrade}</td>
-                                </tr>
-                              )
-                            })
-                          }
-                        </tbody>
-                      </table>
+                      <Table columns={columns} data={data} flag={true}/>
                     </div>
                   </div>
-
-                  {/* <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-5 ">
-                    <div id="echart-social-marketing-radar1" style={{ minHeight: '320px', width: '100%' }}></div>
-                  </div> */}
                   <div>
                     <Graph retailer={retailer}/>
                   </div>

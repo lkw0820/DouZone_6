@@ -1,0 +1,72 @@
+{
+  "suppliers": [
+    {
+      "no": 1,
+      "name": "asd",
+      "ceo": "lkw",
+      "cate": "qwe"
+    }
+  ],
+  "retailers": [
+    {
+      "no": 1,
+      "name": "asd",
+      "ceo": "lkw",
+      "cate": "qwe",
+      "scale": "123"
+    }
+  ],
+  "contracts": [
+    {
+      "no": 1,
+      "companyName": "asd",
+      "component": "poi",
+      "price": 123,
+      "quantity": 123,
+      "defective": 0.01,
+      "quality": 6,
+      "prod_period": "10"
+    },
+    {
+      "no": 2,
+      "companyName": "asd",
+      "component": "poi",
+      "price": 123,
+      "quantity": 123,
+      "defective": 0.05,
+      "quality": 1,
+      "prod_period": "10"
+    },
+    {
+      "no": 3,
+      "companyName": "asd",
+      "component": "poi",
+      "price": 123,
+      "quantity": 123,
+      "defective": 0.08,
+      "quality": 5,
+      "prod_period": "10"
+    },
+    {
+      "no": 4,
+      "companyName": "asd",
+      "component": "poi",
+      "price": 123,
+      "quantity": 123,
+      "defective": 0.04,
+      "quality": 9,
+      "prod_period": "10"
+    }
+  ],
+  "predicts": [
+    {
+      "no": 1,
+      "name": "qwe",
+      "productName": "qwe",
+      "predictAmount": 123,
+      "purchasingGrade": 40,
+      "price": 1000,
+      "transportGrade": 1
+    }
+  ]
+}
