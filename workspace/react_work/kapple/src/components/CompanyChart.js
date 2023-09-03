@@ -1,12 +1,22 @@
 import axios from "axios";
-import { useState,useEffect } from "react";
+import { useState,useEffect, useMemo } from "react";
+import Table from "./Table";
+import CompanyDropdown from './CompanyDropdown';
 
 const SupplierChart = ({heads,classification,retailer}) =>{
     const [companys,setCompany] = useState([]);
     const headers=[
-      {accessor:"no",Header:"no"},{accessor:"no",Header:"no"},{accessor:"no",Header:"no"},
-      {accessor:"no",Header:"no"}
+      {accessor:"no",Header:"no"},{accessor:"name",Header:"name"},
+      {accessor:"ceo",Header:"ceo"},{accessor:"cate",Header:"cate"}
     ]
+    if(retailer){
+      headers.push({accessor:"scale",Header:"scale"});
+      headers.push({Header:"ACTION",Cell:()=><CompanyDropdown/>});
+    }else{
+      headers.push({Header:"ACTION",Cell:()=><CompanyDropdown/>});
+    }
+    const columns = useMemo(()=>headers,[]);
+    const data = useMemo(()=>companys,[companys]);
 
     const getSupplier = ()=>{
       axios.get('http://localhost:3001/suppliers').then((res)=>{
@@ -26,7 +36,6 @@ const SupplierChart = ({heads,classification,retailer}) =>{
       if(retailer){
         getRetailer();
       }else{
-        
         getSupplier();
       }
     },[])
@@ -62,87 +71,7 @@ const SupplierChart = ({heads,classification,retailer}) =>{
                   <div className="card-body py-0 scrollbar to-do-list-body min-vh-xxl-50 h-xl-auto">
                     <div id="supplierTableContainer" dat-list='{"valueNames":["suppl_no","suppl_name","ceo_name","category"],"page":10,"pagination":true}'>
                       <div className="table-responsive mx-n1 px-1">
-                        <table className="table tabl-sm border-top border-200 fs--1 mb-0" id="supplierTable">
-                          <thead>
-                            <tr>
-                              <th className="white-space-nowrap fs--1 align-middle ps-0"
-                                  style={{ maxWidth: '20px', width: '18px' }}>
-                                <div className="form-check mb-0 fs-0">
-                                  <input className="form-check-input" id="bulk-select-example"
-                                         type="checkbox"
-                                         data-bulk-select='{"body":"bulk-select-body","actions":"bulk-select-actions","replacedElement":"bulk-select-replace-element"}' />
-                                </div>
-                              </th>
-                              {/* <th className="sort align-middle ps-3" data-sort="no">공급사 번호</th>
-                              <th className="sort align-middle" data-sort="name">공급사 이름</th>
-                              <th className="sort align-middle" data-sort="ceo">대표자</th>
-                              <th className="sort align-middle" data-sort="cate">구분</th> */}
-                              {
-                                heads.map((head,index)=>{
-                                    // <ChartHeader key={index}/>
-                                    return(
-                                        <th className="sort align-middle" key={index}>
-                                            {head}
-                                        </th>
-                                    )
-                                    
-                                })
-                              }
-                              
-                              <th className="sort text-end align-middle pe-0" scope="col">ACTION</th>
-                            </tr>
-                          </thead>
-                          <tbody className="list" id="bulk-select-body">
-                            {/* Contents of the table body go here */}
-                            <tr>
-                              <td className="fs--1 align-middle"><div className="form-check mb-0 fs-0"><input className="form-check-input" type="checkbox"data-bulk-select-row="{&quot;name&quot;:&quot;Anna&quot;,&quot;email&quot;:&quot;anna@example.com&quot;,&quot;age&quot;:18}" /></div></td>
-                              <td className="align-middle ps-3 no">예시1</td>
-                              <td className="align-middle name">예시1</td>
-                              <td className='align-middle ceo'>예시1</td>
-                              <td className='align-middle cate'>예시1</td>
-                              <td className='align-middle white-space-nowrap text-end pe-0'>
-                                <div className='font-sans-serif btn-reveal-trigger position-static'> 
-                                  <button className='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>
-                                    <span className='fas fa-ellipsis-h fs--2'></span>
-                                  </button>
-                                  <div className='dropdown-menu dropdown-menu-end py-2'>
-                                    <a className='dropdown-item supplierDetail' href='#!' >View</a>
-                                    <a className='dropdown-item' href='#!'>Export</a>
-                                    <div className='dropdown-divider'></div>
-                                    <a className='dropdown-item text-danger' href='#!'>Remove</a>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                            {
-                              companys.map(company=>{
-                                return (
-                                  <tr key={company.no}>
-                                    <td className="fs--1 align-middle"><div className="form-check mb-0 fs-0"><input className="form-check-input" type="checkbox"data-bulk-select-row="{&quot;name&quot;:&quot;Anna&quot;,&quot;email&quot;:&quot;anna@example.com&quot;,&quot;age&quot;:18}" /></div></td>
-                                    <td className="align-middle ps-3 fs--1 fw-semi-bold text-1000 mb-0">{company.no}</td>
-                                    <td className="align-middle fs--1 fw-semi-bold text-1000 mb-0">{company.name}</td>
-                                    <td className='align-middle fs--1 fw-semi-bold text-1000 mb-0'>{company.ceo}</td>
-                                    <td className='align-middle fs--1 fw-semi-bold text-1000 mb-0'>{company.cate}</td>
-                                    {retailer&&<td className='align-middle fs--1 fw-semi-bold text-1000 mb-0'>{company.scale}</td>}
-                                    <td className='align-middle white-space-nowrap text-end pe-0'>
-                                      <div className='font-sans-serif btn-reveal-trigger position-static'> 
-                                        <button className='btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2' type='button' data-bs-toggle='dropdown' data-boundary='window' aria-haspopup='true' aria-expanded='false' data-bs-reference='parent'>
-                                          <span className='fas fa-ellipsis-h fs--2'></span>
-                                        </button>
-                                        <div className='dropdown-menu dropdown-menu-end py-2'>
-                                          <a className='dropdown-item supplierDetail' href='#!' >View</a>
-                                          <a className='dropdown-item' href='#!'>Export</a>
-                                          <div className='dropdown-divider'></div>
-                                          <a className='dropdown-item text-danger' href='#!'>Remove</a>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                )
-                              })
-                            }
-                          </tbody>
-                        </table>
+                        <Table columns={columns} data={data} flag={false}/>
                       </div>
                       <div className="d-flex flex-between-center pt-3 mb-3">
                         <div className="pagination d-none"></div>

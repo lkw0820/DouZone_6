@@ -3,6 +3,7 @@ import { useTable } from 'react-table';
 //import styled from 'styled-components';
 
 
+
 // useTable에다가 작성한 columns와 data를 전달한 후 아래 4개의 props를 받아온다
 const Table = ({ columns, data, flag }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
