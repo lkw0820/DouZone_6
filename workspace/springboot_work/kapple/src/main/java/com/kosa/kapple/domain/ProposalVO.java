@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("Proposal")
+//@JsonFilter("Proposal")
 public class ProposalVO {
 	private String proposal_no;
 	private SupplierVO supplier;
