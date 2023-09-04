@@ -5,7 +5,7 @@ import CompanyDropdown from './CompanyDropdown';
 
 const SupplierChart = ({heads,classification,retailer}) =>{
     const [companys,setCompany] = useState([]);
-    const headers=[
+    const headers=[ 
       {accessor:"no",Header:"no"},{accessor:"name",Header:"name"},
       {accessor:"ceo",Header:"ceo"},{accessor:"cate",Header:"cate"}
     ]
@@ -27,7 +27,6 @@ const SupplierChart = ({heads,classification,retailer}) =>{
 
     const getRetailer = ()=>{
       axios.get('http://localhost:3001/retailers').then((res)=>{
-        //console.log(res.data);
         setCompany(res.data);
       })
     }
@@ -39,7 +38,7 @@ const SupplierChart = ({heads,classification,retailer}) =>{
         getSupplier();
       }
     },[])
- //console.log(heads);
+
     return (
         <div className="m-1">
         <div className="mb-9">

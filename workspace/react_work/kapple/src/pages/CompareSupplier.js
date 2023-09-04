@@ -3,7 +3,7 @@ import SupplierChart from "../components/CompanyChart";
 import ComparsionChart from "../components/ComparsionChart";
 import { useMemo,useState,useEffect } from "react";
 import axios from "axios";
-import Table from "../components/Table";
+
 
 const CompareSupplier = () => {
     const headers =[

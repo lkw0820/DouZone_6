@@ -1,7 +1,6 @@
 import SearchBar from "../components/SearchBar"
 import SupplierChart from "../components/CompanyChart";
 import ComparsionChart from "../components/ComparsionChart";
-import Graph from "../components/Graph";
 
 const CompareRetailer = () => {
     return (

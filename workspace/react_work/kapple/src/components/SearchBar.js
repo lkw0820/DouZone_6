@@ -1,4 +1,9 @@
+import { useState } from "react"
+
 const SearchBar = ({title}) =>{
+
+  const [item,setItem] = useState('');
+
     return(
         
         <div className="mt-11">
@@ -34,6 +39,9 @@ const SearchBar = ({title}) =>{
                       aria-label="Search"
                       name="compo_name"
                       id="searchItemInput"
+                      onChange={(e)=>{
+                        setItem(e.target.value);
+                      }}
                     />
                     <span className="fas fa-search search-box-icon"></span>
                   </form>
