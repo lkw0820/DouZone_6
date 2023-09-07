@@ -1,6 +1,5 @@
 package com.kosa.kapple.domain;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ComponentVO {
-	private String compo_no;
-	private String compo_name;
+public class ProductVO {
+	private String prod_no;
 	private String unit;
-	private String detail;
+	private String prod_name;
+	private String prod_detail;
+	//private ModelVO model;
 }

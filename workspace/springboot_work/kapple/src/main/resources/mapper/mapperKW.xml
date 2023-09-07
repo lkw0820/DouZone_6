@@ -3,9 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kosa.kapple.mapper.MapperKW">
-    <select id="test" resultType="Date">
-        select sysdate from dual
-    </select>
+
     <resultMap type="SupplierVO" id="supplierMap">
         <id property="suppl_no" column="suppl_no"/>
         <result property="suppl_no" column="suppl_no"/>
@@ -26,14 +24,15 @@
     <!-- 공급사 리스트 -->
     <select id="getAll" resultMap="supplierMap" parameterType="String">
 		<![CDATA[
-        select s.suppl_no,t.transport_no,transport_category,transport_charge,additional_condition,suppl_name,ceo_name,category,phone
+        select *
         from supplier s join proposal p
             on s.suppl_no=p.suppl_no join component c
                 on p.compo_no=c.compo_no join transportation t
                     on s.transport_no=t.transport_no
-        where c.compo_name = #{compo_name}
+        where c.compo_name = #{compo_name} and p.status <> 1
         ]]>
 	</select>
+
 
     <resultMap type="ProposalVO" id="proposalMap">
         <id property="proposal_no" column="proposal_no"/>
@@ -44,6 +43,7 @@
         <result property="quality_grade" column="quality_grade"/>
         <result property="prod_period" column="prod_period"/>
         <result property="proposal_date" column="proposal_date"/>
+        <result property="status" column="status"/>
         <collection property="supplier" resultMap="supplierMap"></collection>
         <collection property="component" resultMap="componentMap"></collection>
     </resultMap>
@@ -54,14 +54,94 @@
         <result property="unit" column="unit"/>
         <result property="detail" column="detail"/>
     </resultMap>
-
+    <select id="test" resultMap="proposalMap">
+        select * from proposal where status=0
+    </select>
     <select id="getProposal" resultMap="proposalMap">
 		<![CDATA[
-        select p.proposal_no, suppl_name, compo_name, price, quantity, defective_rate, quality_grade, prod_period
+        select *
         from proposal p full outer join supplier s
                                         on p.suppl_no=s.suppl_no full outer join component c
                                                                                  on p.compo_no=c.compo_no
         where compo_name=#{compo_name} and p.suppl_no=#{suppl_no}
+        ]]>
+	</select>
+    <select id="getProposaltoContract" resultMap="proposalMap">
+        select *
+        from proposal p full outer join supplier s
+                on p.suppl_no=s.suppl_no full outer join component c
+                on p.compo_no=c.compo_no
+        where p.proposal_no=#{proposal_no}
+    </select>
+    <insert id="saveContract">
+
+        insert into contract values (#{contract_no},#{suppl_no},#{compo_no},#{start_date},#{end_date},#{contract_date},#{proposal_no})
+    </insert>
+    <update id="upProposalStat">
+        update proposal set status='1' where proposal_no=#{proposal_no}
+    </update>
+    <select id="lastSEQ">
+        select CONTRACT_SEQ.nextval from dual
+    </select>
+
+    <select id="allContracts">
+        select * from contract
+    </select>
+    <resultMap type="RetailerVO" id="retailerMap">
+        <id property="retail_no" column="retail_no"/>
+        <result property="retail_no" column="retail_no"/>
+        <result property="retail_name" column="retail_name"/>
+        <result property="ceo_name" column="ceo_name"/>
+        <result property="category" column="category"/>
+        <result property="phone" column="phone"/>
+        <result property="scale_grade" column="scale_grade"/>
+        <collection property="transport" resultMap="transportMap"></collection>
+    </resultMap>
+    <!-- 판매사 리스트 -->
+    <select id="retailerList" resultMap="retailerMap" parameterType="String">
+		<![CDATA[
+        select r.retail_no, retail_name, ceo_name, category, phone, scale_grade
+        from retailer r join sale_predict s
+                             on r.retail_no=s.retail_no join product p
+                                                             on s.prod_no=p.prod_no
+        where prod_name=#{prod_name}
+        ]]>
+	</select>
+    <resultMap type="ProductVO" id="productMap">
+        <id property="prod_no" column="prod_no"/>
+        <result property="prod_no" column="prod_no"/>
+        <result property="unit" column="unit"/>
+        <result property="prod_name" column="prod_name"/>
+        <result property="prod_detail" column="prod_detail"/>
+        <collection property="model" resultMap="modelMap"></collection>
+    </resultMap>
+    <resultMap type="ModelVO" id="modelMap">
+        <id property="model_no" column="model_no"/>
+        <result property="model_no" column="model_no"/>
+        <result property="capacity" column="capacity"/>
+        <result property="color" column="color"/>
+        <result property="release_date" column="release_date"/>
+        <result property="model_name" column="model_name"/>
+    </resultMap>
+    <resultMap type="SalePredictVO" id="salePredictMap">
+        <id property="sale_predict_no" column="sale_predict_no"/>
+        <result property="sale_predict_no" column="sale_predict_no"/>
+        <result property="sales_amount" column="sales_amount"/>
+        <result property="purchasing_grade" column="purchasing_grade"/>
+        <result property="price" column="price"/>
+        <result property="transport_grade" column="transport_grade"/>
+        <result property="predict_date" column="predict_date"/>
+        <collection property="retailer" resultMap="retailerMap"></collection>
+        <collection property="product" resultMap="productMap"></collection>
+    </resultMap>
+
+    <select id="getPredict" resultMap="salePredictMap">
+		<![CDATA[
+        select sale_predict_no, retail_name, prod_name, sales_amount, purchasing_grade, price, transport_grade
+        from sale_predict s join product p
+                                 on s.prod_no=p.prod_no join retailer r
+                                                             on s.retail_no=r.retail_no
+        where prod_name=#{prod_name} and r.retail_no=#{retail_no}
         ]]>
 	</select>
 </mapper>

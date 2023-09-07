@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosa.kapple.mapper.MapperMK">
+
+<!--    &lt;!&ndash; 실적분석 Performance review &ndash;&gt;-->
+<!--    &lt;!&ndash; ORDERS ===================================== &ndash;&gt;-->
+<!--    <select id="getOrderList" resultMap="OrdersMap">-->
+<!--    <![CDATA[-->
+<!--        select order_no, o.suppl_no, o.compo_no, price, quantity, delivery_date, order_date-->
+<!--               , s.suppl_no, transport_no, suppl_name, ceo_name, category, phone-->
+<!--               , c.compo_no, compo_name, unit, detail-->
+<!--            from orders o-->
+<!--            LEFT OUTER JOIN supplier s-->
+<!--            ON o.suppl_no = s.suppl_no-->
+<!--            LEFT OUTER JOIN component c-->
+<!--            ON o.compo_no = c.compo_no-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    <resultMap type="OrdersVO" id="OrdersMap">-->
+<!--        <id property="order_no" column="order_no"/>-->
+<!--        <result property="price" column="price"/>-->
+<!--        <result property="quantity" column="quantity"/>-->
+<!--        <result property="delivery_date" column="delivery_date"/>-->
+<!--        <result property="order_date" column="order_date"/>-->
+<!--        <collection property="supplier" resultMap="SupplierMap"/>-->
+<!--        <collection property="component" resultMap="ComponentMap"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap type="SupplierVO" id="SupplierMap">-->
+<!--        <id property="suppl_no" column="suppl_no"/>-->
+<!--        <result property="suppl_name" column="suppl_name"/>-->
+<!--        <result property="ceo_name" column="ceo_name"/>-->
+<!--        <result property="category" column="category"/>-->
+<!--        <result property="phone" column="phone"/>-->
+<!--        <collection property="transport" resultMap="TransportMap"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap type="ComponentVO" id="ComponentMap">-->
+<!--        <id property="compo_no" column="compo_no"/>-->
+<!--        <result property="compo_name" column="compo_name"/>-->
+<!--        <result property="unit" column="unit"/>-->
+<!--        <result property="detail" column="detail"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap type="TransportationVO" id="TransportMap">-->
+<!--        <id property="transport_no" column="transport_no"/>-->
+<!--        <result property="transport_category" column="transport_category"/>-->
+<!--        <result property="transport_charge" column="transport_charge"/>-->
+<!--        <result property="additional_condition" column="additional_condition"/>-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash; ORDER_RETURN ===================================== &ndash;&gt;-->
+<!--    <select id="getOrderReturnList" resultMap="OrderReturnMap">-->
+<!--    <![CDATA[-->
+<!--        select ORDER_RETURN_NO, ort.ORDER_NO, ort.SUPPL_NO, ort.COMPO_NO, ort.QUANTITY, ort.PRICE, REMARKS, RETURN_DATE-->
+<!--            , o.order_no, o.suppl_no, o.compo_no, o.price, o.quantity, delivery_date, order_date-->
+<!--            , s.suppl_no, transport_no, suppl_name, ceo_name, category, phone-->
+<!--            , c.compo_no, compo_name, unit, detail-->
+<!--        from ORDER_RETURN ort-->
+<!--                 LEFT OUTER JOIN ORDERS o-->
+<!--                                 ON ort.ORDER_NO = o.ORDER_NO-->
+<!--                 LEFT OUTER JOIN SUPPLIER s-->
+<!--                                 ON ort.SUPPL_NO = s.SUPPL_NO-->
+<!--                 LEFT OUTER JOIN COMPONENT c-->
+<!--                                 ON ort.COMPO_NO = c.COMPO_NO-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    <resultMap type="OrderReturnVO" id="OrderReturnMap">-->
+<!--        <id property="order_return_no" column="order_return_no"/>-->
+<!--        <result property="order_no" column="order_no"/>-->
+<!--        <result property="quantity" column="quantity"/>-->
+<!--        <result property="price" column="price"/>-->
+<!--        <result property="remarks" column="remarks"/>-->
+<!--        <result property="return_date" column="return_date"/>-->
+<!--        <collection property="supplier" resultMap="SupplierMap"/>-->
+<!--        <collection property="component" resultMap="ComponentMap"/>-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash; COMPONENT_INVENTORY ===================================== &ndash;&gt;-->
+<!--    <select id="getCompoInvenList" resultMap="ComponentInventoryMap">-->
+<!--    <![CDATA[-->
+<!--        select INVEN_NO, ci.COMPO_NO-->
+<!--            , c.compo_no, compo_name, unit, detail-->
+<!--        from COMPONENT_INVENTORY ci-->
+<!--                 LEFT OUTER JOIN COMPONENT c-->
+<!--                                 ON ci.COMPO_NO = c.COMPO_NO-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    <resultMap type="ComponentInventoryVO" id="ComponentInventoryMap">-->
+<!--        <id property="inven_no" column="inven_no"/>-->
+<!--        <collection property="component" resultMap="ComponentMap"/>-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash; PRODUCE, SALE, SALE_RETURN, PRODUCT_INVENTORY &ndash;&gt;-->
+<!--    &lt;!&ndash; PRODUCE ===================================== &ndash;&gt;-->
+<!--    <select id="getProduceList" resultMap="ProduceMap">-->
+<!--    <![CDATA[-->
+<!--        select PRODUCE_NO, pe.PROD_NO, pe.COMPO_NO, QUANTITY, PRODUCE_DATE-->
+<!--               , pt.PROD_NO, PROD_NAME, pt.UNIT, PROD_DETAIL-->
+<!--               , c.COMPO_NO, compo_name, c.unit, detail-->
+<!--        from PRODUCE pe-->
+<!--                 LEFT OUTER JOIN PRODUCT pt-->
+<!--                                 ON pe.PROD_NO = pt.PROD_NO-->
+<!--                 LEFT OUTER JOIN component c-->
+<!--                                 ON pe.compo_no = c.compo_no-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    <resultMap type="ProduceVO" id="ProduceMap">-->
+<!--        <id property="produce_no" column="produce_no"/>-->
+<!--        <result property="produce_date" column="produce_date"/>-->
+<!--        <result property="quantity" column="quantity"/>-->
+<!--        <collection property="product" resultMap="ProductMap"/>-->
+<!--        <collection property="component" resultMap="ComponentMap"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap type="ProductVO" id="ProductMap">-->
+<!--        <id property="prod_no" column="prod_no"/>-->
+<!--        <result property="unit" column="unit"/>-->
+<!--        <result property="prod_name" column="prod_name"/>-->
+<!--        <result property="prod_detail" column="prod_detail"/>-->
+<!--&lt;!&ndash;        <association property="model" resultMap="ModelMap"/>&ndash;&gt;-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash; SALE ===================================== &ndash;&gt;-->
+<!--    <select id="getSaleList" resultMap="SaleMap">-->
+<!--    <![CDATA[-->
+<!--        select SALE_NO, s.RETAIL_NO, s.PROD_NO, PRICE, QUANTITY, SUPPL_AMOUNT-->
+<!--                      , VAT_AMOUNT, TOTAL_AMOUNT, DISCOUNT_RATE, SALE_DATE-->
+<!--             , r.RETAIL_NO, TRANSPORT_NO, RETAIL_NAME, CEO_NAME, CATEGORY, PHONE, SCALE_GRADE-->
+<!--             , pt.PROD_NO, PROD_NAME, UNIT, PROD_DETAIL-->
+<!--        from Sale s-->
+<!--                 LEFT OUTER JOIN RETAILER r-->
+<!--                                 ON s.RETAIL_NO = r.RETAIL_NO-->
+<!--                 LEFT OUTER JOIN PRODUCT pt-->
+<!--                                 ON s.PROD_NO = pt.PROD_NO-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    <resultMap type="SaleVO" id="SaleMap">-->
+<!--        <id property="sale_no" column="sale_no"/>-->
+<!--        <result property="price" column="price"/>-->
+<!--        <result property="quantity" column="quantity"/>-->
+<!--        <result property="supply_amount" column="suppl_amount"/>-->
+<!--        <result property="vat_amount" column="vat_amount"/>-->
+<!--        <result property="total_amount" column="total_amount"/>-->
+<!--        <result property="discount_rate" column="discount_rate"/>-->
+<!--        <result property="sale_date" column="sale_date"/>-->
+<!--        <collection property="retailer" resultMap="RetailerMap"/>-->
+<!--        <collection property="product" resultMap="ProductMap"/>-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash; SALE_RETURN ===================================== &ndash;&gt;-->
+<!--    <select id="getSaleReturnList" resultMap="SaleReturnMap">-->
+<!--    <![CDATA[-->
+<!--        select SALE_RETURN_NO, sr.SALE_NO, sr.RETAIL_NO, sr.PROD_NO, sr.QUANTITY, sr.PRICE, REMARKS, RETURN_DATE-->
+<!--         , s.SALE_NO, s.RETAIL_NO, s.PROD_NO, s.PRICE, s.QUANTITY, SUPPL_AMOUNT-->
+<!--         , r.RETAIL_NO, TRANSPORT_NO, RETAIL_NAME, CEO_NAME, CATEGORY, PHONE, SCALE_GRADE-->
+<!--         , pt.PROD_NO, PROD_NAME, UNIT, PROD_DETAIL-->
+<!--        from SALE_RETURN sr-->
+<!--             LEFT OUTER JOIN Sale s-->
+<!--                             ON sr.SALE_NO = s.SALE_NO-->
+<!--             LEFT OUTER JOIN RETAILER r-->
+<!--                             ON sr.RETAIL_NO = r.RETAIL_NO-->
+<!--             LEFT OUTER JOIN PRODUCT pt-->
+<!--                             ON sr.PROD_NO = pt.PROD_NO-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    <resultMap type="SaleReturnVO" id="SaleReturnMap">-->
+<!--        <id property="sale_return_no" column="sale_return_no"/>-->
+<!--        <id property="quantity" column="quantity"/>-->
+<!--        <id property="price" column="price"/>-->
+<!--        <id property="remarks" column="remarks"/>-->
+<!--        <id property="return_date" column="return_date"/>-->
+<!--        <collection property="retailer" resultMap="RetailerMap"/>-->
+<!--        <collection property="product" resultMap="ProductMap"/>-->
+<!--    </resultMap>-->
+
+<!--    <resultMap type="RetailerVO" id="RetailerMap">-->
+<!--        <id property="retail_no" column="retail_no"/>-->
+<!--        <result property="retail_name" column="retail_name"/>-->
+<!--        <result property="ceo_name" column="ceo_name"/>-->
+<!--        <result property="category" column="category"/>-->
+<!--        <result property="phone" column="phone"/>-->
+<!--        <result property="scale_grade" column="scale_grade"/>-->
+<!--        <collection property="transport" resultMap="TransportMap"/>-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash; PRODUCT_INVENTORY ===================================== &ndash;&gt;-->
+<!--    <select id="getProdInvenList" resultMap="ProductInventoryMap">-->
+<!--    <![CDATA[-->
+<!--        select SERIAL_NO, pi.PROD_NO-->
+<!--         , pt.PROD_NO, PROD_NAME, UNIT, PROD_DETAIL-->
+<!--        from PRODUCT_INVENTORY pi-->
+<!--             LEFT OUTER JOIN PRODUCT pt-->
+<!--                             ON pi.PROD_NO = pt.PROD_NO-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    <resultMap type="ProductInventoryVO" id="ProductInventoryMap">-->
+<!--        <id property="serial_no" column="serial_no"/>-->
+<!--        <collection property="product" resultMap="ProductMap"/>-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash; 제품별 판매량 SALES_QUANTITY_BY_PRODUCT ================= &ndash;&gt;-->
+<!--    <select id="getSaleQtyListByProduct" resultType="HashMap" parameterType="java.sql.Date">-->
+<!--    <![CDATA[-->
+<!--        SELECT prod_no, sale_date-->
+<!--               , sum(QUANTITY) as "제품별 판매량"-->
+<!--               , RANK() OVER(ORDER BY sum(QUANTITY) DESC) as "순위"-->
+<!--        FROM sale-->
+<!--        GROUP BY prod_no, sale_date-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash; 부품별 공급사 의존도 SUPPLIER_DEPENDENCY_BY_COMPONENT ============= &ndash;&gt;-->
+<!--    <select id="getSupplierDependencyByComponent" resultType="HashMap" parameterType="java.sql.Date">-->
+<!--    <![CDATA[-->
+<!--        SELECT c.compo_no, c.compo_name, o.suppl_no, s.suppl_name, sum(o.QUANTITY) as "부품별 공급사별 구매량",-->
+<!--               RANK() OVER(PARTITION BY c.compo_no ORDER BY sum(o.QUANTITY) DESC) as "순위"-->
+<!--        FROM orders o-->
+<!--            INNER JOIN SUPPLIER s ON o.suppl_no = s.suppl_no-->
+<!--            INNER JOIN COMPONENT c ON o.compo_no = c.compo_no-->
+<!--        GROUP BY c.compo_no, c.compo_name, o.suppl_no, s.suppl_name-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash; 제품별 판매량 예측 정확도 SALES_PREDICT_BY_PRODUCT ============= &ndash;&gt;-->
+<!--    <select id="getSalesPredictByProduct" resultType="HashMap" parameterType="java.sql.Date">-->
+<!--    <![CDATA[-->
+<!--        SELECT prod_no, sale_date-->
+<!--             , sum(QUANTITY) as "제품별 판매량"-->
+<!--             , RANK() OVER(ORDER BY sum(QUANTITY) DESC) as "순위"-->
+<!--        FROM sale-->
+<!--        GROUP BY prod_no, sale_date-->
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    <resultMap type="SalePredictVO" id="SalePredictMap">-->
+<!--        <id property="sale_predict_no" column="sale_predict_no"/>-->
+<!--        <result property="sale_date" column="sale_date"/>-->
+<!--        <result property="quantity" column="quantity"/>-->
+<!--        <result property="price" column="price"/>-->
+<!--        <result property="algorithm" column="algorithm"/>-->
+<!--        <collection property="created_at" resultMap="created_at"/>-->
+<!--        <collection property="product" resultMap="productMap"/>-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash; 부품별 재고 회전율 INVENTORY_TURNOVER_BY_COMPONENT ============= &ndash;&gt;-->
+<!--    <select id="getComponentInventoryTurnover" resultType="float" parameterType="java.sql.Date">-->
+<!--    <![CDATA[-->
+
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash; 제품별 재고 회전율 INVENTORY_TURNOVER_BY_PRODUCT ============= &ndash;&gt;-->
+<!--    <select id="getProductInventoryTurnover" resultType="float" parameterType="java.sql.Date">-->
+<!--    <![CDATA[-->
+
+<!--    ]]>-->
+<!--    </select>-->
+
+<!--&lt;!&ndash;    <select id="getSupplierDependency" resultType="HashMap" parameterType="java.sql.Date">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT suppl_no, suppl_name, "공급사별 부품 구매량", "순위"&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM (&ndash;&gt;-->
+<!--&lt;!&ndash;                 SELECT o.suppl_no, s.suppl_name, sum(o.QUANTITY) as "공급사별 부품 구매량",&ndash;&gt;-->
+<!--&lt;!&ndash;                        RANK() OVER(ORDER BY sum(o.QUANTITY) DESC) as "순위"&ndash;&gt;-->
+<!--&lt;!&ndash;                 FROM orders o&ndash;&gt;-->
+<!--&lt;!&ndash;                          INNER JOIN SUPPLIER s ON o.suppl_no = s.suppl_no&ndash;&gt;-->
+<!--&lt;!&ndash;                 GROUP BY o.suppl_no, s.suppl_name&ndash;&gt;-->
+<!--&lt;!&ndash;             )&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <resultMap type="OrdersVO" id="OrdersMap">&ndash;&gt;-->
+<!--&lt;!&ndash;        <id property="order_no" column="order_no"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <result property="price" column="price"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <result property="quantity" column="quantity"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <result property="delivery_date" column="delivery_date"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <result property="order_date" column="order_date"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <collection property="supplier" resultMap="SupplierMap"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <collection property="component" resultMap="ComponentMap"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </resultMap>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;    <select id="getSaleQtyGroupByDate" resultType="HashMap" parameterType="java.sql.Date">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT sale_date, sum(quantity) AS "daily_sales"&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM SALE&ndash;&gt;-->
+<!--&lt;!&ndash;        WHERE sale_date  BETWEEN #{startDate} AND #{endDate}&ndash;&gt;-->
+<!--&lt;!&ndash;        GROUP BY sale_date ORDER BY sale_date&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+
+
+
+
+<!--&lt;!&ndash;    <select id="getTotalSalesAmountByPeriod" resultType="Long" parameterType="java.sql.Date">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT sum(price*quantity) AS "sales_amount"&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM SALE   WHERE sale_date   BETWEEN #{startDate} AND #{endDate}&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select id="getTotalReturnQtyByPeriod" resultType="Long" parameterType="java.sql.Date">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT sum(quantity) FROM sale_return&ndash;&gt;-->
+<!--&lt;!&ndash;        WHERE return_date   BETWEEN #{startDate} AND #{endDate}&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select id="getTotalProduceQtyByPeriod" resultType="Long" parameterType="java.sql.Date">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT sum(quantity) FROM produce&ndash;&gt;-->
+<!--&lt;!&ndash;        WHERE produce_date   BETWEEN #{startDate} AND #{endDate}&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select id="getTotalOrderQtyByPeriod" resultType="Long" parameterType="java.sql.Date">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT sum(quantity) FROM orders&ndash;&gt;-->
+<!--&lt;!&ndash;        WHERE order_date   BETWEEN #{startDate} AND #{endDate}&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select id="getTotalSalesQtyByPeriod" resultType="Long" parameterType="java.sql.Date">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT sum(quantity) AS "sales_qty"&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM SALE   WHERE sale_date   BETWEEN #{startDate} AND #{endDate}&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select id="getSaleListByPeriod" resultMap="SaleMap" parameterType="java.sql.Date">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT sale_no, RETAIL_NO, PROD_NO, price, quantity,&ndash;&gt;-->
+<!--&lt;!&ndash;               suppl_amount, vat_amount, total_amount, discount_rate, sale_date&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM SALE WHERE sale_date   BETWEEN #{startDate} AND #{endDate}&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+
+<!--        &lt;!&ndash; ========= 연관관계 없이 리스트 조회하기 ===================== &ndash;&gt;-->
+<!--&lt;!&ndash;    <select id="getSaleList" resultMap="SaleMap">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT sale_no, retail_no, prod_no, price, quantity,&ndash;&gt;-->
+<!--&lt;!&ndash;               suppl_amount, vat_amount, total_amount, discount_rate, sale_date&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM SALE&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select id="getModelList" resultMap="ModelMap">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT model_no, capacity, color, release_date, model_name&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM MODEL&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select id="getProductList" resultMap="ProductMap">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT prod_no, unit, prod_name, prod_detail, model_no&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM PRODUCT&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <select id="getRetailerList" resultMap="RetailerMap">&ndash;&gt;-->
+<!--&lt;!&ndash;    <![CDATA[&ndash;&gt;-->
+<!--&lt;!&ndash;        SELECT retail_no, transport_no, retail_name, ceo_name, category, phone, scale_grade&ndash;&gt;-->
+<!--&lt;!&ndash;        FROM RETAILER&ndash;&gt;-->
+<!--&lt;!&ndash;        ]]> </select>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash; ========= 이전 프로젝트로부터 가져온 MAP =========================== &ndash;&gt;-->
+<!--&lt;!&ndash; ===== property 값은 MemberVO의 변수명과 대소문자까지 똑같아야 함! ===== &ndash;&gt;-->
+
+<!--    &lt;!&ndash; <resultMap type="MemberVO" id="memberMap">-->
+<!--       <id property="userid" column="userid"/>-->
+<!--       <result property="userid" column="userid"/>-->
+<!--       <result property="userpw" column="userpw"/>-->
+<!--       <collection property="authList" resultMap="authMap"></collection>-->
+<!--    </resultMap> &ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <resultMap type="ModelVO" id="ModelMap">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <id property="model_no" column="model_no"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <result property="capacity" column="capacity"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <result property="color" column="color"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <result property="release_date" column="release_date"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <result property="model_name" column="model_name"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </resultMap>&ndash;&gt;-->
+
+<!--    &lt;!&ndash; <insert id="insert">-->
+<!--        <![CDATA[-->
+<!--            insert into test_tbl (TEST_NO, CONTENTS, ANYNUM, REG_DATE)-->
+<!--            values ('TEST'||TEST_TBL_SEQ.nextval, #{contents}, #{anynum}, SYSDATE)-->
+<!--        ]]>-->
+<!--    </insert> &ndash;&gt;-->
+
+</mapper>

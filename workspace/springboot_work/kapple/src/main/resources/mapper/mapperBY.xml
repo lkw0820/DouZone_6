@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosa.kapple.mapper.MapperBY">
+
+    <!-- 부품 리스트 가져오기 -->
+    <select id="getAllComponents" resultType="ResponseComponent2">
+		<![CDATA[
+        select *
+        from component2
+        order by compo_no
+        ]]>
+	</select>
+
+    <!-- 부품 등록 with Select Key -->
+    <insert id="saveComponent" >
+        <selectKey keyProperty="compo_no" order="BEFORE" resultType="String">
+            select 'CPNT' || COMPONENT2_SEQ.nextval from dual
+        </selectKey>
+
+        <![CDATA[
+			INSERT INTO COMPONENT2 (compo_no, compo_name, unit, detail, sort, sort_detail, created_at)
+			VALUES (#{compo_no}, #{compo_name}, #{unit}, #{detail}, #{sort}, #{sort_detail}, sysdate)
+		]]>
+    </insert>
+
+        <!-- 공급사 파일 등록 -->
+        <insert id="saveFile">
+    		<![CDATA[
+            INSERT INTO SUPPL_FILE (UUID, FILE_NAME, PATH, CREATED_AT)
+            VALUES (#{uuid}, #{file_name}, #{path}, sysdate)
+            ]]>
+        </insert>
+
+        <!--  공급사 파일 공급사 번호 업데이트 -->
+        <update id="updateFile">
+    	    <![CDATA[
+            UPDATE SUPPL_FILE
+            SET SUPPL_NO = #{suppl_no}
+            WHERE UUID = #{uuid}
+            ]]>
+    	</update>
+
+
+
+</mapper>

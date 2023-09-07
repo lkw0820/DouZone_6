@@ -17,6 +17,6 @@ class MapperKWTest {
 
     @Test
     void test1() {
-        System.out.println(mapper.getProposal("스피커","SPPL10775"));
+        System.out.println(mapper.allContracts());
     }
 }

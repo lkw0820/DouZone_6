@@ -18,4 +18,6 @@ management:
         include: "*"
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.kosa.Kapple.domain
+  type-aliases-package: com.kosa.Kapple.domain, com.kosa.Kapple.vo
+  configuration:
+    jdbc-type-for-null: varchar
