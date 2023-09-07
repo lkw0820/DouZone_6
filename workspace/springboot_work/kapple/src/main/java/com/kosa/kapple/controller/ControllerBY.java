@@ -2,10 +2,8 @@ package com.kosa.kapple.controller;
 
 import com.kosa.kapple.domain.ComponentVO;
 import com.kosa.kapple.service.ServiceBY;
-import com.kosa.kapple.vo.RequestComponent2;
-import com.kosa.kapple.vo.RequestFile;
+import com.kosa.kapple.vo.*;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -25,19 +22,19 @@ public class ControllerBY{
 
     private ServiceBY service;
 
-    @GetMapping("/components")
-    public List<ComponentVO> getAllComponents() {
+    @GetMapping("/components") // 부품 리스트 조회
+    public List<ResponseComponent2> getAllComponents() {
         return service.getAllComponents();
     }
 
-    @PostMapping("/component")
+    @PostMapping("/component") // 부품 등록
     public ResponseEntity<RequestComponent2> saveComponent(@RequestBody RequestComponent2 component) {
         RequestComponent2 requestComponent = service.saveComponent(component);
         System.out.println(requestComponent);
         return ResponseEntity.status(HttpStatus.CREATED).body(requestComponent);
     }
 
-    @PostMapping("/file")
+    @PostMapping("/file") // 제안서 업로드
     public ResponseEntity<RequestFile> saveFile(@RequestParam("file") MultipartFile file) {
 
         try {
@@ -59,7 +56,7 @@ public class ControllerBY{
         return null;
     }
 
-    @PutMapping("/file")
+    @PutMapping("/file") // 제안서 공급사 아이디 등록(업데이트)
     public ResponseEntity<RequestFile> updateFile(@RequestBody RequestFile file) {
 
         RequestFile updateFile = service.updateFile(file);
@@ -67,6 +64,58 @@ public class ControllerBY{
         return ResponseEntity.status(HttpStatus.CREATED).body(updateFile);
     }
 
+    @PostMapping("/logo") // 로고 업로드
+    public ResponseEntity<RequestLogo> saveLogo(@RequestParam("file") MultipartFile file) {
+
+        try {
+            String uniqueFileName = "logo_" + file.getOriginalFilename();
+
+            Path directoryPath = Paths.get("C:/kapple-scm/logo/supplier");
+            Path filePath = Paths.get("C:/kapple-scm/logo/supplier", uniqueFileName);
+
+            if(!directoryPath.toFile().exists()) {
+                directoryPath.toFile().mkdirs();
+            }
+
+            file.transferTo(filePath.toFile());
+
+            RequestLogo requestLogo = new RequestLogo(UUID.randomUUID().toString(), "", uniqueFileName,"C:/kapple-scm/logo/supplier" ) ;
+            RequestLogo saveLogo = service.saveLogo(requestLogo);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(saveLogo);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @PutMapping("/logo") // 제안서 공급사 아이디 등록(업데이트)
+    public ResponseEntity<RequestLogo> updateLogo(@RequestBody RequestLogo logo) {
+
+        RequestLogo updateFile = service.updateLogo(logo);
+        System.out.println(updateFile);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(updateFile);
+    }
+
+    @PostMapping("/draft") // 부품 등록
+    public ResponseEntity<RequestDraft> saveDraft(@RequestBody RequestDraft draft) {
+        RequestDraft requestDraft = service.saveDraft(draft);
+        System.out.println(requestDraft);
+        return ResponseEntity.status(HttpStatus.CREATED).body(requestDraft);
+    }
+
+    @GetMapping("/draft") // 부품 등록
+    public List<ResponseDraft> getAllDrafts() {
+        return service.getAllDrafts();
+    }
+
+    @GetMapping("/suppliers2") // 부품 등록
+    public List<ResponseSupplier> getAllSuppliers2() {
+        return service.getAllSuppliers2();
+    }
 
 
 

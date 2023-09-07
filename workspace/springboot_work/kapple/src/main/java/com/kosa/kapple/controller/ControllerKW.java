@@ -6,10 +6,7 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.kosa.kapple.domain.ContractVO;
-import com.kosa.kapple.domain.ProposalVO;
-import com.kosa.kapple.domain.RetailerVO;
-import com.kosa.kapple.domain.SupplierVO;
+import com.kosa.kapple.domain.*;
 import com.kosa.kapple.service.ServiceKW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -101,5 +98,8 @@ public List<SupplierVO> selectedSuppl(@PathVariable String compo_name){
         return service.retailerList(prod_name);
     }
 
-
+    @GetMapping("/predict/{prod_name}/{retail_no}")
+    public SalePredictVO2 getPredict(@PathVariable String prod_name,@PathVariable String retail_no){
+        return service.getPredict(prod_name,retail_no);
+    }
 }

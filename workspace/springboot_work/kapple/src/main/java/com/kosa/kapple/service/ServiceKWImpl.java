@@ -1,10 +1,7 @@
 package com.kosa.kapple.service;
 
 //import com.kosa.kapple.domain.ContractVO;
-import com.kosa.kapple.domain.ContractVO;
-import com.kosa.kapple.domain.ProposalVO;
-import com.kosa.kapple.domain.RetailerVO;
-import com.kosa.kapple.domain.SupplierVO;
+import com.kosa.kapple.domain.*;
 import com.kosa.kapple.mapper.MapperKW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,5 +60,10 @@ public class ServiceKWImpl implements ServiceKW{
     @Override
     public List<RetailerVO> retailerList(String prod_name) {
         return mapper.retailerList(prod_name);
+    }
+
+    @Override
+    public SalePredictVO2 getPredict(String prod_name, String retail_no) {
+        return mapper.getPredict(prod_name,retail_no);
     }
 }

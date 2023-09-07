@@ -16,6 +16,6 @@ public interface MapperKW {
     public int lastSEQ();
     public List<ContractVO> allContracts();
     public List<RetailerVO> retailerList(String prod_name);
-    public SalePredictVO getPredict(String prod_name, String retail_no);
+    public SalePredictVO2 getPredict(String prod_name, String retail_no);
 
 }

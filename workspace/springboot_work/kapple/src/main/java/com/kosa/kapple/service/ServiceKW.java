@@ -1,9 +1,6 @@
 package com.kosa.kapple.service;
 
-import com.kosa.kapple.domain.ContractVO;
-import com.kosa.kapple.domain.ProposalVO;
-import com.kosa.kapple.domain.RetailerVO;
-import com.kosa.kapple.domain.SupplierVO;
+import com.kosa.kapple.domain.*;
 
 import java.util.List;
 
@@ -14,4 +11,5 @@ public interface ServiceKW {
     public ContractVO saveContract(ContractVO contract);
     public List<ContractVO> allContracts();
     public List<RetailerVO> retailerList(String prod_name);
+    public SalePredictVO2 getPredict(String prod_name, String retail_no);
 }

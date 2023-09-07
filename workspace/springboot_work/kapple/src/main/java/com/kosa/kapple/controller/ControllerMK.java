@@ -29,13 +29,19 @@ public class ControllerMK {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    @GetMapping("/chart/all")
+    public ResponseEntity<HashMap<String, Object>> initAllChart(){
+        HashMap<String, Object> result = new HashMap<>();
+        Object option;
+        return new ResponseEntity<HashMap<String,Object>>(result, HttpStatus.OK);
+    }
 
     // 요약 조회 ============================================
     @GetMapping("/comparison")
     public ResponseEntity<HashMap<String, Object>> getOrderList(){
 //        Date startDate=null;
 //        Date endDate=null;
-        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> result = new HashMap<>();
 
 //        // (부품) 주문 리스트 조회
 //        List<OrdersVO> orderList = service.getOrderList();
@@ -65,7 +71,7 @@ public class ControllerMK {
 //
 //        // 제품별 판매량 SALES_QUANTITY_BY_PRODUCT
         List<Object> saleQtyListByProduct = service.getSaleQtyListByProduct();
-        resultMap.put("Object 제품별 판매량", saleQtyListByProduct);
+        result.put("Object 제품별 판매량", saleQtyListByProduct);
 //
 //        // 부품별 공급사 의존도 SUPPLIER_DEPENDENCY_BY_COMPONENT
 //        List<Object> supplierDependencyByComponent = service.getSupplierDependencyByComponent();
@@ -76,9 +82,7 @@ public class ControllerMK {
 //        resultMap.put("Object 부품별 재고 회전율", componentInventoryTurnover);
 
 
-        ResponseEntity<HashMap<String, Object>> entity
-                = new ResponseEntity<>(resultMap,HttpStatus.OK);
-        return entity;
+        return new ResponseEntity<HashMap<String,Object>>(result, HttpStatus.OK);
     }
 
     // 비교 조회 ============================================

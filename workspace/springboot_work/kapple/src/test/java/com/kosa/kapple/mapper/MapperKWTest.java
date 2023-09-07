@@ -17,6 +17,6 @@ class MapperKWTest {
 
     @Test
     void test1() {
-        System.out.println(mapper.allContracts());
+        System.out.println(mapper.getPredict("아이폰12미니","RTLR10558"));
     }
 }
