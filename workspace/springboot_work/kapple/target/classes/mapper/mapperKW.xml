@@ -144,4 +144,5 @@
         where prod_name=#{prod_name} and r.retail_no=#{retail_no}
         ]]>
 	</select>
+
 </mapper>

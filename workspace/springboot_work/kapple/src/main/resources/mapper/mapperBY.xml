@@ -144,24 +144,53 @@
     <resultMap id="logoResultMap" type="ResponseLogo">
         <id property="uuid" column="uuid"/>
         <result property="suppl_no" column="suppl_no"/>
-        <result property="logo_name" column="logo_name"/>
+        <result property="logo_name" column="file_name"/>
         <result property="path" column="path"/>
     </resultMap>
 
     <!-- 조인된 결과를 매핑하는 SQL -->
     <select id="getAllSuppliers2" resultMap="supplierResultMap">
         SELECT
-            s.suppl_no, s.suppl_name, s.business_no, s.phone_number, s.business_type,
-            s.business_item, s.address, s.detail, s.is_contracted, s.sp_created_at,
-            s.sp_updated_at, s.representative, s.company_type, s.employee_quantity, s.establishment_date,
-            s.suppl_level, s.stock_type, s.profit, s.net_profit, s.debt_ratio,
-            s.market_cap, s.website,
-            l.logo_name, l.uuid, l.path
+            s."SUPPL_NO", s."SUPPL_NAME", s."BUSINESS_NO", s."PHONE_NUMBER", s."BUSINESS_TYPE",
+            s."BUSINESS_ITEM", s."ADDRESS", s."DETAIL", s."IS_CONTRACTED", s."SP_CREATED_AT",
+            s."SP_UPDATED_AT", s."REPRESENTATIVE", s."COMPANY_TYPE", s."EMPLOYEE_QUANTITY", s."ESTABLISHMENT_DATE",
+            s."SUPPL_LEVEL", s."STOCK_TYPE", s."PROFIT", s."NET_PROFIT", s."DEBT_RATIO",
+            s."MARKET_CAP", s."WEBSITE", s."LOGO_NAME",
+            l."FILE_NAME", l."UUID", l."PATH"
         FROM
-            supplier2 s INNER JOIN suppl_logo l
-        ON s.suppl_no = l.suppl_no;
+            "SUPPLIER2" s
+                LEFT OUTER JOIN
+            "SUPPL_LOGO" l
+            ON
+                s."SUPPL_NO" = l."SUPPL_NO"
     </select>
 
+    <select id="getOneSuppliers2" resultMap="supplierResultMap">
+        SELECT
+            s."SUPPL_NO", s."SUPPL_NAME", s."BUSINESS_NO", s."PHONE_NUMBER", s."BUSINESS_TYPE",
+            s."BUSINESS_ITEM", s."ADDRESS", s."DETAIL", s."IS_CONTRACTED", s."SP_CREATED_AT",
+            s."SP_UPDATED_AT", s."REPRESENTATIVE", s."COMPANY_TYPE", s."EMPLOYEE_QUANTITY", s."ESTABLISHMENT_DATE",
+            s."SUPPL_LEVEL", s."STOCK_TYPE", s."PROFIT", s."NET_PROFIT", s."DEBT_RATIO",
+            s."MARKET_CAP", s."WEBSITE", s."LOGO_NAME",
+            l."FILE_NAME", l."UUID", l."PATH"
+        FROM
+            "SUPPLIER2" s
+                LEFT OUTER JOIN
+            "SUPPL_LOGO" l
+            ON
+                s."SUPPL_NO" = l."SUPPL_NO"
+        WHERE
+            s."SUPPL_NO" = #{suppl_no}
+    </select>
+
+    <!-- 제안서 전체 리스트 -->
+    <select id="getAllProposal" resultType="ResponseProposal">
+		<![CDATA[
+        select *
+        from proposal2
+        where suppl_no = #{suppl_no}
+        ]]>
+	</select>
 
 
 </mapper>

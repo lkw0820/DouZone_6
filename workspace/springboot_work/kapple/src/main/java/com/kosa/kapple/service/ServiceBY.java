@@ -32,4 +32,8 @@ public interface ServiceBY {
     public List<ResponseSupplier> getAllSuppliers2();
 
     public ResponseSupplier getOneSupplier2();
+
+    public List<ResponseProposal> getAllProposal(String suppl_no);
+
+    public ResponseSupplier getOneSuppliers2(String suppl_no);
 }

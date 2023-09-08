@@ -1,6 +1,7 @@
 package com.kosa.kapple.controller;
 
 import com.kosa.kapple.domain.ComponentVO;
+import com.kosa.kapple.domain.SupplierVO;
 import com.kosa.kapple.service.ServiceBY;
 import com.kosa.kapple.vo.*;
 import lombok.AllArgsConstructor;
@@ -39,11 +40,12 @@ public class ControllerBY{
 
         try {
             String uniqueFileName = "PF_" + file.getOriginalFilename();
-            Path filePath = Paths.get("C:/kapple-scm/supplier-proposal-file", uniqueFileName);
+
+            Path filePath = Paths.get("C:/douzone/workspace/project/kapple-scm/public/savedFile/supplier-proposal-file", uniqueFileName);
 
             file.transferTo(filePath.toFile());
 
-            RequestFile requestFile = new RequestFile(UUID.randomUUID().toString(), "", uniqueFileName,"C:/kapple-scm/supplier-proposal-file" ) ;
+            RequestFile requestFile = new RequestFile(UUID.randomUUID().toString(), "", uniqueFileName,"C:/douzone/workspace/project/kapple-scm/public/savedFile/supplier-proposal-file" ) ;
 
             RequestFile saveFile = service.saveFile(requestFile);
 
@@ -70,8 +72,8 @@ public class ControllerBY{
         try {
             String uniqueFileName = "logo_" + file.getOriginalFilename();
 
-            Path directoryPath = Paths.get("C:/kapple-scm/logo/supplier");
-            Path filePath = Paths.get("C:/kapple-scm/logo/supplier", uniqueFileName);
+            Path directoryPath = Paths.get("C:/douzone/workspace/project/kapple-scm/public/savedFile/logo/supplier");
+            Path filePath = Paths.get("C:/douzone/workspace/project/kapple-scm/public/savedFile/logo/supplier", uniqueFileName);
 
             if(!directoryPath.toFile().exists()) {
                 directoryPath.toFile().mkdirs();
@@ -79,7 +81,7 @@ public class ControllerBY{
 
             file.transferTo(filePath.toFile());
 
-            RequestLogo requestLogo = new RequestLogo(UUID.randomUUID().toString(), "", uniqueFileName,"C:/kapple-scm/logo/supplier" ) ;
+            RequestLogo requestLogo = new RequestLogo(UUID.randomUUID().toString(), "", uniqueFileName,"C:/douzone/workspace/project/kapple-scm/public/savedFile/logo/supplier" ) ;
             RequestLogo saveLogo = service.saveLogo(requestLogo);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(saveLogo);
@@ -117,6 +119,15 @@ public class ControllerBY{
         return service.getAllSuppliers2();
     }
 
+    @GetMapping("/proposal2/{suppl_no}") // 부품 등록
+    public List<ResponseProposal> getAllDrafts(@PathVariable String suppl_no) {
+        return service.getAllProposal(suppl_no);
+    }
+
+    @GetMapping("/suppliers2/{suppl_no}") // 부품 등록
+    public ResponseSupplier getOneSupplier2(@PathVariable String suppl_no) {
+        return service.getOneSuppliers2(suppl_no);
+    }
 
 
 

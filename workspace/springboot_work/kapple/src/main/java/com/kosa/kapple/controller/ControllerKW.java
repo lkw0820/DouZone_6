@@ -24,17 +24,6 @@ public class ControllerKW {
     @Autowired
     private ServiceKW service;
 
-//    @GetMapping("comparsionSupplier/{compo_name}")
-//    public MappingJacksonValue selectedSuppl(@PathVariable String compo_name){
-//        List<SupplierVO> suppliers=service.allSuppl(compo_name);
-//        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
-//                .filterOutAllExcept("suppl_no","suppl_name","ceo_name","category");
-//        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("Supplier",filter);
-//
-//        MappingJacksonValue mapping = new MappingJacksonValue(suppliers);
-//        mapping.setFilters(filterProvider);
-//        return mapping;
-//    }
 @GetMapping("comparsionSupplier/{compo_name}")
 public List<SupplierVO> selectedSuppl(@PathVariable String compo_name){
     return service.allSuppl(compo_name);
@@ -87,9 +76,9 @@ public List<SupplierVO> selectedSuppl(@PathVariable String compo_name){
     @GetMapping("/contracts")
     public List<ContractVO> allContracts(){
         List<ContractVO> contracts = service.allContracts();
-        for(ContractVO contract : contracts){
-
-        }
+//        for(ContractVO contract : contracts){
+//
+//        }
         return contracts;
     }
 

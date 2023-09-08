@@ -42,8 +42,11 @@ public interface MapperBY {
     // 공급사 불러오기
     public List<ResponseSupplier> getAllSuppliers2();
 
+    public ResponseSupplier getOneSuppliers2(String suppl_no);
+
     // 공급사 상세 보기
    // public ResponseSupplier getOneSupplier2();
 
+    public List<ResponseProposal> getAllProposal(String suppl_no);
 
 }

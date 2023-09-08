@@ -82,4 +82,16 @@ public class ServiceBYImpl implements ServiceBY{
         return null;
     }
 
+    @Override
+    public List<ResponseProposal> getAllProposal(String suppl_no) {
+        return mapper.getAllProposal(suppl_no);
+    }
+
+    @Override
+    public ResponseSupplier getOneSuppliers2(String suppl_no) {
+        ResponseSupplier getSupplier = mapper.getOneSuppliers2(suppl_no);
+
+        return getSupplier;
+    }
+
 }
