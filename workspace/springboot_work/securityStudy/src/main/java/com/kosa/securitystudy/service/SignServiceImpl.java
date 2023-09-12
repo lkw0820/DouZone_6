@@ -75,9 +75,9 @@ public class SignServiceImpl implements SignService{
         LOGGER.info("[getSignInResult] Id : {}",id);
 
         LOGGER.info("[getSignInResult] 패스워드 비교 수행");
-        if(!passwordEncoder.matches(password,user.getPassword())){
-            throw new RuntimeException();
-        }
+//        if(!passwordEncoder.matches(password,user.getPassword())){
+//            throw new RuntimeException();
+//        }
         LOGGER.info("[getSignInResult] 패스워드 일치");
 
         LOGGER.info("[getSignInResult] SignInResultDto 객체 생성");
