@@ -7,12 +7,14 @@ import {
 } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import routers from './routers';
+import { RecoilRoot } from 'recoil';
 
 
 function App() {
 
 
   return (
+    <RecoilRoot>
     <Router>
       <Navbar/>
       <Switch>
@@ -21,6 +23,7 @@ function App() {
         })}
       </Switch>
     </Router>
+    </RecoilRoot>
 
   );
 }
