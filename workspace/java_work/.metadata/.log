@@ -2618,3 +2618,95 @@ org.eclipse.ecf.filetransfer.BrowseFileTransferException: HttpComponents connect
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 !SUBENTRY 1 org.eclipse.ecf.identity 4 0 2023-09-19 10:52:37.029
 !MESSAGE HttpComponents connection error response code 308.
+!SESSION 2023-09-21 10:50:34.355 -----------------------------------------------
+eclipse.buildId=4.12.0.I20190605-1800
+java.version=11.0.12
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.emf.ecore 2 0 2023-09-21 10:50:41.919
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newProject', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newModel', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newService', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newDao', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newMapper', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.viewDbioSearch', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newBatch', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.fdToCode', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.queryToCode', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newQueryToMybatis', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newQueryRecommender', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.335
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newQueryTemplate', categoryId='dews.plugin.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2023-09-21 10:50:42.618
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.618
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newProject', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.618
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newModel', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.618
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newService', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.618
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newDao', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.618
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newMapper', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.618
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.viewDbioSearch', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.618
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newBatch', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.619
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.fdToCode', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.619
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.queryToCode', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.619
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newQueryToMybatis', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.619
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newQueryRecommender', categoryId='dews.plugin.commands.category'
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:42.619
+!MESSAGE Commands should really have a category: plug-in='dews.plugin', id='dews.plugin.commands.newQueryTemplate', categoryId='dews.plugin.commands.category'
+
+!ENTRY org.eclipse.egit.core 1 0 2023-09-21 10:50:42.931
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.ui 2 0 2023-09-21 10:50:43.818
+!MESSAGE Warnings while parsing the action sets from the 'org.eclipse.ui.actionSets' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2023-09-21 10:50:43.818
+!MESSAGE Actions require an id: plug-in='dews.plugin'
+
+!ENTRY org.eclipse.egit.ui 2 0 2023-09-21 10:50:46.942
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\KOSA'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2023-09-21 11:35:38.105
+!MESSAGE No repository found at http://download.eclipse.org/technology/m2e/releases/.
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1002 2023-09-21 11:36:26.154
+!MESSAGE HTTP Server Unknown HTTP Response Code (308):http://dl.bintray.com/testng-team/testng-p2-release/content.xml
+!STACK 1
+org.eclipse.ecf.filetransfer.BrowseFileTransferException: HttpComponents connection error response code 308.
+	at org.eclipse.ecf.provider.filetransfer.httpclient45.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:276)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.ecf.identity 4 0 2023-09-21 11:36:26.154
+!MESSAGE HttpComponents connection error response code 308.
